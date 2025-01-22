@@ -1,0 +1,53 @@
+.viewactividades
+{
+    &>bodyview
+    {
+        border-radius: 0 1rem 1rem 0;
+        position: relative;
+        &>div:first-child
+        {
+            min-height: 10vh;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex; flex-direction: column; gap: 0.5rem !important;
+            font-weight: 600;
+            &>div[values="title"]
+            {
+                text-align: center;
+            }
+            &>div[values="item"]
+            {
+                background-color: rgba(var(--color-dark),0.2);
+                display: flex; justify-content: space-between;
+                padding: 0.3rem; gap: 0.3rem;
+                &>div 
+                {
+                    display: flex; align-items: center; justify-content: center;
+                    &[type="delete"]
+                    {
+                        background-color: rgba(var(--danger));
+                        color: rgba(var(--color-texto-inverso));
+                    }
+                }
+            }
+        }
+        &>#monitoreo
+        {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translate(-100%,0);
+            background-color: rgba(var(--info)) !important;
+            color: rgba(var(--color-texto-inverso));
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            text-align: center;
+            font-weight: bold;
+            height: 100%;
+            border-radius: 1rem 0 0 1rem ;
+            padding: 0 0.3rem;
+            
+            overflow: hidden;
+        }
+    }
+}

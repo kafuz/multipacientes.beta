@@ -1,0 +1,80 @@
+#__config__menu
+{
+    position: absolute;
+    right:0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 95%;
+    &>div  /* Container <MENU> */
+    {
+        display: flex;
+        align-items: center ;
+        flex-direction: column;
+        justify-content: space-around;
+        padding:0rem 0.50rem;
+        flex-grow: 1;
+        height: 100%;
+        &>div /* <ITEM> */
+        {
+            background-color: rgba(var(--info),1);
+            color: rgb(var(--color-texto-inverso));
+            box-shadow: 0 0 0 0.1rem rgba(var(--color-dark));
+            padding: 0.5rem 0.25rem;
+            cursor: pointer;
+            transition: all 200ms;
+            &:hover
+            { transform: scale(1.1); }
+            > div
+            {
+                display: flex;
+                justify-content: center;
+                writing-mode: vertical-rl; 
+                text-orientation: upright; 
+            }  
+        } 
+    }  
+}
+        
+        
+
+@media (max-width: 767px) 
+{
+    #__config__menu
+    {
+        position: absolute;
+        right:1%;
+        top: 99.5%;
+        transform: translate(0%,-100%);
+        height: min-content;
+        width: 98%;
+        overflow: hidden;
+        &>div  /* Container <MENU> */
+        {
+            flex-direction: row;
+            justify-content: space-around;
+            padding:0.5rem 0;
+            flex-grow: 1;
+            height: 100%;
+            overflow-x: auto;
+            &>div /* <ITEM> */
+            {
+                flex: none;
+                background-color: rgba(var(--info),1);
+                color: rgb(var(--color-texto-inverso));
+                box-shadow: 0 0 0 0.1rem rgba(var(--color-dark));
+                padding: 0.3rem 0.6rem;
+                &:hover
+                { transform: scale(1.1); }
+                > div
+                {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    writing-mode: horizontal-tb; 
+                    text-orientation: mixed;
+                }  
+            } 
+        }  
+    }
+            
+}

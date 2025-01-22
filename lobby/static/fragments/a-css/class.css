@@ -1,0 +1,18 @@
+
+.active__action
+{
+    display: flex !important;
+    animation: show 200ms linear normal;
+}
+.complete
+{
+    background-color: rgb(var(--success)) !important;
+    color: white !important;
+    background-color: rgb(81, 18, 255);
+}
+.incomplete
+{
+    background-color: rgb(var(--danger)) !important;
+    color: white !important;
+}
+

@@ -1,0 +1,22 @@
+@import url("componets/head.css");
+@import url("componets/body.css");
+@import url('componets/nav.css');
+#__monitor
+{
+    display: flex; flex-direction: column; justify-content: space-around;
+    height: 100%;
+    flex-grow: 1;
+    overflow: hidden;
+    border-radius: 5px;
+    gap: 0.5rem;
+    &>div
+    {
+        &>div
+        { transition: all 200ms;}
+    }
+}
+
+@media (max-width: 767px) 
+{
+  
+}

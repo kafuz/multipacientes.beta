@@ -1,0 +1,23 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+{% block head %}
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="{% static 'css/accounts/signup.css' %}">
+    <script src="{% static 'js/accounts/registration/app.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="container__signup">
+        <div>
+            <h1>Datos</h1>
+            <div>{{error}}</div>
+        </div>
+        <form  method="post">
+            {% csrf_token %}
+            {{form}}
+            <button>
+                LISTO
+            </button>
+        </form>
+    </div>
+{% endblock %}

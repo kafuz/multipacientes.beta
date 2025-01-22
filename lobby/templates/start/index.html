@@ -1,0 +1,134 @@
+{% extends 'layout/drive.html'%}
+{% load static %}
+{% load compress %}
+
+{% block title %}Start Neo{% endblock %}
+{% block head %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'fragments/a-css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/complements/neo.css' %}">
+    {% endcompress %}
+
+    <script src="{% static 'js/extends/god/view/book.js' %}"></script>
+    <script src="{% static 'js/extends/god/forms/book.js' %}"></script>
+    <script src="{% static 'root.js' %}"></script>
+    <script src="{% static 'app.js' %}"></script>
+    <script src="{% static 'routes/individual.js' %}"></script>
+    <script src="{% static 'routes/alumno.js' %}"></script>
+    <script src="{% static 'routes/asignaturaUser.js' %}"></script>
+    <script src="{% static 'routes/periodo.js' %}"></script>
+
+    <script src="{% static 'components/search/index.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/index.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/setState/book.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/components/assembler.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/components/head/_joiner.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/components/head/buttons.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/components/head/search.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/components/body/_joiner.js' %}"></script>
+    <script src="{% static 'components/search/alumnos/components/body/card.js' %}"></script>
+    
+    <script src="{% static 'components/monitor/index.js' %}"></script>
+    <script src="{% static 'components/monitor/setState/book.js' %}"></script>
+    <script src="{% static 'components/monitor/components/assembler.js' %}"></script>
+    <script src="{% static 'components/monitor/components/head/_joiner.js' %}"></script>
+    <script src="{% static 'components/monitor/components/head/card.js' %}"></script>
+    <script src="{% static 'components/monitor/components/head/statistic.js' %}"></script>
+    <script src="{% static 'components/monitor/components/body/_joiner.js' %}"></script>
+    <script src="{% static 'components/monitor/components/body/periodos.js' %}"></script>
+    <script src="{% static 'components/monitor/components/body/saberes.js' %}"></script>
+    <script src="{% static 'components/monitor/components/body/result.js' %}"></script>
+
+    <script src="{% static 'components/configuracion/index.js' %}"></script>
+    <script src="{% static 'components/configuracion/setState/state.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/Assembler.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/assembler.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/setState/state.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/body/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/body/card.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/body/row.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/body/monitoreos.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/head/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/head/actividades.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/actividad/head/aggregate.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/criterio/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/main/components/dimension/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/nav-buttons/assembler.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/nav-buttons/components/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/nav-buttons/components/actualizar.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/nav-buttons/components/exportar.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/nav-buttons/components/importar.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/assembler.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/setState/book.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/components/_joiner.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/components/aggregate.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/components/periodo.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/components/slider.js' %}"></script>
+    <script src="{% static 'components/configuracion/components/periodos/view/actividades/book.js' %}"></script>
+    
+    <script src="{% static 'components/calificacion/index.js' %}"></script>
+    <script src="{% static 'components/calificacion/setState/state.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/assambler.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/a/_joiner.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/a/fragments/guys.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/a/fragments/qualification.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/a/fragments/selection.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/b/_joiner.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/b/fragments/card.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/b/fragments/periodo.js' %}"></script>
+    <script src="{% static 'components/calificacion/components/b/fragments/search.js' %}"></script>
+
+    <script src="{% static 'components/rubrica/index.js' %}"></script>
+    <script src="{% static 'components/rubrica/setState/state.js' %}"></script>
+    <script src="{% static 'components/rubrica/components/assambler.js' %}"></script>
+    <script src="{% static 'components/rubrica/components/join/_joiner.js' %}"></script>
+    <script src="{% static 'components/rubrica/components/join/fragments/head.js' %}"></script>
+    <script src="{% static 'components/rubrica/components/join/fragments/body/_joiner.js' %}"></script>
+    <script src="{% static 'components/rubrica/components/join/fragments/body/thehead.js' %}"></script>
+    <script src="{% static 'components/rubrica/components/join/fragments/body/thebody.js' %}"></script>
+
+    <script src="{% static 'fragments/neo/app.js' %}"></script>
+    <script src="{% static 'fragments/medium/book.js' %}"></script>
+    <script src="{% static 'fragments/right/book.js' %}"></script>
+{% endblock %}
+
+{% block view %}
+    <div style="display: none !important;"> {% csrf_token %} </div>
+{% endblock %}
+
+{% block nav %}
+    <div class="sliceIn">
+        <img src="{% static 'media\img\icons\libro.svg' %}" alt="#">
+        <a href="{% url 'index__institucion' %}" >Institucionales</a>
+    </div>
+{% endblock %}
+
+{% block medium %}
+    <input type="number" disabled style="display: none !important;" id="__asignatura" value={{asignatura.id}}>
+        
+        <div id="__nav__institucionales__" class="none">
+            <div>
+                <div>
+                    <span>Institución: </span>
+                    <a href="{% url 'reload__programa' %}">{{ institucion.nombre|slice:":15"|lower|capfirst }}{% if institucion.nombre|length > 15 %}...{% endif %}</a>
+                    <span>-</span>
+                </div>
+                <div>
+                    <span>Programa: </span>
+                    <a href="{% url 'reload__asignatura' %}">{{ programa.nombre|slice:":15"|lower|capfirst }}{% if programa.nombre|length > 15 %}...{% endif %}</a>
+                    <span>-</span>
+                </div>
+                <div>
+                    <span>Asignatura: </span>
+                    <a href="#">{{ asignatura.nombre|slice:":15"|lower|capfirst }}{% if asignatura.nombre|length > 15 %}...{% endif %}</a>
+                    <span>.</span>
+                </div>
+                
+            </div>
+        </div>
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}

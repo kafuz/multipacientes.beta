@@ -1,0 +1,96 @@
+/* NAV */
+
+#__nav__institucionales__ {
+    display: flex;
+    width: 100%;
+
+    &>div {
+        flex-grow: 1;
+        display: flex;
+        gap: 0.6em;
+        padding: 0.5rem;
+        border: 1px solid rgba(var(--color-dark),0.2);
+        
+        background-color: rgba(var(--color-light));
+        border-radius: 0.1rem;
+
+        &>div {
+            display: flex;
+            gap: 0.3em;
+            color: rgb(var(--color-texto-gris));
+            font-weight: 600;
+            &>a {
+                color: rgb(var(--color-azul));
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+#__monitor
+{
+    #__nav__institucionales__ 
+    {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) 
+{
+    #__monitor
+    {
+        #__nav__institucionales__ 
+        {
+            
+            overflow: hidden;
+            border-radius: 0.3rem 0.3rem 0 0;
+            overflow-x: auto;
+            &>div 
+            {
+                gap: 0.5rem;
+                padding: 0.3rem 0.3rem;
+                align-items: center;
+                justify-content: space-between;
+                >div 
+                {
+                    height: min-content;
+                    display: flex; align-items: center; justify-content: center;
+                    > span:first-child {display: none;} 
+                    > a { font-size: small;}
+                    &:not(:first-child)
+                    {
+                        &::before
+                        {
+                            content: '';
+                            width: 1.5rem; aspect-ratio: 1/1; 
+                            background-color: rgba(var(--color-azul));
+                            border-radius: 50%;
+                            transform: rotate(90deg);
+                            background-image: url(/static/media/img/icons/flecha.svg);
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            animation: personal_flechas 2000ms linear normal infinite;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@keyframes personal_flechas 
+{
+    0%
+    {
+        transform:rotate(90deg)  translateY(0);
+    }  
+    50%
+    {
+        transform:rotate(90deg) translateY(100%);
+    }  
+    100%
+    {
+        transform:rotate(90deg) translateY(0%);
+    }  
+}

@@ -1,0 +1,19 @@
+#search__alumno 
+{
+    &>div[value='body']>div[value='barra'] 
+    {
+        background-color: rgba(var(--info), 1);
+        width: 2rem;
+        padding: 0.2rem;
+        position: absolute;
+        bottom: 0.25em;
+        left: 0.25em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 200ms, filter 200ms;
+
+        &:hover {
+            filter: brightness(130%);
+        }
+    }
+}

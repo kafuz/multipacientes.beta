@@ -1,0 +1,107 @@
+@import url("complements/class.css");
+@import url("complements/animations.css");
+@import url("complements/alerts.css");
+
+/* Global styles for all elements and pseudo-elements */
+*, ::after, ::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+}
+
+:root 
+{
+    /* Color palette for the application */
+    --color-dark: 0,0,0;
+    --color-light: 255,255,255;
+    --color-grey: #E2E2E2;
+
+    /* Blue color shades */
+    --color-azul-m-100: 0, 150, 255;
+    --color-azul-m-50: 0, 100, 255;
+    --color-azul-m-25: 0, 50, 255;
+    --color-azul-m-0: 0, 0, 255;
+    --color-azul: 0, 143, 215;
+    --color-azul-va: 0, 129, 151;
+    --color-azul-v: 0, 160, 130;
+    /* Text colors */
+    --color-texto: 0, 0, 0;
+    --color-texto-inverso: 255, 255, 255;
+    --color-texto-gris:51, 51, 51;
+
+    /* Responsive text sizes using rem units */
+    --size-text-large: 1.5rem;  /* Equivalent to 24px */
+    --size-text-medium: 1rem;  /* Equivalent to 18px */
+    --size-text-small: 0.8rem;  /* Equivalent to 16px */
+
+    /* Knowledge colors */
+    --saber-ser: 76, 85, 255;
+    --saber-hacer: 0, 170, 105;
+    --saber-conocer: 0, 150, 250;
+    /* Message class colors */
+    --debug: 12, 83, 96;
+    --info: 12, 84, 96;
+    --success: 21, 87, 36;
+    --danger: 114, 28, 36;
+    --warning: 133, 100, 4;
+    --dark: 6, 6, 6;
+}
+
+img
+{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+a
+{
+    text-decoration: none;
+    color: rgb(var(--color-texto));
+}
+
+*
+{
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* Personalización del scrollbar en navegadores Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho del scrollbar vertical */
+    height: 12px; /* Alto del scrollbar horizontal */
+}
+
+/* Estilo de la pista del scrollbar */
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2); /* Color de fondo de la pista */
+    border-radius: 10px; /* Redondeo de la pista */
+}
+
+/* Estilo del pulgar (la parte móvil) */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3); /* Color del pulgar */
+    border-radius: 10px; /* Redondeo del pulgar */
+    border: 3px solid rgba(0, 0, 0, 0.2); /* Espacio alrededor del pulgar */
+}
+
+/* Estilo del pulgar en hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.6); /* Color del pulgar en hover */
+}
+
+/* Estilo del scrollbar para Firefox */
+* {
+    scrollbar-width: thin; /* Ancho del scrollbar */
+    scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.2); /* Color del pulgar y de la pista */
+}
+
+/* Opcional: Personalización de scrollbars en Edge (Chrome y Webkit) */
+@supports (-ms-overflow-style: none) {
+    * {
+        -ms-overflow-style: scrollbar; /* Habilita los estilos personalizados en Edge */
+    }
+}

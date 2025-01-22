@@ -1,0 +1,28 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+
+{% block head %}
+    <title>Configuración</title>
+    <link rel="stylesheet" href="{% static 'css/accounts/setting/index.css' %}">
+    <script src="{% static 'js/accounts/setting/app.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+    <div id="container__setting">
+        <!--Datos personales--> 
+        <a href="{% url 'User_ViewInformation' %}">
+            <span><img src="{% static 'media\img\icons\pj.png' %}" alt="#" class="img__fit"></span> 
+            <span>Información Personal</span>
+        </a>
+        <a href="{% url 'User_ChangePassword' %}"> 
+            <span><img src="{% static 'media\img\icons\candado.png' %}" alt="#" class="img__fit"></span> 
+            <span>Seguridad y Contraseña</span>
+        </a>
+        <a href="{% url 'User_ViewProfile' %}">
+            <span><img src="{% static 'media\img\icons\photoPlus.png' %}" alt="#" class="img__fit"></span> 
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+{% endblock %}

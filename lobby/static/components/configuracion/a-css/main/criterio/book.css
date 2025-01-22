@@ -1,0 +1,246 @@
+#__configuracion
+{
+    &>div[values='__main']
+    {
+        &>div
+        {
+            &:first-child
+            {
+                &>div[values='criterio']
+                {
+                    flex-grow: 1;
+                    display: flex; flex-direction: column;
+                    gap: 0.3rem;
+                    overflow: hidden;
+                    &>div[values='head']
+                    {
+                        font-weight:bolder;
+                        display: flex;
+                        justify-content: space-between;
+                        color: rgba(var(--color-texto-inverso));
+                        text-shadow: 0 0 2px rgba(var(--color-dark),0.4);
+                        &>div{display: flex; justify-content: center; align-items: center;}
+      
+                        &>div[values='header']
+                        {
+                            flex-grow: 1;
+                            align-items: start;
+                            justify-content: space-between;
+                            &>div[values='counter']
+                            {
+                                flex: none;
+                                background-color: rgba(var(--info));
+                                color: rgb(var(--color-texto-inverso));
+                                padding: 0 0.3rem;
+                                border-radius: 0.2rem 0  ;
+                            }
+                            &>div[values='title']
+                            {
+                                margin: auto;
+                            }
+                        }
+                        &>div[values="add"]
+                        {
+                            cursor: pointer;
+                            background-color: rgba(var(--success));
+                            width: 2rem;
+                            aspect-ratio: 1/1;
+                            transition: transform 0.2s;
+                            &:hover{ transform: scale(0.85); filter: brightness(150%); }
+                            box-shadow: 0 0 0 2px rgba(var(--color-light)) inset;
+                        }
+                    }
+                    &>div[values='body']
+                    {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.3rem;
+                        overflow-y: auto;
+                        /*ITEM*/
+                        &>div
+                        {
+                            padding: 0.3rem;
+                            background-color: rgba(var(--color-dark),0.2);
+                            box-shadow: 0 0 0 2px rgba(var(--color-dark),0.2) inset;
+                            & input 
+                            {
+                                border: 0;
+                                padding: 0.2rem 0rem 0.2rem 0.4rem !important;
+                                border-radius: 0.2rem;
+                                width: 90%;
+                                background-color: rgba(var(--color-light));
+                                color: rgba(var(--color-texto));
+                                font-weight: 600;
+                            }
+                            &>div 
+                            {
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                                padding: 0.3rem;
+                            }
+                            &>div:nth-child(1)
+                            {
+                            }
+                            &>div:nth-child(2)
+                            {
+                                justify-content: space-between;
+                                &>div
+                                {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    gap: 0.3rem;
+                                    font-weight: 600;
+                                    & input 
+                                    {
+                                        height: min-content;
+                                        max-width: 4rem;
+                                    }
+                                }
+                                &>div:nth-child(1), &>div:nth-child(3)
+                                {
+                                    display: flex; justify-content: center; align-items: center;
+                                    width: 2rem;
+                                    aspect-ratio: 1/1;
+                                    box-shadow:0 0 0 2px rgba(var(--color-light)) inset;
+                                    color: rgba(var(--color-texto-inverso));
+                                }
+                                &>div:nth-child(3)
+                                {
+                                    cursor: pointer;
+                                    background-color: rgba(var(--danger));
+                                    transition: transform 0.2s;
+                                    &:hover{ transform: scale(0.85); filter: brightness(150%); }
+                                    &>img 
+                                    {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+                            }
+                            &>div:nth-child(3)
+                            {
+                                padding: 0;
+                                background-color: rgba(var(--color-dark),0.2);
+                                &>div
+                                {
+                                    padding: 0.3rem;
+                                    cursor: pointer;
+                                    background-color: rgba(var(--color-dark),0.4);
+                                    color: rgba(var(--color-texto-inverso));
+                                    justify-content: center;
+                                    width: 100%;
+                                    text-align: center;
+                                }
+                            }
+                            &:hover
+                            {
+                                box-shadow: 0 0 0 2px rgba(var(--color-light), 1) inset;
+                            }
+                        }
+                        &>.config_criterio_on
+                        {
+                            background-color: rgba(var(--info),0.2);
+                            box-shadow: 0 0 0 0.1rem rgba(var(--info), 0.8) inset !important;
+                            &>div:nth-child(3)
+                            {   
+                                &>div 
+                                {
+                                    transition: width 200ms, transform 400ms;
+                                    width: 50%;
+                                    transform: translateX(50%);
+                                    background-color: rgba(var(--info), 1);
+                                    box-shadow: 0 0 0 2px rgba(var(--color-light));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) 
+{
+    #__configuracion
+    {
+        &>div[values='__main']
+        {
+            &>div
+            {
+                &:first-child
+                {
+                    &>div[values='criterio']
+                    {
+                        flex-direction: column;
+                        gap: 0.3rem;
+                        &>div[values='head']
+                        {
+                            padding: 0.2rem;
+                            &>div[values="add"]
+                            {
+                                padding:0 0.3rem !important;
+                                width: min-content;
+                                font-size: small;
+                                font-weight: 100;
+                            }
+                        }
+                        &>div[values='body']
+                        {
+                            gap: 0.2rem;
+                            /*ITEM*/
+                            &>div
+                            {
+                                display: flex; flex-direction: column;
+                                gap: 0.3rem !important;
+                                padding: 0.3rem 0.3em;
+                                & input 
+                                {
+                                    padding: 0.1rem 0rem 0.1rem 0.2rem !important;
+                                    width:100%;
+                                    max-width: 6rem;
+                                }
+                                &>div 
+                                { padding: 0.1rem;}
+                                &>div:nth-child(2)
+                                {
+                                    gap: 0.3rem;
+                                    &>div
+                                    {
+                                        gap: 0.3rem;
+                                        & input 
+                                        {
+                                            height: min-content;
+                                            max-width: 3rem;
+                                        }
+                                    }
+                                    &>div:nth-child(3)
+                                    {
+                                        font-size: medium;
+                                        font-weight: 100;
+                                        width:min-content;
+                                        padding:0.1rem 0.4rem !important; 
+                                        display: flex; align-items: center;
+                                    }
+                                    &>div:nth-child(1)
+                                    { display: none; }
+                                }
+                                &>div:nth-child(3)
+                                {
+                                    &>div
+                                    {
+                                        padding: 0rem;
+                                        width: 100%;
+                                    }
+                                }
+                            }   
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}

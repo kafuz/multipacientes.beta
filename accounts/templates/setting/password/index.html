@@ -1,0 +1,24 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+
+{% block head %}
+    <title>Password</title>
+    <link rel="stylesheet" href="{% static 'css/accounts/setting/password/book.css' %}">
+    <script src="{% static 'js/accounts/setting/app.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+    <!-- VIEW FLOAT -->
+    <view> 
+        <div id="redirect__button" >
+            <a href="{% url 'Setting_Index' %}" class="__danger">←</a>
+        </div>
+        <form method="post" class="form_password">
+            {% csrf_token %}
+            {{ form }}
+            <div><button class="__basic btn">Cambiar contraseña</button></div>
+            
+        </form>
+    </view>
+
+{% endblock %}

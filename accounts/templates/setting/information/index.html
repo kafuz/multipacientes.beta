@@ -1,0 +1,24 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+
+{% block head %}
+    <title>Configuración</title>
+    <link rel="stylesheet" href="{% static 'css/accounts/setting/information/book.css' %}">
+    <script src="{% static 'js/accounts/setting/app.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+     <!-- VIEW FLOAT -->
+     <view> 
+        <div id="redirect__button" >
+            <a href="{% url 'Setting_Index' %}" class="__danger">←</a>
+        </div>
+        <form id="form__basic" method="POST" enctype="multipart/form-data">
+            <h2>Datos personales</h2>
+            {% csrf_token %}
+            {{ form }}
+            <div> <button class="__basic btn">actualizar</button>  </div>
+        </form>
+    </view>
+
+{% endblock %}

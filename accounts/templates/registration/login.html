@@ -1,0 +1,36 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+
+{% block head %}
+    <title>Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/accounts/login.css' %}">
+    
+{% endblock %} 
+
+{% block content %}
+
+    <section id="container__sesion">
+        <div>
+            <div><img src="{% static 'media\img\logo\neo.png' %}" alt="#"></div>
+            
+            <div>
+                <div><h1>Inicia sesión</h1></div>
+                <div><span>Utiliza tu cuenta de NEO</span></div>
+            </div>
+        </div>
+
+        <div>
+            {% if error %}
+             <div>{{error}}</div>
+            {% endif %}
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <button>
+                    INICIAR
+                </button>
+            </form>
+        </div>
+    </section>
+    
+{% endblock %}

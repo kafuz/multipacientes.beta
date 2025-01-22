@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'media\img\logo\icon.png'%}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/root.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout/drive.css' %}">
+
+    <script src="{% static 'js/extends/god/main.js' %}"></script>
+    <title>{% block title %}{% endblock %}</title>
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block view %}{% endblock %}   
+    <!-- End View -->
+
+    {% include '../components/messages.html' %}
+    
+    <section id="__base">
+        <section id="__left"> 
+            <div id="container_left">
+                <div values="logo"> 
+                    <div><img src="{% static 'media\img\logo\neotexto.png' %}" alt="#"></div>
+                </div>
+
+                <div values="nav"> 
+                    <div>
+                        <img src="{% static 'media\img\icons\home.svg' %}" alt="#">
+                        <a href="{% url 'index' %}">Inicio</a>
+                    </div>
+                    {% block nav %}{% endblock %}  
+                </div>
+                <div values="open"> 
+                    <input type="checkbox" id="toggle-nav" style="display: none;">
+                    <label for="toggle-nav"><img src="{% static 'media\img\icons\menu.png' %}" alt="#"></label>
+                </div>
+                
+                <div values="neo_img">
+                    <div><img src="{% static 'media\img\neo\manoarriba.png' %}" alt="#"></div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section id="__medium">
+                {% block medium %}
+
+                {% endblock %}
+        </section>
+    
+        <section id="__right">
+                {% include '../components/userBrowser.html' %}
+                {% block right %}
+                
+                {% endblock %}
+        </section>
+    </section> 
+
+</body>
+</html>

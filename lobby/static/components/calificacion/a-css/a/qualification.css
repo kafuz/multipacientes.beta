@@ -1,0 +1,128 @@
+#__qualification {
+    box-shadow: -2px 0px 2px 2px rgba(var(--color-dark), 0.1);
+    flex-grow: 1;
+    display: flex;
+    filter: saturate(80%);
+    
+}
+
+#__qualification > #container__quealification {
+    box-shadow: 0px 0px 2px 1px rgba(var(--color-dark), 0.1);
+    overflow-y: hidden;
+    background-color: rgba(var(--color-dark), 0.2);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3em;
+    gap: 0.3em;
+}
+
+#container__quealification > div[values="body"] {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.3em;
+}
+
+div[values="body"] > div[values="title"] {
+    box-shadow: 0px 0px 2px 1px rgba(var(--color-dark), 0.5);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.3em 0;
+    color: white;
+    text-shadow: 0 0 3px rgba(var(--color-dark), 0.3);
+    background-color: rgba(var(--color-light), 0.2);
+}
+
+div[values="title"] > div:last-child {
+    background-color: rgba(var(--color-light), 0.2);
+    padding: 0.15em 0.6em;
+    animation: showIn 100ms linear normal;
+}
+
+div[values="body"] > div[values="calificaciones"] {
+    overflow-y: auto;
+    flex-grow: 1;
+    gap: 0.3rem;
+    padding: 0.3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    width: 100%;
+    grid-auto-rows: min-content;
+}
+
+div[values="calificaciones"] > div[values="calificacion"] {
+    background-color: rgba(var(--color-dark), 0.3);
+    position: relative;
+    display: flex; flex-direction: column; align-items: start;
+    padding: 0.4rem;   gap: 0.4rem;
+    box-shadow: 0 0 0 2px rgba(var(--color-light), 0.7) inset, 0px 0px 3px 1px rgba(var(--color-dark), 0.2);
+    width: 100%;
+    height: min-content;
+    transition: all 200ms;
+    &:hover 
+    {
+        backdrop-filter: brightness(50%);
+    }
+}
+
+div[values="calificacion"]::before {
+    content: attr(indice);
+    width: 1.6rem;
+    aspect-ratio: 1/1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 2px rgba(var(--color-dark), 0.5) inset;
+    font-size: var(--size-text-medium);
+}
+
+div[values="calificacion"] > div {
+    animation: show 500ms linear normal;
+}
+
+div[values="calificacion"] label {
+    white-space: nowrap;
+}
+
+div[values="calificacion"] input,
+div[values="calificacion"] textarea {
+    border: 0;
+    border-radius: 0 5px 5px 5px;
+    padding: 0 0.2em;
+    width: 100%;
+    min-width: 110px;
+    box-sizing: border-box;
+    flex: 1;
+    font-size: var(--size-text-medium);
+}
+
+
+@media (max-width: 767px) 
+{
+    #__qualification
+    {
+        overflow: hidden;
+        > #container__quealification
+        {
+            > div 
+            {
+                >div[values='calificaciones']
+                {
+                    overflow-y: auto;
+                    max-height: 35vh;
+                    input, textarea 
+                    {
+                        min-width:90px !important;
+                        flex: 1;
+                    }
+                }
+            }
+        }
+    }
+}

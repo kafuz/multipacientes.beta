@@ -1,0 +1,219 @@
+env - pip install python-dotenv
+compressor - pip install django-compressor
+Pillow - pip install Pillow
+mysql - pip install pymysql 
+
+
+
+@login_required
+@teacher_required
+@require_http_methods(["GET"])
+def getInformacionPeriodica(request, user_id):
+    try:
+        user = get_object_or_404(CustomUser, id=user_id)
+        asignatura_id = request.session.get('instance__asignatura')
+        asignatura = get_object_or_404(Asignatura, id=asignatura_id)
+
+        per_data = []
+        for per in Periodo.objects.filter(asignatura=asignatura):
+            dim_data = []
+            dimensiones = Dimension.objects.filter(asignatura=asignatura)
+            for dim in dimensiones:
+                if dim.status == True and dim.valor > 0:
+                    crit_data = []
+                    criterios = Criterio.objects.filter(dimension=dim)
+                    for crit in criterios:
+                        act_data = []
+                        actividades = Actividad.objects.filter(criterio=crit, periodo=per)
+                        for act in actividades:
+                            cal_data = []
+                            calificacionAdicion = 0
+                            calificaciones = Calificacion.objects.filter(actividad=act, asignaturaUser__user=user)
+
+                            if dim.descripcion == 'hacer':
+                                all_act = Actividad.objects.filter(criterio=crit)
+                                multiplicaor_pertinente = 0
+                                MPADD = 0
+                                for item in all_act:
+                                    MPADD += (MAXIMO_PUNTAJE * item.nivel_pertinencia) * item.multiplicador
+
+                                multiplicaor_pertinente_ideal = ((MAXIMO_PUNTAJE * act.nivel_pertinencia) * act.multiplicador)
+
+                                if MPADD != 0:
+                                    valor_equivalente_ideal = (multiplicaor_pertinente_ideal / MPADD) * crit.valor
+                                else:
+                                    valor_equivalente_ideal = 0  # Evitar división por cero
+                                    
+                                act.valor = valor_equivalente_ideal
+
+                                cal_data.append({'valor': valor_equivalente_ideal})
+
+                            # Calculo para actividades
+                            for cal in calificaciones:
+                                calificacionAdicion += cal.valor
+                                cal_data.append({'valor': cal.valor})
+                            if cal_data:
+                                act_total = (calificacionAdicion * act.valor) / (MAXIMO_PUNTAJE)
+                                act_ideal = (len(calificaciones) * MAXIMO_PUNTAJE * act.valor) / (len(calificaciones) * MAXIMO_PUNTAJE)
+                                act_data.append({
+                                    'descripcion': act.descripcion,
+                                    'valor': act.valor,
+                                    'calificaciones': cal_data,
+                                    'conversion': {
+                                        'add': calificacionAdicion,
+                                        'ideal': act_ideal,
+                                        'total': act_total
+                                    }
+                                })
+                        #<end actividad>
+                        if act_data:
+                            crit_total = sum(act['conversion']['total'] for act in act_data)
+                            crit_ideal = sum(act['conversion']['ideal'] for act in act_data) / len(act_data) if act_data else crit.valor
+                            crit_data.append({
+                                'descripcion': crit.descripcion,
+                                'valor': crit.valor,
+                                'actividades': act_data,
+                                'conversion': {
+                                    'add': sum(act['conversion']['add'] for act in act_data),
+                                    'ideal': crit_ideal,
+                                    'total': crit_total
+                                }
+                            })
+                    #<end criterio>
+                    if crit_data:
+                        dim_total = sum(crit['conversion']['total'] for crit in crit_data)
+                        dim_ideal = sum(crit['conversion']['ideal'] for crit in crit_data) * dim.valor / MAXIMO_PUNTAJE
+                        dim_data.append({
+                            'descripcion': dim.descripcion,
+                            'valor': dim.valor,
+                            'criterios': crit_data,
+                            'conversion': {
+                                'add': sum(crit['conversion']['add'] for crit in crit_data),
+                                'ideal': dim_ideal,
+                                'total': dim_total
+                            }
+                        })
+            #<end dimension>
+            if dim_data:
+                periodo_total = sum(dim['conversion']['total'] for dim in dim_data)
+                periodo_ideal = sum(dim['conversion']['ideal'] for dim in dim_data)
+                per_data.append({
+                    'descripcion': per.descripcion,
+                    'dimensiones': dim_data,
+                    'conversion': {
+                        'Total': periodo_total,
+                        'ideal': periodo_ideal,
+                        'R.A.E.O': (periodo_total / MAXIMO_PUNTAJE) * 100,
+                        'R.A.E': (periodo_ideal / MAXIMO_PUNTAJE) * 100
+                    }
+                })
+        #<end periodo>
+        return JsonResponse({'message': "success", 'response': {'periodos': per_data, 'user': serializados.user(user)}})
+
+    except Exception as e:
+        print(e)
+        return JsonResponse({'message': "error", 'response': str(e)}, status=500)
+
+
+
+
+
+
+
+        const informacion= 
+        {
+            dimensiones:
+            [
+                {
+                    descripcion:'ser',
+                    criterios:
+                    [
+                        {
+                            descripcion:'fidelidad',
+                            niveles:
+                            [
+                                {
+                                    idNivel:1,
+                                    descripcion:'NUNCA ASISTE O LLEGA SIEMPRE TARDE   A LAS CLÍNICAS.'
+                                },
+                                {
+                                    idNivel:2,
+                                    descripcion:'POCAS VECES LLEGA A LAS CLÍNICAS.'
+                                },
+                                {
+                                    idNivel:3,
+                                    descripcion:' ALGUNAS VECES NO LLEGA CUMPLIDO.'
+                                },
+                                {
+                                    idNivel:4,
+                                    descripcion:'ASISTE CUMPLIDO   A LAS CLÍNICA LA MAYORÍA DE LAS VECES.'
+                                },
+                                {
+                                    idNivel:5,
+                                    descripcion:'SIEMPRE ASISTE MUY CUMPLIDO E   A LAS CLÍNICAS .'
+                                }
+                            ]
+                        },
+                        {
+                            descripcion:'densidad de imagen',
+                            niveles:
+                            [
+                                {
+                                    idNivel:1,
+                                    descripcion:'NUNCA ASISTE O LLEGA SIEMPRE TARDE   A LAS CLÍNICAS.'
+                                },
+                                {
+                                    idNivel:2,
+                                    descripcion:'POCAS VECES LLEGA A LAS CLÍNICAS.'
+                                },
+                                {
+                                    idNivel:3,
+                                    descripcion:' ALGUNAS VECES NO LLEGA CUMPLIDO.'
+                                },
+                                {
+                                    idNivel:4,
+                                    descripcion:'ASISTE CUMPLIDO   A LAS CLÍNICA LA MAYORÍA DE LAS VECES.'
+                                },
+                                {
+                                    idNivel:5,
+                                    descripcion:'SIEMPRE ASISTE MUY CUMPLIDO E   A LAS CLÍNICAS .'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            niveles:
+            [
+                {
+                    id:1,
+                    descripcion:'NO CUMPLIMIENTO',
+                    vminimo:0,
+                    vmaximo:299,
+                },
+                {
+                    id:2,
+                    descripcion:'BASICO',
+                    vminimo:300,
+                    vmaximo:349,
+                },
+                {
+                    id:3,
+                    descripcion:'SATISFACTORIO',
+                    vminimo:350,
+                    vmaximo:399,
+                },
+                {
+                    id:4,
+                    descripcion:'DESTACADO',
+                    vminimo:400,
+                    vmaximo:449,
+                },
+                {
+                    id:5,
+                    descripcion:'SOBRESALIENTE',
+                    vminimo:450,
+                    vmaximo:500,
+                }
+            ]
+        }

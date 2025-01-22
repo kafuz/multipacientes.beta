@@ -1,0 +1,38 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+
+{% block head %}
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/accounts/setting/profile/book.css' %}">
+    <script src="{% static 'js/accounts/setting/profile/app.js' %}"></script>
+{% endblock %} 
+
+{% block content %}
+
+    <!-- VIEW FLOAT -->
+    <view> 
+        <div id="redirect__button" >
+            <a href="{% url 'Setting_Index' %}" class="__danger">←</a>
+        </div>
+        
+        <form id="form-profile" method="post" action="{% url 'User_UpdateProfile' %}" class="form_password" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input__img">
+                <div >
+                    <img src="{{ form.avatar.url }}" alt=" " class="img__fit" id="id_image_view">
+                    <input type="file" name="avatar" accept="image/*" id="id_avatar">
+                </div>
+            </div>
+            <div>
+                <label for="id_username">Nombre de usuario:</label>
+                <input type="text" name="username" value='{{form.username}}' maxlength="150" autofocus="" required id="id_username">
+            </div>
+            <div class="flex-container">            
+                <label for="id_email">Dirección de correo electrónico:</label>
+                <input type="email" name="email" value="{{form.email}}" class="vTextField" maxlength="254" id="id_email">
+            </div>
+            <div><button class="__basic btn">Actualizar</button></div>
+        </form>
+    </view>
+
+{% endblock %}

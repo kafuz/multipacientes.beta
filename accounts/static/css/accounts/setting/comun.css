@@ -1,0 +1,39 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+main
+{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+view
+{
+    display: block;
+    height: initial;
+    width: initial;
+    display: flex !important;
+    position: relative;
+    background-color: transparent !important;
+}
+    #redirect__button
+    {
+        position: absolute;left: 0;top: 0;
+        display: flex; align-items: center;
+        transform: translateY(-120%);
+        font-size: var(--size-text-large);
+        &>a
+        {
+            text-decoration: none;
+            padding: 0.2rem 0.5rem;
+            font-weight: bold;
+            border-radius:  5px ;
+            box-shadow: 0 0 0 0.2rem rgba(var(--color-light), 0.3) inset;
+        }
+        &:hover{ filter: brightness(120%);}
+    }

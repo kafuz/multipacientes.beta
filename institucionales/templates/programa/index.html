@@ -1,0 +1,60 @@
+{% extends 'layout/drive.html'%}
+
+{% block title %}Programa{% endblock %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/institucionales/index.css' %}">
+    <script src="{% static 'js/institucionales/app.js' %}"></script>
+    <script src="{% static 'js/institucionales/medium.js' %}"></script>
+{% endblock %}
+
+{% block view %}
+    <view id="view__01"> 
+        <form id="form__institucionales" method="post" action="#">
+            <div class="view__hide">x</div>
+            {% csrf_token %}
+            {{ form }}
+            <div> <input type="submit" value="Crear"> </div>
+        </form>
+    </view>
+{% endblock %}
+
+{% block medium %}
+    <p style="display: none;" id="root__url">/institucionales/programa/</p>
+    <p style="display: none;" id="namespace">Programa</p>
+
+    <div id="container_main">
+        <div id="container__nav">
+            <div> <a href="{% url 'index__institucion' %}" type="in">Instituciones</a> </div>
+            <div> <a href="#" values="active" type="pr">Programa</a></div>
+        </div> 
+
+        <div id="container__system__file">
+            {% for objeto in objetos %}
+                <div>
+                    <div>
+                        <div>
+                            <div class="main-system-config">...
+                                <div __id="{{objeto.id}}">
+                                    <div class="inst__delete">eliminar</div>
+                                    <div class="inst__put">editar</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div> <a href="{% url 'index__asignatura' fk=objeto.id %}" type="pr">{{objeto.nombre}}</a></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block right %}
+    <div id="container_rigth">
+        <div values="buttons"> <div class="add_url" id="__add" class="bg-primary">+</div> </div>
+    </div>           
+{% endblock %}
+
+

@@ -1,0 +1,21 @@
+{% if user.is_authenticated %}
+    <div id="userBrowser">
+        <input type="checkbox" id="toggle-user" style="display: none;">
+        <div values="head">
+            <label for="toggle-user"><img src="{{ user.profile.avatar.url }}" alt="Profile"></label>
+        </div>
+        <div values="body">
+            <div>
+                <div>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %} 
+                        <input type="submit" value="Cerrar sesión">
+                    </form>
+                </div>
+                <div>
+                    <a href="{% url 'Setting_Index' %}">Configuración</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

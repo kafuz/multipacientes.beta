@@ -1,0 +1,111 @@
+#search__alumno {
+    & > div[value='head'] 
+    {
+        display: flex; justify-content: center; align-items: center;
+        padding: 0.3rem;
+        gap: 0.3rem;
+        background-color: rgba(var(--color-azul));
+        &, & * 
+        { border-radius: 0.3125rem; }
+    
+        &>div:first-child
+        { 
+            display: flex;
+            &>img 
+            {
+                height: 2rem; 
+                width: 2rem; 
+                padding: 0.1rem;
+            }
+        }
+        & > div {
+            & > input {
+                width: 100%; /* El ancho del input se adapta al contenedor */
+                min-width: 6.0rem;
+                padding: 0.3rem;
+                border: 0;
+                box-sizing: border-box;
+                font-weight: 600;
+            }
+
+            &[class='btn'] 
+            {
+                color: rgba(var( --color-texto-inverso));
+                display: flex;justify-content: center;align-items: center;
+                height: 2rem;
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                box-shadow: 0 0 0 0.2rem rgba(var(--color-texto-inverso),0.6) inset;
+                filter: saturate(50%);
+                font-weight: bold;
+                padding: 0;
+                &:hover {
+                    filter:brightness(120%);
+                    transform: scale(0.9);
+                }
+            }
+
+            &[value='add'] {
+                background-color: rgba(var(--success));
+            }
+
+            &[value='delete'] {
+                background-color: rgba(var(--danger));
+            }
+        }
+    }
+}
+
+/* Aggregate active */
+#search__alumno[value='aggregate'] {
+    & > div[value='head'] {
+        background-color: rgba(var(--success), 0.3);
+
+        & > div {
+            & > input {
+                background-color: rgba(var(--success));
+                color: white;
+            }
+
+            &[value='add'] {
+                filter: saturate(100%) opacity(100%);
+            }
+        }
+    }
+}
+
+/* Aggregate delete */
+#search__alumno[value='delete'] {
+    & > div[value='head'] {
+        background-color: rgba(var(--danger), 0.3);
+
+        & > div {
+            & > input {
+                background-color: rgba(var(--danger));
+                color: white;
+            }
+
+            &[value='delete'] {
+                filter: saturate(100%) opacity(100%);
+            }
+        }
+    }
+}
+
+
+@media (max-width: 767px) 
+{
+    #search__alumno {
+        & > div[value='head'] 
+        {
+            justify-content: space-between !important; 
+            &>div:first-child{ width: 2.5rem; }
+
+            & > div 
+            {
+                &[class='btn'] 
+                { height: 2.5rem; }
+            }
+        }
+    }
+}

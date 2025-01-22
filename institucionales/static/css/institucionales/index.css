@@ -1,0 +1,21 @@
+@import url("medium.css");
+@import url("right.css");
+@import url("../complements/views.css");
+
+#form__institucionales
+{
+    position: relative;
+    .title-form-force
+    {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 600;
+        font-size: 1.3rem;
+        padding: 0.3rem 0;
+        display: flex;
+        width: 80%;
+    }
+    >div>input[type='submit']{margin: auto;}
+}

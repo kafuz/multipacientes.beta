@@ -1,0 +1,17 @@
+<!-- Control de errors -->
+<div id="container__messages">
+    {% if messages %}
+            {% for message in messages %}
+                <div id="msj{{ forloop.counter }}" class="__{{message.tags}} alert__msj">
+                    <div>{{ message }}</div>
+                </div>
+
+                <script>
+                    setTimeout(()=>{
+                        document.getElementById('msj{{ forloop.counter }}').remove();
+                    },5000);
+                </script>
+            {% endfor %}
+    {% endif %}
+</div>
+<!-- Control de messages -->

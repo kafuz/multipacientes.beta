@@ -1,0 +1,98 @@
+@import url("../comun.css");
+
+.helptext
+{
+    display: none;
+}
+
+#form__basic
+{
+    padding:2em 3em !important;
+    border-radius: 10px;
+    overflow: hidden;
+    color: rgb(var(--color-texto)) !important;
+    box-shadow: 0 0 0 0.3rem rgba(var(--color-dark), 0.2) inset;
+}
+    #form__basic>div,h2
+    {
+        text-align: center;
+        margin-bottom: 1em;
+        padding: 0.1em !important;
+    }
+    #form__basic>div:last-child
+    {
+    margin: 0 !important;
+    }
+
+        #form__basic>.view__hide
+        {
+            padding: 0.5em 1em !important;
+        }
+        #form__basic>div
+        {
+            display: flex;
+        }
+            #form__basic>div>fieldset
+            {
+                display: flex !important;
+                width: 100%;
+                box-shadow: 0;
+                border: 0;
+            }
+                #form__basic>div>fieldset>legend
+                {
+                    display: flex !important;
+                    position: relative;
+                    transform: translate(0);
+                }
+                #form__basic>div>fieldset>div
+                {
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+            #form__basic>div>input
+            {
+                border: 0;
+                border-radius: 5px;
+                padding: 0.2em !important;
+                font-size: var(--size-text-medium) !important;
+                background-color: rgba(var(--info), 1);
+                color: rgba(var(--color-texto-inverso), 1);
+            }
+                #form__basic>div>input:last-child
+                {
+                    border: 0;
+                    border-radius: 5px;
+                    padding: 0.2em !important;
+                    font-size: var(--size-text-medium) !important;
+                }
+        
+@media (max-width: 767px) 
+{
+    main 
+    {
+        padding: 0 !important;
+    }
+    view 
+    {
+        padding: 0 !important;
+        width: 96% !important;
+    }
+    #form__basic
+    {
+        display: flex; flex-direction: column;
+        gap: 0.6rem;
+        padding: 1rem !important;
+        width: 100% !important;
+        font-weight: 600;
+        &>div 
+        {
+            margin: 0;
+            &>label {}
+            &>input 
+            { width: 8rem; font-weight: 600;  }
+        }
+    }
+}

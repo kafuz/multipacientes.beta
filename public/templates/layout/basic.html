@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'media\img\logo\icon.png'%}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/root.css' %}">
+    <link rel="stylesheet" href="{% static 'css/complements/views.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout/basic.css' %}">
+    
+    <script src="{% static 'js/extends/god/main.js' %}"></script>
+    <script src="{% static 'js/layout/basic.js' %}"></script>
+    {% block head %}{% endblock %} 
+</head>
+<body>
+    {% include '../components/messages.html' %}
+
+    <header>
+        <div values="logo"> 
+            <img src="{% static 'media\img\logo\neo.png' %}" alt="#">
+        </div>
+        
+        <div values="open"> 
+            <input type="checkbox" id="toggle" style="display: none;">
+            <label for="toggle"><img src="{% static 'media\img\icons\menu.png' %}" alt="#"></label>
+        </div>
+        <nav>
+            <ul>
+                    <li> <a href="/">Home</a> </li>
+                {% if user.is_authenticated %}    
+                    <li> <a href="{% url 'index__institucion' %}" >NEO</a> </li>
+                {% else %}      
+                    <li> <a href="{% url 'login' %}">Iniciar sesión</a> </li>
+                    <li> <a href="{% url 'signup' %}">Registrarse</a> </li>
+                {% endif %}
+            </ul>
+        </nav>
+        
+        {% include '../components/userBrowser.html' %}
+    </header>
+    
+    <main>
+        {% block content %}
+        
+        {% endblock %} 
+    </main>
+
+    <footer>
+        {% block footer %}
+        
+        {% endblock %} 
+    </footer>
+</body>
+</html>
