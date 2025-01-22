@@ -23,8 +23,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 from dotenv import load_dotenv
 import os
+
+import pymysql
+pymysql.install_as_MySQLdb()
+
 
 load_dotenv()  # Carga las variables de entorno del archivo .env
 
@@ -112,14 +117,7 @@ WSGI_APPLICATION = 'Core.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'neodb'),
-        'USER': os.getenv('DB_USER', 'your-db-user'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'your-db-password'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '3306'),
-    }
+    'default': dj_database_url.config(default=os.getenv('DB_URL'))
 }
 
 
