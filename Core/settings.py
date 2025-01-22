@@ -27,10 +27,6 @@ import dj_database_url
 from dotenv import load_dotenv
 import os
 
-import pymysql
-pymysql.install_as_MySQLdb()
-
-
 load_dotenv()  # Carga las variables de entorno del archivo .env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
