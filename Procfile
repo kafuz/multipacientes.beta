@@ -1,1 +1,2 @@
-web: python manage.py collectstatic && gunicorn Core.wsgi
+release: python manage.py collectstatic --noinput
+web: gunicorn Core.wsgi:application
