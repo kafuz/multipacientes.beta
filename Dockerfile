@@ -21,7 +21,7 @@ COPY . .
 RUN python manage.py collectstatic --noinput
 
 # Expone el puerto que Gunicorn usará para tu aplicación Django
-EXPOSE 8000
+EXPOSE 8080
 
 # Configura el comando de inicio de Gunicorn
-CMD ["gunicorn", "Core.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "Core.wsgi:application", "--bind", "0.0.0.0:8080"]
