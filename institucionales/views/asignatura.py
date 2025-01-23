@@ -22,9 +22,13 @@ from ..forms.book import RegisterAsignatura
 def index_asignatura(request, fk):
     try:
         request.session['id-programa'] = fk
+        print('ID programa - '+str(request.session['id-programa']))
         objs = list(Asignatura.objects.filter(programa_id=fk).values())
+        print(objs)
         return render(request, 'asignatura/index.html   ', { 'objetos': objs, 'form': RegisterAsignatura() })
     except Exception as e:
+        print('error index asignatura ')
+        print(e)
         return HttpResponse(status=500)
 
 #GET Reload
