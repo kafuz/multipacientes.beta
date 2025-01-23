@@ -7,8 +7,12 @@ WORKDIR /app
 # Copia los archivos de requirements.txt al directorio de trabajo
 COPY requirements.txt .
 
-# Instala las dependencias
-RUN pip install --no-cache-dir -r requirements.txt
+# Instala las dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && pip install --no-cache-dir -r requirements.txt \
+    && apt-get clean
 
 # Copia el resto del código de la aplicación
 COPY . .
