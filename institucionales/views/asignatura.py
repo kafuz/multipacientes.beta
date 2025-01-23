@@ -14,22 +14,36 @@ from public.decorators.book import teacher_required
 
 from ..forms.book import RegisterAsignatura
 
+import logging
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
+
+# Configuración del logger
+logger = logging.getLogger(__name__)
 
 # GET Index
 @login_required
 @require_http_methods(["GET"])
-@teacher_required #Cambiar
+@teacher_required  # Cambiar
 def index_asignatura(request, fk):
     try:
+        # Guardar el id del programa en la sesión
         request.session['id-programa'] = fk
-        print('ID programa - '+str(request.session['id-programa']))
+        logger.info(f'ID programa: {request.session["id-programa"]}')
+
+        # Obtener las asignaturas filtradas por el id del programa
         objs = list(Asignatura.objects.filter(programa_id=fk).values())
-        print(objs)
-        return render(request, 'asignatura/index.html   ', { 'objetos': objs, 'form': RegisterAsignatura() })
+        logger.info(f'Asignaturas obtenidas: {objs}')
+
+        # Renderizar la página con los objetos y el formulario
+        return render(request, 'asignatura/index.html', {'objetos': objs, 'form': RegisterAsignatura()})
     except Exception as e:
-        print('error index asignatura ')
-        print(e)
+        # Registrar el error con stack trace
+        logger.error('Error en la vista index_asignatura', exc_info=True)
         return HttpResponse(status=500)
+
 
 #GET Reload
 @login_required
