@@ -63,58 +63,57 @@ def POST(request):
 def PUT(request):
     try:
         BODY = json.loads(request.body)
-        print(BODY)
         id_instancia = BODY.get('id')
-        # <-> variables 
-        nombre =   BODY.get('nombre')
-        fk_periodo =    BODY.get('fk_monitoreo')
-        
+        nombre = BODY.get('nombre')
+        fk_monitoreo = BODY.get('fk_monitoreo')
+       
         if not id_instancia: 
-            raise ValueError('ID del actividad es requerido.')
+            raise ValueError('ID de la actividad es requerido.')
 
         Instancia = get_object_or_404(Actividad, id=id_instancia)
 
         if 'nombre' in BODY:
-            if nombre!="": 
-                Instancia.nombre=nombre
-            else: raise ValueError('El nombre no puede estar vacio.')
+            if nombre: 
+                Instancia.nombre = nombre
+            else: 
+                raise ValueError('El nombre no puede estar vacío.')
         
-        if 'multiplicador' in BODY :
-            multiplicador= int(BODY.get('multiplicador'))
-            if  0 < multiplicador <= 35:
-                Instancia.multiplicador= multiplicador
-            else: raise ValueError('El multiplicador esta fuera de rango 0 a 35')
+        if 'multiplicador' in BODY:
+            multiplicador = int(BODY.get('multiplicador'))
+            if 0 < multiplicador <= 35:
+                Instancia.multiplicador = multiplicador
+            else:
+                raise ValueError('El multiplicador está fuera de rango 0 a 35.')
 
-        if 'nivel_pertinencia' in BODY :
-            pertinencia= int(BODY.get('nivel_pertinencia'))
-            if  0 < pertinencia <= 5:
-                Instancia.nivel_pertinencia= pertinencia
-            else: raise ValueError('El nivel de pertinencia esta fuera de rango 0 a 5')
+        if 'nivel_pertinencia' in BODY:
+            pertinencia = int(BODY.get('nivel_pertinencia'))
+            if 0 < pertinencia <= 5:
+                Instancia.nivel_pertinencia = pertinencia
+            else:
+                raise ValueError('El nivel de pertinencia está fuera de rango 0 a 5.')
 
-        if 'valor' in BODY :
-            valor= int(BODY.get('valor'))
+        if 'valor' in BODY:
+            valor = int(BODY.get('valor'))
             if valor is not None:
                 objetos = Actividad.objects.filter(criterio_id=Instancia.criterio).exclude(id=Instancia.id)
                 Signals.validar_valor(Instancia, valor, objetos)
-                Instancia.valor= valor
-            else: 
-                raise ValueError('El valor esta fuera de rango 0 a 500')
+                Instancia.valor = valor
+            else:
+                raise ValueError('El valor está fuera de rango 0 a 500.')
 
-        if 'fk_periodo' in BODY :
-            monitoreo = Monitoreo.objects.filter(id=fk_periodo).first()
-            if not monitoreo: 
-                raise ValueError('Periodo no encontrado')   
-            Instancia.monitoreo=monitoreo
+        if 'fk_monitoreo' in BODY:
+            monitoreo = Monitoreo.objects.filter(id=fk_monitoreo).first()
+            if not monitoreo:
+                raise ValueError('Monitoreo no encontrado.')   
+            Instancia.monitoreo = monitoreo
 
-        #!IMPORT SAVE
         Instancia.save()
         return JsonResponse({'message': 'success', 'response': 'ok'})
 
     except (ValueError, TypeError) as e:
-        return JsonResponse({'message': 'error', 'response': str(e)})
+        return JsonResponse({'message': 'error', 'response': str(e)}, status=400)
     except Exception as e:
-        print(e)
-        return JsonResponse({'message': 'error', 'response': 'Ocurrió un error inesperado.'}, status=500)
+        return JsonResponse({'message': 'error', 'response': f'Ocurrió un error inesperado: {e}'}, status=500)
 
 @login_required
 @teacher_required

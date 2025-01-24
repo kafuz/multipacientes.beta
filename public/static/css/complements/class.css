@@ -124,3 +124,22 @@
     font-weight: 600;
     color: #495057;
 }
+
+.flex-center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-img
+{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card 
+{
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}

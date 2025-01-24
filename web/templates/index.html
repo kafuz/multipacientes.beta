@@ -4,121 +4,104 @@
 
 {% block head %}
     <title>HOME</title>
+    <link rel="stylesheet" href="https://unpkg.com/primeicons@6.0.1/primeicons.css">
     <link rel="stylesheet" href="{% static 'css/website/book.css' %}">
     <script src="{% static 'js/website/app.js' %}"></script>
 {% endblock %}
 
-{% block content %}
-   
-        {% if user.is_authenticated%}
-        <banner class="banner__active">
-            <div>
-                <img src="{% static 'media\img\neo\ok.png' %}" alt="#">
-            </div>
-            <div>
-                <h2>Bienvenido {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</h2>
-            </div>
-           
-        </banner>
-        {% else%}  
-        <banner>
-            <div >
-                <h2>SE PARTE DE NEO</h2> <a href="{% url 'signup' %}">Crear mi cuenta</a>
-            </div>
-        </banner>
-        {% endif %}
-    
+{% block content %}       
 
-        <article values="text-neo">  
+  <banner class="bannerHome background-img card">
+    {% if user.is_authenticated %}
+      <div val="img">
+        <img src="{% static 'media\img\neo\ok.png' %}" alt="#" />
+      </div>
 
-            <section values="title">  
-             <div>
-              <div>
-                <div><b>APRENDER</b> ES EVALUAR</div>
-                <div>EVALUAR ES <b>APRENDER</b></div>
-              </div>
-             </div>
-             <div><img src="{% static 'media\img\banner\aprender_evaluar.jpg' %}" alt=""></div>
-            </section>  
+      <div val="title">
+          <h2>Bienvenido <span>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</span></h2>
+      </div>
+    {% else%}  
+      <div >
+          <h2>SE PARTE DE NEO</h2> <a href="{% url 'signup' %}">Crear mi cuenta</a>
+      </div>
+    {% endif %}
+  </banner>
 
-            <section values="group-1">  
-             <!--<div values="head"> Evalúa enseñando</div> -->
-             <div values="body">
-         
-              <!-- 1 -->
-              <!-- 2 -->
-               <div>
-                  <p>
-                    Evalúa enseñando a las personas si saben definir objetivos, aplicarlos y retroalimentarse sobre ellos.
-                  </p>
-               </div>
-         
-              <!-- 3 -->
-               <div>
-                  <p>
-                    Evalúa enseñando cómo construir entornos amables, seguros y gratificantes donde se pueda aprender, disfrutar y descansar.
-                  </p>
-               </div>
-         
-               <!-- 4 -->
-               <div>
-                  <p>
-                    Evalúa enseñando cómo gestionan la información, cómo organizan, estructuran, entrelazan ideas nuevas y antiguas, y las consolidan en sus mentes.
-                  </p>
-               </div>
-               
-               <!-- 4 -->
-               <div>
-                  <p>
-                    Evalúa enseñando dominios, dando espacios para desarrollar habilidades que luego sepan aplicar en los entornos que así lo requieran.
-                  </p>
-               </div>
+  <section class="info-aprender-evaluear background-img card">  
+    <div>
+      <div>
+        <div><b>APRENDER</b> ES EVALUAR</div>
+        <div>EVALUAR ES <b>APRENDER</b></div>
+      </div>
+    </div>
+  </section>  
 
-                <!-- 5 -->
-                <div>
-                  <p>
-                    Enseña evaluando la capacidad que tienen las personas para asumir el control y desarrollo de sus metas, definiendo objetivos, aplicándolos, reflexionando sobre ellos y así redirigiendo su camino.
-                  </p>
-               </div>
+  <section class="info-recuadro">  
+    <!--<div values="head"> Evalúa enseñando</div> -->
+    <div values="body">
 
-                <!-- 6 -->
-                <div>
-                  <p>
-                    Evalúa enseñando con alegría y motivación para fomentar la motivación.
-                  </p>
-               </div>
-         
-             </div>
-            </section>
-        </article>
+    <!-- 1 -->
+    <!-- 2 -->
+      <div>
+        <p>
+          Evalúa enseñando a las personas si saben definir objetivos, aplicarlos y retroalimentarse sobre ellos.
+        </p>
+      </div>
 
+    <!-- 3 -->
+      <div>
+        <p>
+          Evalúa enseñando cómo construir entornos amables, seguros y gratificantes donde se pueda aprender, disfrutar y descansar.
+        </p>
+      </div>
+
+      <!-- 4 -->
+      <div>
+        <p>
+          Evalúa enseñando cómo gestionan la información, cómo organizan, estructuran, entrelazan ideas nuevas y antiguas, y las consolidan en sus mentes.
+        </p>
+      </div>
+      
+      <!-- 4 -->
+      <div>
+        <p>
+          Evalúa enseñando dominios, dando espacios para desarrollar habilidades que luego sepan aplicar en los entornos que así lo requieran.
+        </p>
+      </div>
+
+      <!-- 5 -->
+      <div>
+        <p>
+          Enseña evaluando la capacidad que tienen las personas para asumir el control y desarrollo de sus metas, definiendo objetivos, aplicándolos, reflexionando sobre ellos y así redirigiendo su camino.
+        </p>
+      </div>
+
+      <!-- 6 -->
+      <div>
+        <p>
+          Evalúa enseñando con alegría y motivación para fomentar la motivación.
+        </p>
+      </div>
+
+    </div>
+  </section>
 {% endblock %}
 
 
 {% block footer %}
-  <div values="head">
-    <div values="ITEM">
-      <div values="title"> <div>Contáctanos</div></div>
-      <div values="content">
-        <div>
-          <div><img src="{% static 'media\img\icons\email.svg' %}"> Email :</div> <div>multipaciente@gmail.com</div>
-        </div>
-        <div>
-          <div><img src="{% static 'media\img\icons\telephone.svg' %}"> Tel :</div> <div>+57 300 8809977</div>
-        </div>
-        <div>
-          <div><img src="{% static 'media\img\icons\whatsapp.svg' %}"> Dev :</div> <div>+57  301151948</div>
-        </div>
+  <div>
+      <div> 
+        <h3>Contáctanos</h3>
       </div>
-    </div>
-
-    <div values="ITEM">
-      <div values="title"> <div>NEO EDUCACIÓN</div></div>
-    </div>
-
+     
+      <div>
+        <div> <img src="{% static 'media\img\icons\email.svg' %}"> multipaciente@gmail.com </div>
+        <div> <img src="{% static 'media\img\icons\telephone.svg' %}"> +57 300 8809977 </div>
+        <div> <img src="{% static 'media\img\icons\whatsapp.svg' %}"> Dev : +57 301151948 </div>
+      </div>
   </div>
         
-  <div values="body">
+  <div>
     <div>Todos los derechos reservados. Copyright © Multipacientes 2024</div>
     <div><a href="https://www.instagram.com/andres_alvear512?igsh=MWxiempjbGRhMXVpaA==">Diseñado y Desarrollado por Andres Alvear</a></div>
   </div>
