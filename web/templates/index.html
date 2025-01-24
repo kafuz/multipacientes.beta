@@ -4,7 +4,6 @@
 
 {% block head %}
     <title>HOME</title>
-    <link rel="stylesheet" href="https://unpkg.com/primeicons@6.0.1/primeicons.css">
     <link rel="stylesheet" href="{% static 'css/website/book.css' %}">
     <script src="{% static 'js/website/app.js' %}"></script>
 {% endblock %}
@@ -21,7 +20,7 @@
           <h2>Bienvenido <span>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</span></h2>
       </div>
     {% else%}  
-      <div >
+      <div val="off">
           <h2>SE PARTE DE NEO</h2> <a href="{% url 'signup' %}">Crear mi cuenta</a>
       </div>
     {% endif %}
