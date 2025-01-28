@@ -7,13 +7,22 @@
         <div values="body">
             <div>
                 <div>
-                    <form method="post" action="{% url 'logout' %}">
-                        {% csrf_token %} 
-                        <input type="submit" value="Cerrar sesión">
-                    </form>
+                    <img src="{{ user.profile.avatar.url }}" alt="Profile">
                 </div>
                 <div>
+                    <b>{{user.first_name}} {{user.last_name}}</b>
+                </div>
+            </div>
+
+            <div>
+                <div>
                     <a href="{% url 'Setting_Index' %}">Configuración</a>
+                </div>
+                <div>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %} 
+                        <input type="submit" value="Cerrar sesión" class="__error">
+                    </form>
                 </div>
             </div>
         </div>

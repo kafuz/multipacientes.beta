@@ -9,14 +9,14 @@
 {% block content %}
     <div id="container__signup">
         <div>
-            <h1>Datos</h1>
+            <h1>Registrarse</h1>
             <div>{{error}}</div>
         </div>
         <form  method="post">
             {% csrf_token %}
             {{form}}
-            <button>
-                LISTO
+            <button class="btn">
+                ENVIAR
             </button>
         </form>
     </div>

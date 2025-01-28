@@ -33,7 +33,7 @@
 
 .__error {
     color: #f8d7da;
-    background-color: rgb(114, 28, 36);
+    background-color: rgb(114, 28, 36) !important;
 }
 .__danger {
     color: #f8d7da;
@@ -142,4 +142,19 @@
 {
     border-radius: 12px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.btn 
+{
+    padding: .2rem .4rem;
+    background-color: var(--surface-ground);
+    border:2px solid var(--surface-border);
+    border-radius: 6px ;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 200ms;
+    &:hover
+    {
+        background-color: var(--surface-card);
+    }
 }

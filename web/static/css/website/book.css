@@ -5,25 +5,20 @@ main
     gap: .25rem;
     padding: .25rem;
     flex-direction: column;
+    overflow-x: hidden;
 }
 .bannerHome
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 250px;
     width: 100%;
-    box-shadow:0 0 8px 2px rgba(var(--color-dark),0.2) inset; 
+    box-shadow:0 0 8px 2px var(--surface-border) inset; 
     position: relative;
     background-image: url('../../media/img/banner/studens.jpg');
     animation: bannerFade 1000ms linear normal;
-    &, a 
-    { color: rgba(var(--color-texto-inverso)); }
-
     &>div 
     {
         z-index: 2;
-        text-shadow:1px 2px  rgba(var(--color-dark));
+        text-shadow:1px 2px var(--gray-900);
         &[val="img"] 
         {
             z-index: 1;
@@ -47,14 +42,14 @@ main
     &>div 
     {
         padding: 1rem;
-        background-color: rgba(var(--color-light), 0.5);
+        background-color: rgba(var(--color-tema),0.1);
         backdrop-filter: blur(12px);
         height: min-content;
         border-radius: 12px;
         & b
         {
-            color: rgba(var(--color-azul));
-            background-color: rgba(var(--color-light));
+            color:var(--primary-color);
+            background-color: var(--gray-50);
         }
     }
 }
@@ -63,9 +58,7 @@ footer
 {
     display: flex;
     flex-direction: column;
-    background-color: rgba(var(--color-dark),0.92);
-    &, a 
-    { color: rgba(var(--color-texto-inverso)); }
+    background-color: var(--surface-ground);
     gap: .5rem;
     padding: 1rem;
 
@@ -78,7 +71,7 @@ footer
             flex-direction: column;
             justify-content: center;
             gap: .25rem;
-            border-bottom: 1px dotted rgba(var(--color-light));
+            border-bottom: 1px dotted var(--gray-50);
             padding-bottom: .5rem;
             &>div 
             {

@@ -4,7 +4,7 @@ from public.models.Institutional import Institucion, Programa, Asignatura
 class RegisterInstitucion(forms.ModelForm):
     class Meta:
         model = Institucion
-        fields = ['nit', 'nombre']  # Incluye solo los campos necesarios
+        fields = ['nombre']  # Incluye solo los campos necesarios
 
 class RegisterPrograma(forms.ModelForm):
     class Meta:

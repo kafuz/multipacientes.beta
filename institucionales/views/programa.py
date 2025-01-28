@@ -11,15 +11,15 @@ import json
 from public.models.Institutional import Institucion, Programa
 from public.decorators.book import teacher_required
 from ..forms.book import RegisterPrograma
-
 # GET Index
 @login_required
 @require_http_methods(["GET"])
 def index_programa(request, fk):
     try:
         request.session['id-institucion'] = fk
+        institucion= Institucion.objects.get(id=fk)
         objs = list(Programa.objects.filter(institucion__user=request.user, institucion=fk).values())
-        return render(request, 'programa/index.html', { 'objetos': objs, 'form': RegisterPrograma() })
+        return render(request, 'programa/index.html', { 'objetos': objs, 'form': RegisterPrograma(), 'institution':institucion })
     except Exception as e:
         return HttpResponse(status=500)
 
@@ -30,12 +30,13 @@ def index_programa(request, fk):
 def reload_programa(request):
     try:
         id = request.session.get('id-institucion')
+        institucion= Institucion.objects.get(id=id)
         if not id:
             messages.error(request, "Institución no especificada en la sesión.")
             return redirect('index__programa')
 
         objs = list(Programa.objects.filter(institucion_id=id).values())
-        return render(request, 'programa/index.html', { 'objetos': objs, 'form': RegisterPrograma() })
+        return render(request, 'programa/index.html', { 'objetos': objs, 'form': RegisterPrograma(), 'institution':institucion })
     except Exception as e:
         return HttpResponse(status=500)
 

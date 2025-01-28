@@ -11,35 +11,37 @@ view
     height: 100vh;
 
     z-index: 10;
-    background-color: rgba(var(--color-dark), 0.8);
-    animation: showform 200ms linear normal;
+    background-color: rgba(var(--color-tema), 0.5);
+    animation: show 200ms linear normal;
 }
-    @keyframes showform 
-    {
-        0%{ opacity: 0; }   
-        100% { opacity: 1; } 
-    }
+    
     view>form
     {
         display: flex; flex-direction: column; gap: 1rem;
         position: relative;
-        background-color: rgba(var(--color-light),1);
-        padding: 3em;
+        background-color: var(--surface-card);
+        padding: 1rem 2rem;
         border-radius: 5px;
     }
         view>form>.view__hide
         {
             display: flex;
-            width: auto !important;
-            background-color: rgb(var(--danger));
-            color: rgb(var(--color-texto-inverso));
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            border:2px solid var(--text-color) ;
             padding: 0.4em 0.8em;
 
             position: absolute;
-            right: 0;
-            top: 0;
-            border-radius: 3px;
+            right: .2rem;
+            top: .2rem;
             cursor: pointer;
+            &:hover
+            {
+                background-color: var(--surface-hover);
+            }
         }
         view>form>div
         {
@@ -52,22 +54,27 @@ view
 
             view>form>div>label
             {
-                color: rgb(var(--color-texto));
                 font-weight: 600;
             }
             view>form>div>input
             {
+                border: 0;
+                border-radius: 6px;
                 padding: 0.2em;
                 font-size: var(--size-text-medium);
                 margin-left: 1em;
                 &[type="submit"]
                 {
-                    background-color: rgb(var(--info));
-                    border: 0;
-                    color: rgb(var(--color-texto-inverso));
+                    background-color: var(--surface-card);
+                    border: 2px solid var(--surface-border);
                     padding: 0.5rem 1rem;
-                    border-radius: 5px;
+                    border-radius: 6px;
                     width: min-content;
+                    cursor: pointer;
+                    &:hover
+                    {
+                        background-color: var(--surface-ground);
+                    }
                 }
             }
             .errorlist
@@ -93,11 +100,6 @@ view
                 justify-content: space-between;
             }
             view>form>div:last-child{justify-content: center;}
-
-                view>form>div>label
-                {
-                    color: rgb(var(--color-texto));
-                }
                 view>form>div>input
                 {
                     width: 8rem;

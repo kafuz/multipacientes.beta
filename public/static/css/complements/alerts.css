@@ -19,7 +19,7 @@
 }
 .alert__msj>div
 { 
-    box-shadow: 0 0 10px 4px rgba(var(--color-dark), 0.3), 0 0 0 2px rgba(var(--color-light), 1); 
+    box-shadow: 0 0 10px 4px rgba(var(--color-tema), 0.3), 0 0 0 2px rgba(var(--color-tema), 1); 
     padding: 1em; 
     font-size: var(--size-text-medium); 
     font-weight: 600; 
@@ -53,12 +53,11 @@
     }
     .alert__msj
     {
-        color: var(--color-texto-inverso);
         border-radius: 0.3rem; 
     }
     .alert__msj>div
     { 
-        box-shadow: 0 0 10px 4px rgba(var(--color-dark), 0.3), 0 0 0 2px rgba(var(--color-light), 1); 
+        box-shadow: 0 0 10px 4px rgba(var(--color-tema), 0.3), 0 0 0 2px rgba(var(--color-tema), 1); 
         padding: 0.6rem 0.3rem; 
         font-size: var(--size-text-small); 
         border-radius: 0.3rem; 

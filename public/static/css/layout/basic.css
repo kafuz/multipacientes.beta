@@ -2,44 +2,53 @@
 
 header
 {
-    display: flex; justify-content: center; align-items: center;
-    width: 100% ;
-    gap: 1rem;
-    padding:0.3rem 1rem ;
-    background: rgb(0, 150, 255);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 33%,  rgba(0, 150, 255,1) 100%);
-    box-shadow: 0 0 0.6rem 0.1rem rgba(var(--color-dark),0.3) inset;
+    --size-logo: 3.5rem;
 
+    justify-content: space-between !important;
+    padding:.8rem 1rem;
+    gap: 1rem;
+    width: 100%;
+    background: var(--gray-900);
+    background: linear-gradient(90deg, rgba(var(--color-tema),1) 0%, rgba(var(--color-tema),1) 33%,  var(--primary-color) 100%);
+    border-bottom: 2px solid var(--surface-border);
+    
     > div[values="logo"]
-    { >img { width: 5rem; } }
+    { >img { width: var(--size-logo); } }
+
     > div[values="open"]
-        { display: none; }
+    { display: none; }
+
     > nav
     {
         flex-grow: 1;
         > ul
         {
-            display: flex; gap: 1.5rem;
+            display: flex; 
+            gap: 1rem;
             list-style: none;
             >li
             {
                 >a
                 {
-                    background: rgb(255,255,255); 
-                    background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(0,150,255,0.1) 100%);
-                    box-shadow: 0 0 0 0.2rem rgba(var(--color-light),0.1);
-                    color: rgba(var(--color-texto-inverso),1);
+                    display: block;
                     flex-grow: 1;
-                    padding:  0.5rem 1rem;
+                    text-shadow: 0 0 2px var(--maskbg);
+                    padding: .5rem 1rem;
+                    border-radius: 6px;
+                    box-shadow: 0 0 0 2px var(--surface-border);
                     font-weight: 600;
-                    border-radius: 0.3rem;
-                    transition: background 0.2s;
+                    transition: box-shadow .2s, background-color .2s;
                     &:hover
-                    {  background-color: rgba(var(--color-light),0.2); }
+                    {
+                        background-color: rgba(var(--primary-color-rgb),0.3);
+                    }
                 }   
             }
             >li[class="navOn"]>a
-            { box-shadow: 0.1rem 0.1rem 0 0.1rem rgba(var(--color-azul-m-100), 0.8); }
+            { 
+                box-shadow:var(--focus-ring); 
+                background-color: rgba(var(--primary-color-rgb),0.3);
+            }
         }
     }
 }
@@ -50,11 +59,9 @@ header
     header
     {
         position: relative;
-        gap: 1rem;
-        justify-content: space-between;
-        padding:0.6rem 1rem ;
         > div[values="logo"]
         { display: none; }
+
         &:has(#toggle:checked) > nav{  transform: translateX(0%); }
         > div[values="open"]
         { 
@@ -65,8 +72,8 @@ header
             &>label>img 
             {
                 object-fit: contain; width: 2.5rem; aspect-ratio: 1/1; border-radius: 50%;
-                box-shadow: 0 0 0 0.2rem rgba(var(--color-light),1) inset;
-                filter: drop-shadow(0 0 0.3rem rgba(var(--color-azul)));
+                box-shadow: 0 0 0 0.2rem var(--surface-border) inset;
+                filter: drop-shadow(0 0 0.3rem var(--primary-color));
                
                 &:active
                 {
@@ -79,7 +86,8 @@ header
             transition: transform 0.2s;
             transform: translateX(-100%);
             position: absolute; left: 0; top: 100%;
-            background-color: rgba(var(--color-dark),0.9);
+            background-color: var(--surface-card);
+            width: 250px;
             height: 100vh;
             z-index: 10;
             > ul
@@ -92,19 +100,18 @@ header
                 {
                     >a
                     {   
-                        font-size: var(--size-text-medium);
+                        font-size: medium;
                         display: block;
-                        background-color: rgba(var(--color-azul-m-100), 1); 
                         transition: background 0.2s;
                         padding: 0.5rem 1.5rem;
-                        min-width: 30vw;
                         text-align: center;
-                        &:hover
-                        { background-color: rgba(var(--color-azul-m-50), 1);  }
                     }   
                 }
                 >li[class="navOn"]>a
-                { box-shadow: 0 0 0 0.2rem rgba(var(--color-light), 1) inset; }
+                { 
+                    background-color: var(--primary-color);
+                    box-shadow:var(--focus-ring) inset; 
+                }
             }
         }
     }

@@ -1,14 +1,10 @@
 body 
 {
-  display: flex; align-items: center; justify-content: center;
+  display: flex; 
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-color: rgb(var(--color-dark));
 }
-  
-header { animation: openheader 1s normal; }
-@keyframes openheader { 0% { transform: translateY(-100%); } 100% { transform: translateY(0%); } }
   
   main 
   {
@@ -16,28 +12,30 @@ header { animation: openheader 1s normal; }
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
     flex-grow: 1;
-    padding: 0.5rem 0;
-    background: rgb(var(--color-dark)) center/cover no-repeat url('../../media/img/backgrounds/universidad.jpg');
-
+    padding: .5rem 0;
+    background: rgb(var(--color-tema)) center/cover no-repeat url('../../media/img/backgrounds/universidad.jpg');
     overflow: hidden;
     #container__signup 
     {
-      display: flex; flex-direction: column; gap: 1rem;
-      padding: 1rem 3rem;
+      display: flex; flex-direction: column; gap: 2rem;
+      padding: 1rem;
       border-radius: 0.5rem;
-      background-color: rgba(var(--color-dark), 0.4);
-      box-shadow: 0 0 0 0.125rem rgba(var(--color-dark), 0.5);
-      animation: forms 0.5s normal;
-  
+      background-color: var(--surface-ground);
+      border: 2px solid var(--surface-border);
+      animation: form 2000ms alternate infinite;
       > div 
-      { text-align: center; color: rgb(var(--color-texto-inverso)); }
+      { text-align: center; }
   
       > form 
       {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 2rem;
+        padding: 1rem;
+        width: 450px; 
+        animation: show 200ms normal linear;
         > div 
         {
           position: relative;
@@ -45,61 +43,39 @@ header { animation: openheader 1s normal; }
           
           > label 
           {
-            position: absolute; left: 2%;
-            transform: translate(0, -85%);
-            background-color: rgb(var(--color-dark));
-            color: rgb(var(--color-texto-inverso));
-            padding: 0.1rem 0.3rem;
-            border-radius: 0.3rem 0.3rem 0.3rem 0;
-            font-weight: 400;
-            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+            position: absolute; left: 0%;
+            transform: translate(0, -100%);
+            padding: .25rem 0rem;
+            border-radius: 6px;
+            white-space: nowrap; 
+            color: var(--primary-color);
+            font-weight: 600;
           }
   
           > input 
           {
-            width: 20rem;
+            width: 100%;
             padding: 0.3rem;
             border: 0.125rem solid rgba(var(--color-azul-m-50), 0.2);
             border-radius: 0.25rem;
             font-size:var(--size-text-medium);
-            font-weight: 600;
-            color: rgb(var(--color-texto)) !important;
-            background-color: rgba(var(--color-light), 0.6);
-            transition: all 0.2s;
-            -webkit-text-fill-color: rgb(var(--color-texto));
-  
-            &:focus {
-              color: rgb(var(--color-texto-inverso));
-              background-color: rgba(var(--color-dark), 0.6);
-              -webkit-text-fill-color: rgb(var(--color-texto-inverso));
-            }
-  
-            &:-webkit-autofill {
-              -webkit-box-shadow: 0 0 0 30rem rgba(var(--color-dark), 0.6) inset !important;
-              -webkit-text-fill-color: rgb(var(--color-texto-inverso)) !important;
-              color: rgb(var(--color-texto-inverso)) !important;
-            }
           }
         }
   
         > button 
         {
-          background-color: rgb(var(--color-azul-m-100));
-          color: rgb(var(--color-texto-inverso));
-          padding: 1rem 0;
-          border: 0;
-          border-radius: 0.625rem 0;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.2s;
-  
-          &:hover {
-            background-color: rgb(var(--color-azul-m-50));
-            border-radius: 0.625rem;
-          }
+          padding: 1rem;
         }
       }
     }
+  }
+
+  @keyframes form 
+  {
+    0% 
+    { box-shadow: 0 0 0 .1rem var(--primary-color); }  
+    100% 
+    { box-shadow: 0 0 0 .6rem var(--primary-color); } 
   }
   
     #id_username_helptext,
@@ -108,78 +84,76 @@ header { animation: openheader 1s normal; }
     display: none;
     }
 
-  .errorlist {
-    position: absolute;
-    display: block;
-    width: 60%;
-    right: 0;
-    top: 0;
-    color: rgb(var(--color-texto-inverso));
-    list-style: none;
-    padding: 0.4rem;
-    animation: sliceIn 0.2s normal linear;
-    z-index: 10;
-    > li {
-      background-color: rgb(var(--danger));
-      margin-bottom: 0.2rem;
-      padding: 0.3rem;
-      border-radius: 0.3125rem 0 0.3125rem 0.3125rem;
-  
-      &:nth-child(3) {
-        display: none;
+    .errorlist 
+    {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      width: 350px;
+      z-index: 10;
+      position: absolute;
+      left: calc(100% + 2px);
+      &>li 
+      {
+        list-style: none;
+        background-color: var(--red-800);
+        padding: .5rem;
+        border-radius:0 12px 12px 12px;
+        text-align: center;
+        font-size: var(--size-text-medium);
+        animation: error 5000ms linear forwards;
       }
     }
-  }
-  
-  @keyframes sliceIn {
-    0% {
-      right: 100%;
-    }
-    100% {
-      right: 0;
-    }
-  }
-  
-  
+    
+@keyframes error 
+{
+  0%
+  { transform: translateY(100%); opacity: 0; } 
+  25% 
+  { transform: translateY(0%); opacity: 1; }
+  75%
+  { transform: translateY(0%); opacity: 1; }
+  90% 
+  { transform: translateY(0%); opacity: 0; }
+  100% 
+  { opacity: 0; display: none; }
+}  
 
 @media (max-width: 767px) 
 {
-    main 
+  main 
+  {
+    align-items: start;
+    padding-top: 1rem;
+    #container__signup 
     {
-      width: 100%;
-      #container__signup 
+      padding: .5rem;
+      width:calc(100% - 2rem) ;
+      > form 
       {
-        justify-content: center; align-items: center;
-        width: 90% !important;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        > div 
-        { text-align: center; color: rgb(var(--color-texto-inverso)); }
-        >div>h1 { font-size: var(--size-text-large);}
-        > form 
-        {
-          width: 100%;
-          gap: 1.6rem;
-          > div 
-          {
-            > input 
-            {
-              width: 100%;
-              padding: 0.2rem;
-              font-size:var(--size-text-small);
-            }
-          }
-          > button 
-          { padding: 0.4rem 0; }
-        }
+        gap: 2rem;
+        padding: .5rem;
+        width: 100%; 
       }
     }
-    .errorlist 
+  }
+
+  @keyframes form 
+  {
+    0% 
+    { box-shadow: 0 0 0 .1rem var(--primary-color); }  
+    100% 
+    { box-shadow: 0 0 0 .4rem var(--primary-color); } 
+  }
+
+  .errorlist 
+  {
+    left: 50%;
+    transform: translateX(-50%);
+    &>li 
     {
-      width: 100%;
-      padding: 0.2rem;
-      font-size: var(--size-text-small);
-      > li 
-      {margin-bottom: 0.1rem;}
+      border-radius:12px;
+      border: var(--surface-borde);
     }
+  }
 }

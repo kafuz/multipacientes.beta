@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 # Modelo de institución educativa
 class Institucion(models.Model):
     is_active = models.BooleanField(default=True)
-    nit = models.PositiveIntegerField(unique=True, verbose_name="NIT")
     nombre = models.CharField(max_length=30, verbose_name="Nombre")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='instituciones')
 

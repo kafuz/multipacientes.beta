@@ -1,75 +1,88 @@
 #userBrowser
 {
+    --size-img:2.5rem;
+
     position: relative;   
-    &:has(#toggle-user:checked) > div[values="body"] { display: block; }
+    &:has(#toggle-user:checked) > div[values="body"] { display: flex; }
     &>div[values="head"]
     {
         &>label
         {   
             display: block;
-            transition: transform 200ms;
-            >img
-            {
-                object-fit: cover;
-                width: 2.5rem;
-                aspect-ratio: 1/1; border-radius: 50%;  
-                cursor: pointer;
-                box-shadow: 0 0 0 0.2rem rgba(var(--color-dark),0.2), 0 0 0.8rem 0.1rem rgba(var(--color-dark),0.3); /* 2px a 0.125rem */
-                transition: box-shadow 200ms;
-                &:active 
-                { box-shadow: 0 0 0 0.2rem rgba(var(--color-light),1); }
+            width: var(--size-img);
+            aspect-ratio: 1/1;
+            border-radius: 50%; 
+            box-shadow: 0 0 0 0.2rem var(--surface-border);
+            cursor: pointer;
+            overflow: hidden;
+            transition:box-shadow 200ms,  transform 200ms;
+
+            &>img{object-fit: cover;}
+     
+            &:hover, &:active
+            { 
+                transform: scale(1.1); 
+                box-shadow: 0 0 0 .5rem transparent;
             }
-            &:hover 
-            { transform: scale(1.1); }
         }
         
     }
     &>div[values="body"]
     {
-        & div
-        { border-radius: 0.3rem; }
         display: none;
-        position: absolute; right: 50%; top: calc(100% + 0.5rem);
-        background-color: rgba(var(--color-light),0.8);
-        padding: 0.5rem;
-        animation: showIn 200ms linear normal;
-        overflow: hidden;
+        width: 250px;
+        flex-direction: column;
+        position: absolute; 
+        right: 0; top: calc(100% + .5rem);
         z-index: 10;
-        border-radius:5px 0 5px 5px;
-        box-shadow: 0 0 0 2px rgba(var(--color-light) ,1);
-        &>div
+        gap: .5rem;
+        padding: .5rem;
+        background-color: var(--surface-card);
+        border: 2px solid var(--surface-border);
+        border-radius: 6px;
+    
+        /*Card User*/
+        &>div:first-child
         {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 0.5rem;
-            padding: 0.5em;
-            backdrop-filter: brightness(70%);
-            &>div
+            padding:1rem;
+            background-color: var(--highlight-bg);
+            border-radius: 6px;
+            text-transform: capitalize;
+            &>div:first-child
             {
-                &:last-child
-                { position: relative; margin: 0em; }
-
-                &>a, &>form>input
-                {
-                    color: rgb(var(--color-texto-inverso));
-                    padding: 0.5rem;
-                    border-radius: 5px;
-                    transition: filter 100ms;
-                    width: 100%;
-                    font-weight: 400;
-                    font-size: var(--size-text-medium);
-                    &:hover{ filter: brightness(150%); box-shadow: 0 0 0 2px rgba(var(--color-light),0.6);}
-                }
-                &>a
-                {
-                    display: block;
-                    text-align: center;
-                    text-decoration: none;
-                    background-color: rgba(var(--color-dark),0.8);
-                    transition:filter 200ms ;
-                }
-                &>form>input
-                { cursor: pointer; border: 0; background-color: rgb(var(--danger)); }
+                width: 5rem;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                overflow: hidden;
+                &>img{ object-fit: cover;}
+            }
+        }
+        &>div:last-child
+        {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            a, input 
+            {
+                display: block;
+                width: 100%;
+                border: 2px solid var(--surface-border);
+                text-align: center;
+                font-size: medium;
+                padding: .5rem 1rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: filter .2s, background-color .2s;
+                &:hover
+                { filter: brightness(120%); }
+            }
+            a:hover
+            {
+                background-color: var(--surface-ground);
             }
         }
     }

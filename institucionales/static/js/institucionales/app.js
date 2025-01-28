@@ -30,6 +30,7 @@ const form_dinamic=
 {
     POST(obj)
     {
+        console.log(obj)
         const inputs = this.change(obj, `Crear ${root.vary.namespace}`);
         inputs.forEach(input => {
             if(input.type=="hidden")
@@ -63,7 +64,7 @@ const form_dinamic=
         const titles=getClass('title-form-force');
         for (let i = 0; i < titles.length; i++) 
             titles[i].remove();
-        form.append(gNodo({type:'div', attr:{class:'title-form-force'}, txt:title}))
+        form.prepend(gNodo({ type: 'div', attr: { class: 'title-form-force' }, txt: title }));
         form.setAttribute('method', method);
         form.setAttribute('action',  url);
         return inputs = form.querySelectorAll('input, select, textarea');

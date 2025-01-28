@@ -23,28 +23,38 @@
 
 {% block medium %}
     <p style="display: none;" id="root__url">/institucionales/programa/</p>
-    <p style="display: none;" id="namespace">Programa</p>
+    <p style="display: none;" id="namespace">programa</p>
 
-    <div id="container_main">
-        <div id="container__nav">
-            <div> <a href="{% url 'index__institucion' %}" type="in">Instituciones</a> </div>
-            <div> <a href="#" values="active" type="pr">Programa</a></div>
-        </div> 
+    
+    <div class="container-main">
+        <div class="container-nav">
+            <div> 
+                <a href="{% url 'index__institucion' %}">
+                    <span>Institución</span>
+                    <span>{{institution}}</span>
+                </a> 
+            </div>
+            <div> <a href="#" values="active">Programas</a></div>
+        </div>
 
-        <div id="container__system__file">
+        <div class="container-file">
             {% for objeto in objetos %}
-                <div>
-                    <div>
-                        <div>
-                            <div class="main-system-config">...
-                                <div __id="{{objeto.id}}">
-                                    <div class="inst__delete">eliminar</div>
-                                    <div class="inst__put">editar</div>
-                                </div>
+                <div class="child-file">
+                    <div class="child-file-menu">
+                        <input type="checkbox" id="toggle-config-{{ objeto.id }}" class="config-toggle" hidden>
+                        <label for="toggle-config-{{ objeto.id }}" class="config-label"> ... </label>
+                        <div class="config-content" __id="{{ objeto.id }}" data-url="/institucionales/institucion/">
+                            <div class="inst__delete">
+                                <img src="{% static 'media/img/icons/delete.svg' %}">
+                                <span>eliminar</span>
+                            </div>
+                            <div class="inst__put">
+                                <img src="{% static 'media/img/icons/lapiz.svg' %}">
+                                <span>editar</span>
                             </div>
                         </div>
-                        <div> <a href="{% url 'index__asignatura' fk=objeto.id %}" type="pr">{{objeto.nombre}}</a></div>
                     </div>
+                    <div class="child-body"> <a href="{% url 'index__asignatura' fk=objeto.id %}" type="pr">{{objeto.nombre}}</a></div>
                 </div>
             {% endfor %}
         </div>

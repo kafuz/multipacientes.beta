@@ -16,15 +16,10 @@
 <body>
     {% include '../components/messages.html' %}
 
-    <header>
-        <div values="logo"> 
-            <img src="{% static 'media\img\logo\neo.png' %}" alt="#">
-        </div>
+    <header class="flex-center">
         
-        <div values="open"> 
-            <input type="checkbox" id="toggle" style="display: none;">
-            <label for="toggle"><img src="{% static 'media\img\icons\menu.png' %}" alt="#"></label>
-        </div>
+        <div values="logo"> <img src="{% static 'media\img\logo\neo2.png' %}"/> </div>
+        
         <nav>
             <ul>
                     <li> <a href="/">Home</a> </li>
@@ -36,6 +31,11 @@
                 {% endif %}
             </ul>
         </nav>
+
+        <div values="open"> 
+            <input type="checkbox" id="toggle" style="display: none;">
+            <label for="toggle"><img src="{% static 'media\img\icons\menu.png' %}" alt="#"></label>
+        </div>
         
         {% include '../components/userBrowser.html' %}
     </header>

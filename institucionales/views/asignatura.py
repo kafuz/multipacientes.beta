@@ -31,13 +31,13 @@ def index_asignatura(request, fk):
         # Guardar el id del programa en la sesión
         request.session['id-programa'] = fk
         logger.info(f'ID programa: {request.session["id-programa"]}')
-
+        programa= Programa.objects.get(id=fk)
         # Obtener las asignaturas filtradas por el id del programa
         objs = list(Asignatura.objects.filter(programa_id=fk).values())
         logger.info(f'Asignaturas obtenidas: {objs}')
 
         # Renderizar la página con los objetos y el formulario
-        return render(request, 'asignatura/index.html', {'objetos': objs, 'form': RegisterAsignatura()})
+        return render(request, 'asignatura/index.html', {'objetos': objs, 'form': RegisterAsignatura(), 'programa':programa})
     except Exception as e:
         # Registrar el error con stack trace
         logger.error('Error en la vista index_asignatura', exc_info=True)
@@ -51,11 +51,12 @@ def index_asignatura(request, fk):
 def reload_asignatura(request):
     try:
         id = request.session.get('id-programa')
+        programa= Programa.objects.get(id=id)
         if not id:
             messages.error(request, "Programa no especificado en la sesión.")
             return redirect('index__asignatura')
         objs = list(Asignatura.objects.filter(programa_id=id).values())
-        return render(request, 'asignatura/index.html', { 'objetos': objs, 'form': RegisterAsignatura() })
+        return render(request, 'asignatura/index.html', { 'objetos': objs, 'form': RegisterAsignatura(), 'programa':programa })
     except Exception as e:
         return HttpResponse(status=500)
 

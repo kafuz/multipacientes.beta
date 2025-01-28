@@ -4,7 +4,12 @@
 {% block head %}
     <title>Sesión</title>
     <link rel="stylesheet" href="{% static 'css/accounts/login.css' %}">
-    
+    <script>
+        window.onload=()=>
+        {
+            changeNav();
+        }
+    </script>
 {% endblock %} 
 
 {% block content %}
@@ -26,7 +31,7 @@
             <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 {{form}}
-                <button>
+                <button class="btn">
                     INICIAR
                 </button>
             </form>
