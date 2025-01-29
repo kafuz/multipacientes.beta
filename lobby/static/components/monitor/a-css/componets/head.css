@@ -6,13 +6,12 @@
         font-weight: 600;
         &>div 
         {
-            color: rgb(var(--color-texto));
             border-radius: 0.1rem;
             transition: all 100ms;
-            background-color: rgba(var(--color-light));
-            border: 1px solid rgba(var(--color-dark),0.2);
+            background-color: var(--surface-card);
+            border: 1px solid var(--surface-border);
             &:hover {
-                box-shadow: 0 0 0 2px rgba(var(--color-dark), 0.3) inset;
+                box-shadow: 0 0 0 2px var(--surface-border) inset;
             }
         }
     }
@@ -45,22 +44,21 @@
                 &>div 
                 {
                     display: flex; align-items: center; justify-content: start;
-                    background-color: rgba(var(--color-azul), 1);
+                    background-color: var(--primary-color);
                     width: 100%;
                     padding: 0.2rem 0.6rem;
                     border-radius: 10px;
                     transition: all 100ms;
-                    color: rgb(var(--color-texto-inverso));
                     text-align: center;
                     &:hover 
                     {
                         filter:contrast(120%);
-                        box-shadow: 0 0 0px 2px rgba(var(--color-dark), 0.8);
+                        box-shadow: 0 0 0px 2px rgba(var(--color-tema), 0.8);
                     }
                     &:first-child:hover 
                     { box-shadow: 0 0 0 0;}
                     &>span:nth-child(1) 
-                    {color: rgba(var(--color-texto-inverso), 0.7) !important;}
+                    {color: rgba(var(--color-texto-reverso), 0.7) !important;}
                 }
             }
 
@@ -76,7 +74,7 @@
                     overflow: hidden;
                     cursor: pointer;
                     transition: all 200ms;
-                    box-shadow: 0 0 0 4px rgba(var(--color-dark),0.3), 0 0 8px 3px rgba(var(--color-dark),0.3);
+                    box-shadow: 0 0 0 4px rgba(var(--color-tema),0.3), 0 0 8px 3px rgba(var(--color-tema),0.3);
 
                     &:hover {
                         transform: scale(1.3);
@@ -84,9 +82,8 @@
                     }
 
                     &>img {
-                        background-color: rgba(var(--color-dark),1);
+                        background-color: var(--surface-card);
                         object-fit: cover !important;
-                        box-shadow: 0 0 8px 2px rgba(var(--color-light), 0.3) inset;
                     }
                 }
             }

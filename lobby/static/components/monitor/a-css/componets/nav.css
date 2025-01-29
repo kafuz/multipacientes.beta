@@ -9,18 +9,17 @@
         display: flex;
         gap: 0.6em;
         padding: 0.5rem;
-        border: 1px solid rgba(var(--color-dark),0.2);
+        border: 1px solid var(--surface-border);
         
-        background-color: rgba(var(--color-light));
+        background-color: var(--surface-card);
         border-radius: 0.1rem;
 
         &>div {
             display: flex;
             gap: 0.3em;
-            color: rgb(var(--color-texto-gris));
             font-weight: 600;
             &>a {
-                color: rgb(var(--color-azul));
+                color: var(--primary-color);
                 text-decoration: none;
             }
         }
@@ -63,7 +62,7 @@
                         {
                             content: '';
                             width: 1.5rem; aspect-ratio: 1/1; 
-                            background-color: rgba(var(--color-azul));
+                            background-color: var(--primary-color);
                             border-radius: 50%;
                             transform: rotate(90deg);
                             background-image: url(/static/media/img/icons/flecha.svg);

@@ -22,13 +22,12 @@ view
     {
         display: flex;
         margin: auto;
-        background-color: rgb(var(--color-light));
+        background-color: var(--surface-card);
         display: flex;
         border-radius: 1rem;
         padding: 1rem;
         cursor: auto;
         z-index: 2;
-        color: rgb(var(--color-texto));
     }
 
     & input[type="submit"] 

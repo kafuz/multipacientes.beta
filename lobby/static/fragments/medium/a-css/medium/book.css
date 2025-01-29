@@ -7,7 +7,7 @@
     gap: 0.5rem;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: rgba(var(--color-dark),0.1);
+    background-color: var(--surface-ground);
     &>#__main__body
     { 
         padding: 0;

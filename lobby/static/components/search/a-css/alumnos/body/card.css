@@ -17,8 +17,8 @@
     {
         width: 100%;
         position: relative;
-        background-color: rgba(var(--color-light));
-        border: 1px solid rgba(var(--color-dark),0.2);
+        background-color: var(--surface-card);
+        border: 1px solid var(--surface-border);
         flex: none;
         &>div[value='information'] 
         {
@@ -27,7 +27,7 @@
             white-space: nowrap;
             gap: calc(var(--gap)*2);
             padding: var(--padding);
-            &>div{ box-shadow: 0 0 0 0.1rem rgba(var(--color-light)), 0 0 0.3rem 0.1rem rgba(var(--color-dark),0.1); }
+            &>div{ box-shadow: 0 0 0 0.1rem rgba(var(--color-tema)), 0 0 0.3rem 0.1rem rgba(var(--color-tema),0.1); }
             &>div:first-child
             {
                 height: min-content;
@@ -48,8 +48,7 @@
             {
                 font-weight: 600;
                 padding: var(--padding);
-                background-color: rgba(var(--color-azul));
-                color: rgba(var(--color-texto-inverso));
+                background-color: var(--primary-color);
                 flex-grow: 1;
             }
         }
@@ -64,24 +63,23 @@
             &>div 
             {
                 display: none; align-items: center; justify-content: center;
-                color: rgba(var(--color-texto-inverso));
                 font-weight: bold;
                 width: 3rem;
                 animation: buttonsIlumination 2000ms normal linear infinite, showIn 200ms linear normal;
                 &[value='aggregate'] 
-                { background-color: rgba(var(--success)); }
+                { background-color: var(--success); }
 
                 &[value='delete'] 
-                {background-color: rgba(var(--danger)); }
+                {background-color: var(--danger); }
             }
         }
         /* <-> ITEM ON */
         &.active 
         {
             position: relative;
-            box-shadow: 0 0 0 0.15rem rgba(var(--color-light)), 0 0 0.3rem 0.1rem rgba(var(--color-dark),0.5); 
+            box-shadow: 0 0 0 0.15rem rgba(var(--color-tema)), 0 0 0.3rem 0.1rem rgba(var(--color-tema),0.5); 
             transition:background 1s;
-            background-color: rgba(var(--color-azul));
+            background-color: var(--primary-color);
             &>div[value='information'] 
             {
                 &>div:first-child
@@ -89,12 +87,12 @@
                     border-radius: 50%;
                     &>img { animation: showIn 200ms normal linear; }
                 }
-                &>div:last-child { background-color: rgba(var(--color-dark),0.2); }
+                &>div:last-child { background-color: rgba(var(--color-tema),0.2); }
             }
             &::before
             { 
                 content: ''; width: 1.3rem; aspect-ratio: 1/1; 
-                background-color: rgba(var(--danger));
+                background-color: var(--danger);
                 border-radius: 50%;
                 position: absolute; right: 0; top: 50%; 
                 transform: translate(50%,-50%) rotate(270deg);
@@ -107,8 +105,7 @@
     }
     &>div[values='vacio']
     {
-        background-color: rgba(var(--danger));
-        color: rgba(var(--color-texto-inverso));
+        background-color: var(--danger);
         text-align: center;
     }
     &:has(.active){}
@@ -119,7 +116,7 @@
 #search__alumno[value='aggregate']>div[value='body']>div[value='thebody'] 
 {
     & { transition: background 500ms;}
-    background-color: rgba(var(--success),0.3);
+    background-color: var(--green-200);
     &>div /*ITEM*/
     {
         &>div[value="buttons"] /*ITEM*/
@@ -136,7 +133,7 @@
 /* Aggregate delete */
 #search__alumno[value='delete']>div[value='body']>div[value='thebody'] 
 {      
-    background-color: rgba(var(--danger),0.3);
+    background-color: var(--red-200);
     &>div /*ITEM*/
     {
         &>div[value="buttons"] /*ITEM*/
@@ -150,9 +147,9 @@
 
 @keyframes buttonsIlumination 
 {
-    0%{ box-shadow: 0 0 0 0.0rem rgba(var(--color-light)) inset; }  
-    50%{ box-shadow: 0 0 0.6rem 0.1rem rgba(var(--color-light),0.5) inset;}
-    100%{ box-shadow: 0 0 0 0.0rem rgba(var(--color-light)) inset; }    
+    0%{ box-shadow: 0 0 0 0.0rem rgba(var(--color-tema)) inset; }  
+    50%{ box-shadow: 0 0 0.6rem 0.1rem rgba(var(--color-tema),0.5) inset;}
+    100%{ box-shadow: 0 0 0 0.0rem rgba(var(--color-tema)) inset; }    
 }
 
 @media (max-width: 767px) 

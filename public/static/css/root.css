@@ -26,6 +26,10 @@
 
     --dimension-conocer: rgb(0, 150, 250);
     --dimension-conocer-rgb: 0, 150, 250;
+
+    --success:var(--green-600);
+    --danger:var(--red-700);
+    --info:var(--teal-600);
 }
 
 img

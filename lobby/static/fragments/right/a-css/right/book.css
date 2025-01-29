@@ -16,7 +16,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            background-color: rgba(var(--info));    
+            background-color: var(--info);    
             border-radius: 5px;
             aspect-ratio: 1/1;
             transition: all 200ms;
@@ -30,8 +30,8 @@
             }
             &:hover
             {   
-                box-shadow:0 0 0 2px rgba(var(--color-dark),1);
-                transform: scale(1.1);
+                box-shadow:0 0 0 2px var(--gray-50);
+                transform: scale(1.05);
                 &::before
                 {
                     content: attr(values);
@@ -39,11 +39,10 @@
                     left: -55%;
                     top: 50%;
                     transform: translate(-100%, -50%);
-                    background-color: rgba(var(--info));
+                    background-color: var(--info);
                     padding: 0.5rem;
-                    color: rgba(var(--color-texto-inverso));
                     border-radius: 5px 0 0 5px;
-                    box-shadow:  0 0 1px 2px rgba(var(--color-dark), 0.4) inset;
+                    box-shadow:  0 0 1px 2px var(--teal-200) inset;
                     animation: show 200ms linear normal;
                 }
                 &::after {
@@ -54,8 +53,8 @@
                     transform: translate(-60%,-50%);
                     border-width: 20px;
                     border-style: solid;
-                    border-color: transparent transparent transparent rgba(var(--info)); /* Color de la flecha */
-                    box-shadow:  0 0 1px 2px rgba(var(--color-dark), 0.4) inset;
+                    border-color: transparent transparent transparent var(--info); /* Color de la flecha */
+                    box-shadow:  0 0 1px 2px var(--teal-200) inset;
                     filter: brightness(150%);
                     animation: show 200ms linear normal;
                 }
@@ -82,7 +81,7 @@
             {
                 &:hover
                 {   
-                    box-shadow:0 0 0 2px rgba(var(--color-dark),1);
+                    box-shadow:0 0 0 2px rgba(var(--color-tema),1);
                     transform: scale(1.1);
                     &::before
                     {
@@ -91,7 +90,7 @@
                         top: 0%;
                         transform: translate(-50%, -110%);
                         border-radius: 5px;
-                        background-color: rgba(var(--info));
+                        background-color: var(--teal-600);
                     }
                     &::after{display: none;}
                 }

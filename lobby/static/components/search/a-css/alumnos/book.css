@@ -4,18 +4,18 @@
 #search__alumno 
 {
     display: flex; flex-direction: column;
-    background-color: rgba(var(--color-light),1);
-    border: 1px solid rgba(var(--color-dark),0.2);
+    background-color: var(--surface-card);
+    border: 1px solid var(--surface-border);
     border-radius: 0.1rem !important;
     height: 100%;
     width: min-content !important;
     gap: 0.3rem;
     /* Change Status */
     &[value='aggregate'] 
-    { box-shadow: 0 0 0 0.2rem rgba(var(--success), 0.5);}
+    { box-shadow: 0 0 0 0.2rem var(--green-800);}
 
     &[value='delete'] 
-    { box-shadow: 0 0 0 0.2rem rgba(var(--danger), 0.5); }
+    { box-shadow: 0 0 0 0.2rem var(--red-800); }
 }
 
 @media (max-width: 767px) 

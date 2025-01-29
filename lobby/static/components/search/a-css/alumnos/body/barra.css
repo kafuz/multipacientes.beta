@@ -2,7 +2,7 @@
 {
     &>div[value='body']>div[value='barra'] 
     {
-        background-color: rgba(var(--info), 1);
+        background-color: var(--info);
         width: 2rem;
         padding: 0.2rem;
         position: absolute;
