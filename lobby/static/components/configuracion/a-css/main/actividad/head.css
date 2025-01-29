@@ -14,9 +14,9 @@
                     &>div[values='aggregate']
                     {   
                         display: flex; align-items: center;
-                        background-color: rgba(var(--success),0.5);
-                        box-shadow: 0 0 0 2px rgba(var(--color-light),1) inset;
-                        &:hover{background-color: rgba(var(--success),1);}
+                        background-color: var(--success);
+                        box-shadow: 0 0 0 2px rgba(var(--color-tema)) inset;
+                        &:hover{background-color: var(--success);}
                         &>div 
                         {
                             width: 3rem;
@@ -24,12 +24,11 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            background-color: rgb(var(--success));
+                            background-color: var(--success);
                             transition: all 200ms;
                             cursor: pointer;
-                            color: rgb(var(--color-texto-inverso));
                             font-weight: bold;
-                            box-shadow: 0 0 0 2px rgb(var(--color-light)) inset;
+                            box-shadow: 0 0 0 2px rgb(var(--color-tema)) inset;
                             &:hover{transform: scale(0.9);filter: brightness(150%);}
                         }
                     }
@@ -45,9 +44,8 @@
                         &>div[values='title']
                         {
                             text-align: center;
-                            background-color: rgba(var(--color-dark),0.2);
-                            color: rgb(var(--color-texto-inverso));
-                            &>div{margin: auto; width: min-content; background-color: rgba(var(--color-dark),0.2); padding: 0.3rem;}
+                            background-color: rgba(var(--color-tema),0.2);
+                            &>div{margin: auto; width: min-content; background-color: rgba(var(--color-tema),0.2); padding: 0.3rem;}
                         }
                         &>div[values='content']
                         {
@@ -55,14 +53,14 @@
                             gap: 0.3rem;
                             overflow-y: hidden;
                             overflow-x: auto;
-                            background-color: rgba(var(--color-dark),0.2);
+                            background-color: rgba(var(--color-tema),0.2);
                             /* ITEM */
                             &>div 
                             {
                                 flex: none;
                                 padding: 0.6rem;
-                                background-color: rgba(var(--color-light));
-                                box-shadow: 0 0 0 2px rgba(var(--color-dark), 0.2) inset;
+                                background-color: var(--surface-card);
+                                box-shadow: 0 0 0 2px var(--surface-border) inset;
                                 transition: filter 0.2s;
                                 &:hover 
                                 {
@@ -71,12 +69,11 @@
                             }
                             &>.config_actividad_on
                             {
-                                background-color: rgba(var(--info),1);
-                                box-shadow: 0 0 0 2px rgba(var(--color-light), 1) inset !important;
-                                color: rgb(var(--color-texto-inverso));
+                                background-color: var(--info);
+                                box-shadow: 0 0 0 2px rgba(var(--color-tema), 1) inset !important;
                                 position: relative;
                                 &::before{
-                                    content: 'v'; text-shadow: 2px 2px 1px rgba(var(--color-dark),1);
+                                    content: 'v'; text-shadow: 2px 2px 1px rgba(var(--color-tema),1);
                                     position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 35%);}
                             }
                         }

@@ -11,15 +11,13 @@
             width: 100%;
             flex-grow: 1;
             padding: var(--padding);
-            background-color: rgba(var(--color-light));
-            border: 1px solid rgba(var(--color-dark),0.2);
+            background-color: var(--surface-card);
+            border: 1px solid var(--surface-border);
             
             & > div {
                 display: flex;
                 flex-grow: 1;
                 gap: var(--padding);
-                background-color: rgba(var(--color-light), 0.6);
-                
                 & > div {
                     display: flex;
                     flex-direction: column;
@@ -42,15 +40,10 @@
                         padding: var(--padding);
                         font-weight: 600;
 
-                        & > div {
-                            color: rgb(var(--color-texto));
-                        }
-
                         & > select {
-                            color: rgb(var(--color-texto-inverso));
                             padding: 0.2rem 2rem;
-                            background: rgb(var(--color-dark)) url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23fff" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>') no-repeat right 1rem center / 1rem;
-                            border: 0.2rem solid rgba(var(--color-light), 0.4);
+                            background: rgb(var(--color-tema)) url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23fff" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>') no-repeat right 1rem center / 1rem;
+                            border: 0.2rem solid rgba(var(--color-tema), 0.4);
                             border-radius: 0.5rem;
                             font-size: var(--size-text-medium);
                             cursor: pointer;
@@ -59,7 +52,7 @@
                             font-weight: 600;
 
                             &:focus {
-                                border-color: rgb(var(--info));
+                                border-color: var(--info);
                                 outline: none;
                             }
 
@@ -68,8 +61,7 @@
                             }
 
                             & > option {
-                                color: rgb(var(--color-texto-inverso));
-                                background-color: rgba(var(--color-gris), 1);
+                                background-color: var(--surface-ground);
                                 font-size: var(--size-text-medium);
                                 font-weight: 600;
                                 
@@ -89,8 +81,7 @@
                         font-size: var(--size-text-medium);
                         white-space: nowrap;
                         font-weight: 600;
-                        color: rgb(var(--color-texto-inverso));
-                        text-shadow: 0 0 0.2rem rgba(var(--color-dark), 0.4);
+                        text-shadow: 0 0 0.2rem rgba(var(--color-tema), 0.4);
                         overflow-y: auto;
 
                         & > div[values='item'] {
@@ -136,10 +127,10 @@
 
                                     & > div > .actividadOn {
                                         position: relative;
-                                        background-color: rgb(var(--danger));
+                                        background-color: var(--danger);
                                         filter: saturate(200%);
                                         border-radius: 0.5rem !important;
-                                        box-shadow: 0 0 0 0.3rem rgba(var(--color-light), 0.3) inset;
+                                        box-shadow: 0 0 0 0.3rem rgba(var(--color-tema), 0.3) inset;
 
                                         &::before {
                                             content: '<';
@@ -147,7 +138,6 @@
                                             right: 0;
                                             top: 50%;
                                             transform: translate(100%, -50%);
-                                            color: rgb(var(--color-texto));
                                             font-weight: bold;
                                         }
                                     }
@@ -162,17 +152,17 @@
                                             padding: var(--padding);
                                             cursor: pointer;
                                             transition: filter 100ms, box-shadow 100ms;
-                                            border-bottom: 0.3rem solid rgba(var(--color-dark), 0.1);
+                                            border-bottom: 0.3rem solid rgba(var(--color-tema), 0.1);
 
                                             &:hover {
                                                 filter: saturate(200%);
-                                                box-shadow: 0 0 0 0.2rem rgb(var(--color-dark)) inset;
+                                                box-shadow: 0 0 0 0.2rem rgb(var(--color-tema)) inset;
                                             }
 
                                             &:last-child {
                                                 border: none;
                                                 border-radius: 0 0 0.5rem 0.5rem;
-                                                box-shadow: 0 0.2rem 0.2rem 0.2rem rgba(var(--color-dark), 0.2);
+                                                box-shadow: 0 0.2rem 0.2rem 0.2rem rgba(var(--color-tema), 0.2);
                                             }
                                         }
                                     }

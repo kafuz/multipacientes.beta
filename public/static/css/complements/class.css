@@ -1,10 +1,10 @@
 
 .ser
-{ background-color: rgba(var(--saber-ser)); }
+{ background-color: var(--dimension-ser); }
 .hacer
-{ background-color: rgba(var(--saber-hacer)); }
+{ background-color: var(--dimension-hacer); }
 .conocer
-{ background-color: rgba(var(--saber-conocer)); }
+{ background-color: var(--dimension-conocer); }
 
 
 .__debug {

@@ -1,7 +1,7 @@
 #__calificacion {
     & > div[values='__b'] {
         & > div[values='head'] {
-            &:hover{ box-shadow: 0 0 0 2px rgba(var(--color-dark),0.2) inset; }
+            &:hover{ box-shadow: 0 0 0 2px rgba(var(--color-tema),0.2) inset; }
             display: flex; 
             gap: 0.3em;
             padding: 0.3em;
@@ -10,7 +10,7 @@
                 flex-grow: 1;
                 align-items: center;
                 padding: 0.3em;
-                background-color: rgba(var(--color-light), 0.6);
+                background-color: rgba(var(--color-tema), 0.1);
                 &>input{ border: 0; padding: 0.3em; border-radius:0.3rem ;}
             }
         }

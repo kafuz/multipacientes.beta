@@ -20,15 +20,14 @@
                         display: flex;
                         justify-content: center;
                         gap: 0.3rem;
-                        background-color: rgba(var(--color-light));
+                        background-color: var(--surface-card);
                         padding: 0.3rem 0;
                         > div[values='counter']
                         {
                             position: absolute;
                             left: 0;
                             top: 0;
-                            background-color: rgba(var(--info));
-                            color: rgb(var(--color-texto-inverso));
+                            background-color: var(--info);
                             padding: 0 0.3rem;
                             border-radius: 0.2rem 0;
                         }
@@ -40,7 +39,7 @@
                         & > div:has(.config-dimension-disabled) 
                         {
                             position: relative;
-                            background-color: rgba(var(--danger), 1);
+                            background-color: var(--danger);
                             opacity: 0.8;
                             filter: brightness(60%);
                         }
@@ -48,10 +47,10 @@
                         {
                             display: flex; flex-direction: column; gap: 0.3rem;
                             padding: 0.4rem;
-                            background-color: rgba(var(--color-dark), 0.01);
+                            background-color: rgba(var(--color-tema), 0.01);
                             transition: filter 200ms;
-                            box-shadow: 0 0 4px 2px rgba(var(--color-dark), 0.1) inset, 0 0 0 2px rgba(var(--color-dark), 0.15) inset;
-                            &:hover{   box-shadow:0 0 0 2px rgba(var(--color-dark), 1) inset; }
+                            box-shadow: 0 0 4px 2px rgba(var(--color-tema), 0.1) inset, 0 0 0 2px rgba(var(--color-tema), 0.15) inset;
+                            &:hover{   box-shadow:0 0 0 2px rgba(var(--color-tema), 1) inset; }
 
                             div 
                             {
@@ -59,14 +58,13 @@
                                 &>label, &>input
                                 {
                                     width: 100%; text-align: center; padding: 0.2rem 0.3rem;
-                                    background-color: rgba(var(--color-light), 0.4);
+                                    background-color: rgba(var(--color-tema), 0.4);
                                     border-radius: 0.5rem;
-                                    color: rgb(var(--color-texto));
-                                    text-shadow: 0 0 0.1rem rgba(var(--color-light), 0.2); 
+                                    text-shadow: 0 0 0.1rem rgba(var(--color-tema), 0.2); 
                                     border: 0; 
                                     font-weight: 600;
-                                    &[values='title']{background-color:rgba(var(--color-light), 0.8);}
-                                    &[values='status']{background-color: rgba(var(--color-light), 0.8);}
+                                    &[values='title']{background-color:rgba(var(--color-tema), 0.8);}
+                                    &[values='status']{background-color: rgba(var(--color-tema), 0.8);}
                                 } 
                                 &>input
                                 {
@@ -81,12 +79,12 @@
                         }
                         &>.config_dimension_on
                         {
-                            box-shadow: 0 0 0 2px rgba(var(--color-light), 1) inset ,0 0 0 2px rgba(var(--color-dark), 0.1);
+                            box-shadow: 0 0 0 2px rgba(var(--color-tema), 1) inset ,0 0 0 2px rgba(var(--color-tema), 0.1);
                             & div>label,& div>input
                             {
-                                color: rgb(var(--color-texto-inverso)); background-color: rgba(var(--color-dark), 0.2) !important;
-                                &[values='title']{background-color:rgba(var(--color-dark), 0.4) !important;}
-                                &[values='status']{background-color: rgba(var(--color-dark), 0.4) !important;}
+                                background-color: rgba(var(--color-tema), 0.2) !important;
+                                &[values='title']{background-color:rgba(var(--color-tema), 0.4) !important;}
+                                &[values='status']{background-color: rgba(var(--color-tema), 0.4) !important;}
                             }
                            
                         }

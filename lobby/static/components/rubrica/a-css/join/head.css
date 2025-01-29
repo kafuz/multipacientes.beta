@@ -27,13 +27,13 @@
                         gap: var(--gap);
                         flex-wrap: wrap;
                         justify-content: space-between;
-                        >div {width: 100%; padding: var(--padd); background-color: rgba(var(--color-dark),0.1); justify-content: space-between; align-items: center;}
+                        >div {width: 100%; padding: var(--padd); background-color: rgba(var(--color-tema),0.1); justify-content: space-between; align-items: center;}
                     }
                 }
                 > div:nth-child(2)
                 {
                     display: flex;
-                    background-color: rgba(var(--color-dark),0.1); 
+                    background-color: rgba(var(--color-tema),0.1); 
                     padding: var(--padd);
                     flex-grow: 1;
                     > textarea 
@@ -50,7 +50,7 @@
                 display: flex;
                 align-items: center;
                 padding: var(--padd);
-                background-color: rgba(var(--color-dark),0.1); 
+                background-color: rgba(var(--color-tema),0.1); 
                 &> input, &> img
                 {
                     width: 8;
@@ -74,8 +74,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color:rgba(var(--success),1);
-            color: rgba(var(--color-texto-inverso),1);
+            background-color: var(--success);
             border-radius:0 0 0.3rem 0.3rem;
             padding: var(--padd);
             gap: var(--gap);
@@ -120,7 +119,7 @@
                     display: flex;
                     align-items: center;
                     padding: var(--padd);
-                    background-color: rgba(var(--color-dark),0.1); 
+                    background-color: rgba(var(--color-tema),0.1); 
                     &> input, &> img
                     {
                         width: 7;
@@ -144,8 +143,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color:rgba(var(--success),1);
-                color: rgba(var(--color-texto-inverso),1);
+                background-color:var(--success);
                 border-radius:0 0 0.3rem 0.3rem;
                 padding: var(--padd);
                 gap: var(--gap);

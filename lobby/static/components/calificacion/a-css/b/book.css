@@ -10,8 +10,8 @@
     flex-grow: 0; display: flex; gap: 0.3em;
     flex-direction: column; 
     font-size: var(--size-text-medium); 
-    background-color: rgba(var(--color-azul));
-    border: 1px solid rgba(var(--color-dark),0.2);
+    background-color: var(--surface-card);
+    border: 1px solid var(--surface-border);
   }
  }
 }

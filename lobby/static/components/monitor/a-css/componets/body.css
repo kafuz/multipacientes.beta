@@ -187,10 +187,10 @@
         box-sizing: content-box;
         flex-grow: 1;
         height: 100%;
-        background-color: rgba(var(--color-light), 0.6);
+        background-color: var(--surface-card);
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(var(--color-dark),0.2);
+        border: 1px solid var(--surface-border);
         &>div {
             flex-grow: 1;
             justify-content: center;
@@ -266,7 +266,7 @@
                         {
                             width: 100%;
                             padding: 0.1rem 0.2rem;
-                            background-color: rgba(var(--color-dark), 0.1);
+                            background-color: rgba(var(--color-tema), 0.1);
                         }
                     }
                 }

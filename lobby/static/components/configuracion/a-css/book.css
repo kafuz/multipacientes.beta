@@ -15,7 +15,7 @@
             display: flex;
             flex-grow: 1; 
             padding: 0.5rem;
-            &>div{background-color: rgb(var(--color-light));}
+            &>div{background-color: var(--surface-card);}
         }
         & div
         {

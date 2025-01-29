@@ -27,7 +27,7 @@
                 flex-grow: 1;
             }
             &>div
-            { padding: 0.3rem; background-color: rgba(var(--color-dark),0.1); }
+            { padding: 0.3rem; background-color: rgba(var(--color-tema),0.1); }
         }
         /*Comportamiento de clases*/
         &:not(:has(.config_dimension_on)) {
@@ -54,26 +54,26 @@
         /*COLOR*/
         &[colorstate='ser']
         { 
-            box-shadow: 0 0 0 2px rgba(var(--saber-ser), 0.5);
+            box-shadow: 0 0 0 2px rgba(var(--dimension-ser-rgb), 0.5);
             & .config_dimension_on, & .on-config
             {
-                background-color: rgb(var(--saber-ser)) !important;
+                background-color: rgb(var(--dimension-ser-rgb)) !important;
             }
         }
         &[colorstate='conocer']
         { 
-            box-shadow: 0 0 0 2px rgba(var(--saber-conocer), 0.5);
+            box-shadow: 0 0 0 2px rgba(var(--dimension-conocer-rgb), 0.5);
             & .config_dimension_on, & .on-config
             {
-                background-color: rgb(var(--saber-conocer)) !important;
+                background-color: rgb(var(--dimension-conocer-rgb)) !important;
             }
         }
         &[colorstate='hacer']
         { 
-            box-shadow: 0 0 0 2px rgba(var(--saber-hacer), 0.5);
+            box-shadow: 0 0 0 2px rgba(var(--dimension-hacer-rgb), 0.5);
             & .config_dimension_on, & .on-config
             {
-                background-color: rgb(var(--saber-hacer)) !important;
+                background-color: rgb(var(--dimension-hacer-rgb)) !important;
             }
         }
 

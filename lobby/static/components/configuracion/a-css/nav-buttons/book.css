@@ -16,9 +16,8 @@
         height: 100%;
         &>div /* <ITEM> */
         {
-            background-color: rgba(var(--info),1);
-            color: rgb(var(--color-texto-inverso));
-            box-shadow: 0 0 0 0.1rem rgba(var(--color-dark));
+            background-color: var(--info);
+            box-shadow: 0 0 0 0.1rem rgba(var(--color-tema));
             padding: 0.5rem 0.25rem;
             cursor: pointer;
             transition: all 200ms;
@@ -59,9 +58,8 @@
             &>div /* <ITEM> */
             {
                 flex: none;
-                background-color: rgba(var(--info),1);
-                color: rgb(var(--color-texto-inverso));
-                box-shadow: 0 0 0 0.1rem rgba(var(--color-dark));
+                background-color: var(--info);
+                box-shadow: 0 0 0 0.1rem var(--surface-border);
                 padding: 0.3rem 0.6rem;
                 &:hover
                 { transform: scale(1.1); }
