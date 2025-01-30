@@ -31,7 +31,7 @@ __monitor.head.card['components']=
                     [
                      `
                      <div>
-                        <div>DATOS PERSONALES</div>
+                        <div>${ user.title!=null ? user.title: 'Monitor individual'}</div>
                         <div><span>Nombres : </span>    <span> ${reduceText(user.first_name, 20, true)}</span></div>
                         <div><span>Apellidos : </span>  <span>${user.last_name!=null ? reduceText(user.last_name, 20, true) : `No definido`}</span></div>
                         <div><span>Email : </span>     <span>${reduceText(user.email, 20, true)}</span></div>

@@ -18,14 +18,14 @@
     --size-text-medium: 1rem; 
     --size-text-small: 0.8rem;  
 
-    --dimension-ser: rgb(190, 200, 0);
-    --dimension-ser-rgb: 190, 200, 0;
+    --dimension-ser: rgb(174, 184, 0);
+    --dimension-ser-rgb: 174, 184, 0;
 
-    --dimension-hacer: rgb(131, 0, 218);
-    --dimension-hacer-rgb: 131, 0, 218;
+    --dimension-hacer: rgb(74, 0, 193);
+    --dimension-hacer-rgb: 74, 0, 193;
 
-    --dimension-conocer: rgb(221, 0, 250);
-    --dimension-conocer-rgb: 221, 0, 250;
+    --dimension-conocer: rgb(169, 0, 192);
+    --dimension-conocer-rgb: 169, 0, 192;
 
     --success:var(--green-600);
     --danger:var(--red-700);

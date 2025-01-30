@@ -35,16 +35,12 @@ def get_institucion(request, id):
 def create_institucion(request):
     form = RegisterInstitucion(request.POST)
     if form.is_valid():
-        try:
-            Institucion.objects.create(
-                nit=form.cleaned_data['nit'],
-                nombre=form.cleaned_data['nombre'],
-                user=request.user
-            )
-            messages.success(request, "Creación exitosa")
-            return redirect(reverse('index__institucion'))
-        except IntegrityError:
-            messages.error(request, f"Error: Ya existe una institución con el NIT {form.cleaned_data['nit']}")
+        Institucion.objects.create(
+            nombre=form.cleaned_data['nombre'],
+            user=request.user
+        )
+        messages.success(request, "Creación exitosa")
+        return redirect(reverse('index__institucion'))
     else:
         messages.error(request, "Error: Formulario inválido. Verifique los datos ingresados.")
 

@@ -32,6 +32,7 @@ __monitor['setState']=
                         await root.routes.gets.informacion.global({id:user.id}, (response)=>{informacion=response;});
                         // update
                         root.monitoreos.methods.addition(informacion.monitoreos);
+                        user.title='Monitor General (tu)';
                         informacion['user']=user;
                         head.fill(informacion)
                         body.fill(informacion)
