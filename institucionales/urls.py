@@ -21,5 +21,6 @@ urlpatterns =[
     path('asignatura/get/<int:id>',    asignatura.get_asignatura,   name="get__asignatura"),  
     path('asignatura/create',          asignatura.create_asignatura,name="create__asignatura"),  
     path('asignatura/update/<int:id>', asignatura.update_asignatura,name="update__asignatura"),  
-    path('asignatura/delete',          asignatura.delete_asignatura,name="delete__asignatura"),                                
+    path('asignatura/delete',          asignatura.delete_asignatura,name="delete__asignatura"),    
+    path('asignatura/clone', asignatura.clonar_asignatura_view ,    name="clone__asignatura"),                                  
 ]

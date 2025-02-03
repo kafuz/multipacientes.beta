@@ -9,6 +9,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--text-color);
    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 

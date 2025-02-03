@@ -38,7 +38,7 @@ class Criterio(models.Model):
         verbose_name_plural = 'Criterios'
 
     def __str__(self):
-        return self.nombre
+         return str(self.id)+' - '+self.nombre
 
 # Modelo de nonitoreo académico
 class Monitoreo(models.Model):

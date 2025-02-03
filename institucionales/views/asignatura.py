@@ -10,6 +10,9 @@ import json
 
 from lobby.views.entities.order import Signals
 from public.models.Institutional import Asignatura, Programa
+from public.models.Educational import Dimension, Criterio, Monitoreo, Actividad
+from public.models.Rubrica import Rubrica, Nivel, NivelCriterio
+
 from public.decorators.book import teacher_required
 
 from ..forms.book import RegisterAsignatura
@@ -145,3 +148,128 @@ def delete_asignatura(request):
 
     except Exception as e:
         return JsonResponse({'request': 'error', 'message': 'Error interno del servidor'}, status=500)
+
+
+@login_required
+@teacher_required
+@require_http_methods(["POST"])
+def clonar_asignatura_view(request):
+    try:
+        # Obtener el ID de la asignatura a clonar desde la solicitud POST
+        body = json.loads(request.body)
+        asignatura_id = body.get('id')
+       
+        if not asignatura_id:
+            messages.error(request, "No se proporcionó el ID de la asignatura a clonar.")
+            return redirect('reload__asignatura')
+
+        # Obtener la asignatura original
+        asignatura_original = get_object_or_404(Asignatura, id=asignatura_id)
+      
+        # Clonar la asignatura y sus relaciones
+        nueva_asignatura = clonar_asignatura(asignatura_original)
+
+        # Mensaje de éxito
+        messages.success(request, f"Asignatura '{asignatura_original.nombre}' clonada exitosamente como '{nueva_asignatura.nombre}'.")
+        return JsonResponse({'request': 'success'})
+    except Exception as e:
+        # Log del error (opcional)
+        logger.error(f"Error inesperado: {e}")
+        return HttpResponse(status=500)  # Error interno del servidor
+
+def clonar_asignatura(asignatura):
+    try:
+        # Clonar la asignatura
+        nueva_asignatura = Asignatura.objects.create(
+            is_active=asignatura.is_active,
+            nombre=f"Copia de {asignatura.nombre}",
+            programa=asignatura.programa
+        )
+        
+        # Clonar las dimensiones y sus criterios
+        for dimension in asignatura.dimensiones.all():
+            nueva_dimension = Dimension.objects.create(
+                is_active=dimension.is_active,
+                nombre=dimension.nombre,
+                valor=dimension.valor,
+                asignatura=nueva_asignatura
+            )
+            
+            for criterio in dimension.criterios.all():
+                nuevo_criterio = Criterio.objects.create(
+                    is_active=criterio.is_active,
+                    nombre=criterio.nombre,
+                    valor=criterio.valor,
+                    dimension=nueva_dimension
+                )
+                
+                # Clonar las actividades relacionadas con el criterio
+                for actividad in criterio.actividades.all():
+                    # Clonar el monitoreo si existe
+                    nuevo_monitoreo = None
+                    if actividad.monitoreo:
+                        nuevo_monitoreo = Monitoreo.objects.create(
+                            nombre=actividad.monitoreo.nombre,
+                            color=actividad.monitoreo.color,
+                            fecha_inicio=actividad.monitoreo.fecha_inicio,
+                            fecha_fin=actividad.monitoreo.fecha_fin,
+                            asignatura=nueva_asignatura
+                        )
+                    
+                    Actividad.objects.create(
+                        is_active=actividad.is_active,
+                        nombre=actividad.nombre,
+                        valor=actividad.valor,
+                        multiplicador=actividad.multiplicador,
+                        np_is=actividad.np_is,
+                        nivel_pertinencia=actividad.nivel_pertinencia,
+                        criterio=nuevo_criterio,
+                        monitoreo=nuevo_monitoreo
+                    )
+        
+        # Clonar los monitoreos
+        for monitoreo in asignatura.Monitoreos.all():
+            Monitoreo.objects.create(
+                nombre=monitoreo.nombre,
+                color=monitoreo.color,
+                fecha_inicio=monitoreo.fecha_inicio,
+                fecha_fin=monitoreo.fecha_fin,
+                asignatura=nueva_asignatura
+            )
+        
+        # Clonar las rúbricas, niveles y nivel_criterios
+        for rubrica in asignatura.rubricas.all():
+            nueva_rubrica = Rubrica.objects.create(
+                anotacion=rubrica.anotacion,
+                imagen=rubrica.imagen,
+                asignatura=nueva_asignatura
+            )
+            
+            for nivel in rubrica.niveles.all():
+                nuevo_nivel = Nivel.objects.create(
+                    nombre=nivel.nombre,
+                    valorMaximo=nivel.valorMaximo,
+                    valorMinimo=nivel.valorMinimo,
+                    color=nivel.color,
+                    rubrica=nueva_rubrica
+                )
+                
+                # Clonar las relaciones NivelCriterio
+                for nivel_criterio in nivel.nivel_criterios.all():
+                    # Obtener el criterio clonado correspondiente
+                    criterio_clonado = Criterio.objects.filter(
+                        dimension__asignatura=nueva_asignatura,
+                        nombre=nivel_criterio.criterio.nombre
+                    ).first()
+                    
+                    if criterio_clonado:
+                        NivelCriterio.objects.create(
+                            nivel=nuevo_nivel,
+                            criterio=criterio_clonado,
+                            anotacion=nivel_criterio.anotacion
+                        )
+        
+        return nueva_asignatura
+    except Exception as e:
+        logger.error(f'Error al clonar asignatura: {e}')
+        raise e

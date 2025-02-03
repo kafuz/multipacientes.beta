@@ -42,7 +42,7 @@ class Nivel(models.Model):
         verbose_name_plural = 'Niveles'
 
     def __str__(self):
-        return self.descripcion
+        return str(self.id)+' - '+self.nombre
 
 # Modelo intermedio para la relación muchos a muchos entre Nivel y Criterio
 class NivelCriterio(models.Model):
@@ -56,4 +56,4 @@ class NivelCriterio(models.Model):
         verbose_name_plural = 'NivelCriterios'
 
     def __str__(self):
-        return self.descripcion
+        return 'id ) Criterio :'+str(self.criterio.id)+' - ''id ) Nivel :'+str(self.nivel.id)+' - - '+self.anotacion
