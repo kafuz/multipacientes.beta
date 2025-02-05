@@ -54,3 +54,23 @@ a
     background-size: cover;
 }
 
+body {
+    background-color: var(--surface-ground);
+    color: var(--text-color);
+}
+
+input,
+textarea,
+select {
+    background-color: var(--surface-ground);
+    color: var(--text-color);
+    border: 1px solid var(--surface-border);
+}
+
+.card {
+    background-color: var(--surface-card);
+    color: var(--text-color);
+    border: 1px solid var(--surface-border);
+}
+
+/* Agrega más estilos según sea necesario */
