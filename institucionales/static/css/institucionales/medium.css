@@ -14,35 +14,46 @@
     border-right: 2px solid var(--surface-border);
 
     & > div 
-    { padding: .5rem; border-radius: 6px; }
+    { padding: .5rem; border-radius: 6px;}
 
     & > .container-nav 
     {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
         gap: 0.5rem;
-        font-size: var(--size-text-medium);
-
-        & > div > a 
-        {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background-color: var(--surface-ground);
-            border: 2px solid var(--surface-border);
-            cursor: pointer;
-            text-transform: uppercase;
-            height: 100%;
-            &>span:last-child
+        width: 100%;
+        padding-bottom: 0.5rem;
+    
+        & > div 
+        {   
+            overflow: hidden;
+            > a 
             {
-                width: min-content;
-                color: var(--primary-color);
-                text-transform:lowercase;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                background-color: var(--surface-ground);
+                border: 2px solid var(--surface-border);
+                cursor: pointer;
+                text-transform: uppercase;
+                height: 100%;
+                &>span:last-child
+                {
+                    text-transform: capitalize;
+                    width: min-content;
+                    color: var(--primary-color);
+                    text-align: center;
+                    width: 100%;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                &[values='active'] 
+                { background-color: var(--primary-color); }
             }
-            &[values='active'] 
-            { background-color: var(--primary-color); }
         }
     }
 
@@ -108,21 +119,32 @@
                 }
             }
 
-            .child-body {
-                & > a {
-                    display: block;
-                    width: 100%;
-                    padding: 2.4rem 0;
-                    border-radius: 0.3125rem;
-                    text-align: center;
-                    font-size: var(--size-text-large);
-                    text-shadow: 0 0.125rem 0.125rem rgba(var(--color-tema), 0.3);
+            .child-body 
+            {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                width: 100%;
+                aspect-ratio: 1/0.7;
+
+                box-shadow: 
+                -0.375rem 0.25rem 0 0.3125rem rgba(var(--color-tema), 0.1) inset,
+                0.375rem -0.25rem 0 0.3125rem rgba(var(--color-tema), 0.03) inset;
+                background-color: var(--primary-color);
+                border-radius: 0.3125rem;
+                padding:0 .25rem;
+                & > a 
+                {
                     overflow: hidden;
-                    box-shadow: 
-                        -0.375rem 0.25rem 0 0.3125rem rgba(var(--color-tema), 0.1) inset,
-                        0.375rem -0.25rem 0 0.3125rem rgba(var(--color-tema), 0.03) inset;
-                    background-color: var(--primary-color);
+                    text-overflow: ellipsis;
+                    text-align: center;
                     text-transform: capitalize;
+                    display: block; 
+                    width: 100%;  
+                    padding: 1rem 0;            
+                    font-size:calc(var(--size-text-medium) + 0.1rem);
+                    text-shadow: 0 0.125rem 0.125rem rgba(var(--color-tema), 0.3);
                 }
             }
         }
@@ -136,15 +158,32 @@
 { display: flex; }
 
 @media (max-width: 767px) {
-    #container_main {
+    .container-main 
+    {
         overflow: hidden;
 
-        & > #container__nav > div > a {
-            font-size: large;
+        & > .container-nav 
+        {
+            grid-template-columns: repeat(3, 1fr);
+            &> div > a 
+            {
+                padding:.5rem .25rem;
+                font-size: small;
+            }
         }
 
         & > #container__system__file {
             overflow-y: scroll;
+        }
+    }
+    .child-body 
+    {
+        font-size: large !important;
+        aspect-ratio: 1/0.5 !important;
+
+        & > a 
+        {        
+            font-size:var(--size-text-large) !important;
         }
     }
 }

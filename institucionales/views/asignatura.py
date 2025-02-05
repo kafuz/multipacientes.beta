@@ -182,10 +182,24 @@ def clonar_asignatura(asignatura):
         # Clonar la asignatura
         nueva_asignatura = Asignatura.objects.create(
             is_active=asignatura.is_active,
-            nombre=f"Copia de {asignatura.nombre}",
+            nombre=f"* {asignatura.nombre}",
             programa=asignatura.programa
         )
-        
+
+        # Diccionario para mapear monitoreos originales a sus clones
+        monitoreos_clonados = {}
+
+        # Clonar los monitoreos de la asignatura
+        for monitoreo in asignatura.Monitoreos.all():  # Usar 'Monitoreos' (con mayúscula)
+            nuevo_monitoreo = Monitoreo.objects.create(
+                nombre=monitoreo.nombre,
+                color=monitoreo.color,
+                fecha_inicio=monitoreo.fecha_inicio,
+                fecha_fin=monitoreo.fecha_fin,
+                asignatura=nueva_asignatura
+            )
+            monitoreos_clonados[monitoreo.id] = nuevo_monitoreo
+
         # Clonar las dimensiones y sus criterios
         for dimension in asignatura.dimensiones.all():
             nueva_dimension = Dimension.objects.create(
@@ -194,7 +208,7 @@ def clonar_asignatura(asignatura):
                 valor=dimension.valor,
                 asignatura=nueva_asignatura
             )
-            
+
             for criterio in dimension.criterios.all():
                 nuevo_criterio = Criterio.objects.create(
                     is_active=criterio.is_active,
@@ -202,20 +216,14 @@ def clonar_asignatura(asignatura):
                     valor=criterio.valor,
                     dimension=nueva_dimension
                 )
-                
+
                 # Clonar las actividades relacionadas con el criterio
                 for actividad in criterio.actividades.all():
-                    # Clonar el monitoreo si existe
+                    # Reutilizar el monitoreo clonado si existe
                     nuevo_monitoreo = None
                     if actividad.monitoreo:
-                        nuevo_monitoreo = Monitoreo.objects.create(
-                            nombre=actividad.monitoreo.nombre,
-                            color=actividad.monitoreo.color,
-                            fecha_inicio=actividad.monitoreo.fecha_inicio,
-                            fecha_fin=actividad.monitoreo.fecha_fin,
-                            asignatura=nueva_asignatura
-                        )
-                    
+                        nuevo_monitoreo = monitoreos_clonados.get(actividad.monitoreo.id)
+
                     Actividad.objects.create(
                         is_active=actividad.is_active,
                         nombre=actividad.nombre,
@@ -226,17 +234,7 @@ def clonar_asignatura(asignatura):
                         criterio=nuevo_criterio,
                         monitoreo=nuevo_monitoreo
                     )
-        
-        # Clonar los monitoreos
-        for monitoreo in asignatura.Monitoreos.all():
-            Monitoreo.objects.create(
-                nombre=monitoreo.nombre,
-                color=monitoreo.color,
-                fecha_inicio=monitoreo.fecha_inicio,
-                fecha_fin=monitoreo.fecha_fin,
-                asignatura=nueva_asignatura
-            )
-        
+
         # Clonar las rúbricas, niveles y nivel_criterios
         for rubrica in asignatura.rubricas.all():
             nueva_rubrica = Rubrica.objects.create(
@@ -244,7 +242,7 @@ def clonar_asignatura(asignatura):
                 imagen=rubrica.imagen,
                 asignatura=nueva_asignatura
             )
-            
+
             for nivel in rubrica.niveles.all():
                 nuevo_nivel = Nivel.objects.create(
                     nombre=nivel.nombre,
@@ -253,7 +251,7 @@ def clonar_asignatura(asignatura):
                     color=nivel.color,
                     rubrica=nueva_rubrica
                 )
-                
+
                 # Clonar las relaciones NivelCriterio
                 for nivel_criterio in nivel.nivel_criterios.all():
                     # Obtener el criterio clonado correspondiente
@@ -261,14 +259,14 @@ def clonar_asignatura(asignatura):
                         dimension__asignatura=nueva_asignatura,
                         nombre=nivel_criterio.criterio.nombre
                     ).first()
-                    
+
                     if criterio_clonado:
                         NivelCriterio.objects.create(
                             nivel=nuevo_nivel,
                             criterio=criterio_clonado,
                             anotacion=nivel_criterio.anotacion
                         )
-        
+
         return nueva_asignatura
     except Exception as e:
         logger.error(f'Error al clonar asignatura: {e}')
