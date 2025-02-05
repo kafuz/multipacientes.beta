@@ -11,11 +11,11 @@ class Rubrica(models.Model):
 
     class Meta:
         db_table = 'rubrica'
-        verbose_name = 'Rúbrica'
-        verbose_name_plural = 'Rúbricas'
+        verbose_name = 'rubrica'
+        verbose_name_plural = 'rubricas'
 
     def __str__(self):
-        return self.descripcion
+        return self.anotacion
 
 # Modelo de nivel de desempeño
 class Nivel(models.Model):
