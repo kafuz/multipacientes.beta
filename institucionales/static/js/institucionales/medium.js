@@ -32,15 +32,14 @@ const medium=async ()=>
     }});
 
     MultiEvents({'className': 'inst__clone', 'event':'click', 'accion': async(obj)=>{
-        console.log(root)
-        if(confirm(`Deseas clonar la ${root.vary.namespace}`))
+        if(confirm(`Deseas duplicar la asignatura ${root.vary.namespace}`))
         {
             const id=obj.nodo.parentNode.getAttribute('__id');
             await __Ajax.POST({   url: `${root.vary.url+'clone'}`, token: root.vary.csrfToken,  data: {'id': id},  
                                     success:(data)=>{  window.location.href = `${root.vary.url+'index'}` ; 
                                     
                                     }, 
-                                    error:(data)=>{}});                           
+                                    error:(data)=>{ console.error(data)}});                           
         }                          
         
     }});
