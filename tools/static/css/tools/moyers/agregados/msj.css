@@ -1,0 +1,65 @@
+#container-msj
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    position: fixed;
+    right: 0.3rem;
+    bottom:  0.3rem;
+    z-index: 100;
+    max-width: 90%;
+    >div 
+    {
+        color: white;
+        background-color: gray;
+        padding: 1rem 2rem;
+        border-radius: 0.4rem;
+        animation: ani-msj 4000ms linear forwards;
+        &[values="error"]
+        {
+            background-color: rgb(209, 0, 0);
+        }
+        &[values="success"]
+        {
+            background-color: rgb(100, 167, 0);
+        }
+        &[values="info"]
+        {
+            background-color: rgb(0, 89, 167);
+        }
+    }
+}
+@media (max-width: 767px) 
+{
+    #container-msj
+    {
+        right: 0;
+        >div 
+        {
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.2rem;
+        }
+    }
+}
+
+
+@keyframes ani-msj
+{
+    0%
+    {
+        transform: translateX(100%);
+    }
+    15%
+    {
+        transform: translateX(0%);
+    }
+    75%
+    {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0;
+    }
+}

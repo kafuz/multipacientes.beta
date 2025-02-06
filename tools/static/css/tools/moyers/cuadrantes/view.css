@@ -1,0 +1,217 @@
+#content-muestra {
+    position: relative;
+    display: none;
+    opacity: 0;
+    transition: opacity 200ms;
+    z-index: 20;
+}
+
+#content-muestra > div > div {
+    margin-bottom: 1rem;
+}
+
+#content-muestra > div:nth-child(1) {
+    position: fixed;
+    bottom: 5%;
+    left: 1%;
+}
+
+#content-muestra > div:nth-child(2) {
+    position: fixed;
+    right: 0;
+    top: 1%;
+}
+
+/* >> Borrar */
+#tabla-mujer {
+    display: none;
+}
+
+
+/* Tabla Moyers */
+#content-muestra-tablaMoyers 
+{
+    position: fixed;
+    bottom: 0;
+    right: 0%;
+    background-color: white;
+    box-shadow: 0 0 0.2rem 0.4rem rgba(0, 0, 0, 0.058);
+    transform: translateX(100%);
+    transition: transform 0.2s;
+    &> table 
+    {
+        border-collapse: separate;
+        border-spacing: 0.3rem;
+        text-align: center;
+        font-size: 0.5rem;
+        &:first-child 
+        { display: none; }
+    }
+    > table th {
+        background-color: rgb(234, 255, 0);
+        padding: 0.2rem;
+    }
+    > table td {
+        background-color: rgb(0, 183, 255);
+        color: white;
+        padding: 0.1rem;
+        border-bottom-right-radius: 0.4rem;
+    }
+    
+}
+    #btn-muestra-ed 
+    {
+        position: fixed;
+        left:0%;
+        bottom: 0%;
+        transform: translateX(-100%) rotate(180deg);
+        width: 4rem;
+        cursor: pointer;
+        transition: transform 200ms;
+    }
+
+.on-BMED 
+{
+    transform: translateX(-100%) rotate(0deg) !important;
+}
+
+/* Clases */
+.table-g {
+    box-shadow: 0 0 0.4rem 0.2rem rgba(0, 0, 0, 0.13);
+    border-collapse: separate;
+    border-spacing: 0.3rem;
+    text-align: center;
+    font-size: 0.75rem;
+    background-color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0 1rem 0 1rem;
+}
+
+.table-g th {
+    background-color: rgb(234, 255, 0);
+    padding: 0.2rem;
+    font-weight: 100;
+}
+
+.table-g td {
+    padding: 0.1rem;
+    text-align: left;
+    border-bottom-right-radius: 0.2rem;
+    background-color: rgb(240, 240, 240);
+}
+
+.tabla-n {
+    padding: 0.5rem;
+    background-color: white;
+    box-shadow: 0 0 0.6rem 0.4rem rgba(0, 0, 0, 0.084);
+    border-radius: 0 0.8rem 0 0.8rem;
+    font-size: 0.75rem;
+}
+
+/* Discrepancia */
+.Dnormal {
+    color: rgb(0, 153, 255);
+}
+
+.Dleve {
+    color: rgb(168, 210, 0);
+}
+
+.Dmoderado {
+    color: rgb(234, 176, 0);
+}
+
+.Dsevero {
+    color: rgb(255, 0, 0);
+}
+
+/* Responsivo */
+@media (max-width: 767px) {
+    #content-muestra {
+        z-index: 100;
+    }
+
+    #content-muestra > div > div {
+        margin-bottom: 0.2rem;
+    }
+
+    #content-muestra > div {
+        width: 100%;
+    }
+
+    #content-muestra > div:nth-child(1) {
+        bottom: 0;
+        left: 0;
+        display: flex;
+    }
+
+    /* Tabla superior */
+    #content-muestra > div:nth-child(2) {
+        right: 0;
+        top: 0;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Tabla Moyers */
+    #content-muestra-tablaMoyers 
+    {
+        padding: 0.2rem !important;
+    }
+
+    #content-muestra-tablaMoyers > table 
+    {
+        border-spacing: 0.2rem;
+        text-align: center;
+        font-size: 0.55rem;
+        display: block;
+        width: 80vw; 
+        overflow-x: auto;
+    }
+
+    #content-muestra-tablaMoyers > table:first-child {
+        display: none;
+    }
+
+    #content-muestra-tablaMoyers > table th {
+        background-color: rgb(234, 255, 0);
+        padding: 0.2rem;
+    }
+
+    #content-muestra-tablaMoyers > table td {
+        background-color: rgb(0, 183, 255);
+        color: white;
+        padding: 0.1rem;
+        border-bottom-right-radius: 0.4rem;
+    }
+
+    #btn-muestra-ed 
+    {
+        bottom: 0;
+        width: 3rem;
+    }
+
+
+    /* Clases */
+    .table-g {
+        border-spacing: 0.2rem;
+        font-size: 0.7rem;
+        padding: 0.2rem;
+        border-radius: 0.1rem;
+    }
+
+    .table-g th {
+        padding: 0.1rem;
+    }
+
+    .table-g td {
+        padding: 0.1rem;
+    }
+
+    .tabla-n {
+        padding: 0.1rem;
+        border-radius: 0.3rem;
+        font-size: 0.7rem;
+    }
+}

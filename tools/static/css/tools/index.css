@@ -1,0 +1,70 @@
+.main 
+{
+    height: 100vh;
+    background: center/cover no-repeat url('../../media/img/banner/util.png');
+    h2
+    {
+        text-align: center;
+        padding: 1rem .5rem;
+    }
+
+    .canvas
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: .5rem;
+        padding: .5rem;
+        &>div 
+        {
+            border-radius: 6px;
+            flex-direction: column !important;
+            gap: .5rem;
+            padding: .5rem;
+            img 
+            {
+                width: 100%;
+                aspect-ratio: 1/0.6;
+                border-radius: 6px;
+                background-color: var(--surface-ground);
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 767px)
+{
+    .main 
+    {
+        .canvas
+        {
+            width: 975px;
+            margin: auto;
+            grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--surface-ground);
+            border: 2px solid var(--surface-border);
+            border-radius: 6px;
+            &:hover 
+            { &>div { filter: saturate(0); } }
+            &>div 
+            {
+                gap: 1rem;
+                transition: filter .2s ease-in-out;
+                img { transition: transform .2s ease-in-out; cursor: pointer; border: 4px solid var(--surface-border);}
+                &:hover
+                {
+                    box-shadow: 0 0 0 2px var(--gray-50);
+                    filter: saturate(100%);
+                    img 
+                    {
+                        transform: scale(1.1);
+                        box-shadow: 0 0 0 2px var(--surface-border);
+                    }
+                }
+            }
+        }
+    }    
+}

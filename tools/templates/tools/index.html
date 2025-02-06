@@ -1,0 +1,27 @@
+{% extends 'layout/basic.html'%}
+{% load static %}
+
+{% block head %}
+    <title>Tools</title>
+    <link rel="stylesheet" href="{% static 'css/tools/index.css' %}">
+{% endblock %}
+
+{% block content %}   
+    <section class="main">
+        <h2>Herramientas odontologicas.</h2>
+
+        <article class="canvas">
+            <div class="card flex-center">
+                <div class="title"><b>MOYERS</b></div>
+                <a class="reference" href="{% url 'index__moyers' %}">
+                    <img src="{% static 'media/img/tools/moyers/base.jpg' %}" alt="reference" />
+                </a>
+            </div>
+        </article>
+    </section>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %} 

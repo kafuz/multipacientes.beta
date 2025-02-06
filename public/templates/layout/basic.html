@@ -22,9 +22,10 @@
         
         <nav>
             <ul>
-                    <li> <a href="/">Home</a> </li>
-                {% if user.is_authenticated %}    
-                    <li> <a href="{% url 'index__institucion' %}" >NEO</a> </li>
+                    <li> <a href="/">Inicio</a> </li>
+                {% if user.is_authenticated %}
+                    <li> <a href="{% url 'index__institucion' %}" >Neo</a> </li>
+                    <li> <a href="{% url 'index__tools'%}" >Tools</a> </li>
                 {% else %}      
                     <li> <a href="{% url 'login' %}">Iniciar sesión</a> </li>
                     <li> <a href="{% url 'signup' %}">Registrarse</a> </li>

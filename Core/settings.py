@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'web.apps.WebConfig',
     'compressor',
     'storages',
+    'tools',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,319 @@
+{% load static %}
+
+ <!doctype html>
+ <html>
+ <head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <meta charset="utf-8"/>
+   <title>Moyers</title>  
+   <link rel="stylesheet" href="{% static 'css/tools/moyers/index.css'%}">
+   <script src="{% static 'js/tools/moyers/db/main.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/code/book.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/main.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/sex.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/incisivos.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/cuadrante/book.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/cuadrante/tableGlobal.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/cuadrante/tableMoyers.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/cuadrante/tableThree.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/view/cuadrante/tableEmi.js' %}"></script>
+   <script src="{% static 'js/tools/moyers/kafu/main.js' %}"></script>
+ </head>
+ <body>
+ <!-- View floating Start -->
+  <!-- Sex >> -->
+   <div id="content-select-sexo-static">
+	 <div id="select-s-sexo-men"> <img src="{% static 'media/img/tools/moyers/icono_hombre.png' %}" alt="#"> </div>
+	 <div id="select-s-sexo-women"> <img src="{% static 'media/img/tools/moyers/icono_mujer.png' %}" alt=""> </div>
+   </div> 
+
+   <div id="content-select-sexo-float">
+    <div  id="select-f-sexo-men"> <img  src="{% static 'media/img/tools/moyers/icono_ind_hombre.png' %}" alt="#"> </div>
+	<div  id="select-f-sexo-women"> <img  src="{% static 'media/img/tools/moyers/icono_ind_mujer.png' %}" alt=""> </div>
+   </div>
+  <!-- Sex << -->
+  
+  <!-- Muestra de Informacion Start >> -->
+   <div id="content-muestra">
+     <div>
+      <div  id="content-muestra-espacioDisponible" class="tabla-n">
+         <div><h4>Espacio Requerido (Tabla)</h4></div>
+         <div>Superior: <b id="text-SS-T"></b></div>
+         <div>Inferior: <b id="text-SI-T"></b></div>
+         <div> Porcentaje 
+            <select id="porcentaje">
+               <option value="5">5%</option>
+               <option value="15">15%</option>
+               <option value="25">25%</option>
+               <option value="35">35%</option>
+               <option value="50">50%</option>
+               <option value="65">65%</option>
+               <option value="75" selected> 75% </option>
+               <option value="85">85%</option>
+               <option value="95">95%</option>
+            </select>
+         </div>
+      </div>
+
+      <div id="content-muestra-cuadrantes" class="tabla-n">
+         <h4>APIÑAMIENTO</h4>
+         <div>cuadrante 1: <b id="text-CSD"></b></div> 
+         <div>cuadrante 2: <b id="text-CSZ"></b></div> 
+         <div>cuadrante 3: <b id="text-CID"></b></div> 
+         <div>cuadrante 4: <b id="text-CIZ"></b></div>
+      </div>
+
+      <div id="content-muestra-emisuma"  class="table-g">
+         <table>
+            <thead>
+               <tr>
+                  <th>42</th>
+                  <th>41</th>
+                  <th>31</th>
+                  <th>32</th>
+                  <th>incisivos inferiores</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td id="MI-42"></td>
+                  <td id="MI-41"></td>
+                  <td id="MI-31"></td>
+                  <td id="MI-32"></td>
+                  <td> (+) = <i id="MI-Suma"></i></td>
+               </tr>
+         </table>
+        </div>
+      </div>
+
+      <div>
+        <div id="content-muestra-general"  class="table-g">
+         <table>
+            <thead>
+               <tr>
+                  <th></th>
+                  <th colspan="2">Superior</th>
+                  <th colspan="2">Inferior</th>
+               </tr>
+               <tr>
+                  <th></th>
+                  <th>Derecho</th>
+                  <th>Izquierdo</th>
+                  <th>Derecho</th>
+                  <th>Izquierdo</th>
+               </tr>
+            </thead>
+            <tbody >
+               <tr>
+                  <td>Espacio disponible (Paciente)</td>
+                  <td id="E-D-P-S-D"></td>
+                  <td id="E-D-P-S-Z"></td>
+                  <td id="E-D-P-I-Z"></td>
+                  <td id="E-D-P-I-D"></td>
+               </tr>
+               <tr>
+                  <td>Espacio requerido (Tabla)</td>
+                  <td id="E-D-T-S-D"></td>
+                  <td id="E-D-T-S-Z"></td>
+                  <td id="E-D-T-I-Z"></td>
+                  <td id="E-D-T-I-D"></td>
+               </tr>
+               <tr>
+                  <td>Discrepancia</td>
+                  <td id="ET-S-D"></td>
+                  <td id="ET-S-Z"></td>
+                  <td id="ET-I-Z"></td>
+                  <td id="ET-I-D"></td>
+               </tr>
+         </table>
+        </div>
+
+      <div id="content-muestra-tablaMoyers">
+         <table id="tabla-men">
+            <thead>
+               <tr> <th colspan="4">Superior</th> </tr>
+            </thead>
+            <tbody>
+               <tr><th>%</th><th>19.5</th><th>20.0</th><th>20.5</th><th>21.0</th><th>21.5</th><th>22.0</th><th>22.5</th><th>23.0</th><th>23.5</th><th>24.0</th><th>24.5</th><th>25.0</th><th>25.5</th><th>26.0</th><th>26.5</th><th>27.0</th></tr>
+               <tr><th>95</th><td>21.6</td><td>21.8</td><td>22.1</td><td>22.4</td><td>22.7</td><td>22.9</td><td>23.2</td><td>23.5</td><td>23.8</td><td>24.0</td><td>24.3</td><td>24.6</td><td>25.1</td><td>25.6</td><td>26.1</td><td>26.6</td></tr> 
+               <tr><th>85</th><td>21.0</td><td>21.3</td><td>21.5</td><td>21.8</td><td>22.1</td><td>22.4</td><td>22.6</td><td>22.9</td><td>23.2</td><td>23.8</td><td>23.7</td><td>24.0</td><td>24.5</td><td>25.0</td><td>25.4</td><td>25.9</td></tr>
+               <tr><th>75</th><td>20.6</td><td>20.9</td><td>21.2</td><td>21.5</td><td>21.8</td><td>22.0</td><td>22.3</td><td>22.6</td><td>22.9</td><td>23.5</td><td>23.4</td><td>23.7</td><td>24.2</td><td>24.6</td><td>25.1</td><td>25.6</td></tr> 
+               <tr><th>65</th><td>20.4</td><td>20.6</td><td>20.9</td><td>21.2</td><td>21.5</td><td>21.8</td><td>22.0</td><td>22.3</td><td>22.6</td><td>22.8</td><td>23.1</td><td>23.4</td><td>23.9</td><td>24.3</td><td>24.8</td><td>25.3</td></tr>
+               <tr><th>50</th><td>20.0</td><td>20.3</td><td>20.6</td><td>20.8</td><td>21.1</td><td>21.4</td><td>21.7</td><td>21.9</td><td>22.2</td><td>22.5</td><td>22.8</td><td>23.0</td><td>23.5</td><td>23.9</td><td>24.4</td><td>24.8</td></tr>
+               <tr><th>35</th><td>19.6</td><td>19.9</td><td>20.2</td><td>20.5</td><td>20.8</td><td>21.0</td><td>21.3</td><td>21.6</td><td>21.9</td><td>22.1</td><td>22.4</td><td>22.7</td><td>23.2</td><td>23.6</td><td>24.1</td><td>24.5</td></tr> 
+               <tr><th>25</th><td>19.4</td><td>19.7</td><td>19.9</td><td>20.2</td><td>20.5</td><td>20.8</td><td>21.0</td><td>21.3</td><td>21.6</td><td>21.9</td><td>22.1</td><td>22.4</td><td>22.8</td><td>23.4</td><td>23.7</td><td>24.2</td></tr> 
+               <tr><th>15</th><td>19.0</td><td>19.3</td><td>19.6</td><td>19.9</td><td>20.2</td><td>20.4</td><td>20.7</td><td>21.0</td><td>21.3</td><td>21.5</td><td>21.8</td><td>22.1</td><td>22.5</td><td>23.0</td><td>23.5</td><td>23.9</td></tr> 
+               <tr><th>5</th><td>18.5</td><td>18.8</td><td>19.0</td><td>19.3</td><td>19.6</td><td>19.9</td><td>20.1</td><td>20.4</td><td>20.7</td><td>21.0</td><td>21.2</td><td>21.5</td><td>21.9</td><td>22.4</td><td>22.8</td><td>23.2</td></tr>
+               <tr><th colspan="4">Inferior</th></tr> 
+               <tr><th>95</th><td>21.1</td><td>21.4</td><td>22.7</td><td>22.0</td><td>22.3</td><td>22.6</td><td>22.9</td><td>23.2</td><td>23.5</td><td>23.8</td><td>24.0</td><td>24.4</td><td>24.9</td><td>25.4</td><td>25.2</td><td>26.4</td></tr> 
+               <tr><th>85</th><td>20.5</td><td>20.8</td><td>21.1</td><td>21.4</td><td>21.7</td><td>22.0</td><td>22.3</td><td>22.6</td><td>22.9</td><td>23.2</td><td>23.5</td><td>23.8</td><td>24.3</td><td>24.8</td><td>25.2</td><td>25.7</td></tr> 
+               <tr><th>75</th><td>20.1</td><td>20.4</td><td>20.7</td><td>21.0</td><td>21.3</td><td>21.6</td><td>21.9</td><td>22.2</td><td>22.5</td><td>22.8</td><td>23.1</td><td>23.4</td><td>23.9</td><td>24.3</td><td>24.8</td><td>25.3</td></tr> 
+               <tr><th>65</th><td>19.8</td><td>20.1</td><td>20.4</td><td>20.7</td><td>21.0</td><td>21.3</td><td>21.6</td><td>21.9</td><td>22.2</td><td>22.5</td><td>22.8</td><td>23.1</td><td>23.6</td><td>24.0</td><td>24.5</td><td>24.9</td></tr> 
+               <tr><th>50</th><td>19.4</td><td>19.7</td><td>20.0</td><td>20.3</td><td>20.6</td><td>20.9</td><td>21.1</td><td>21.5</td><td>21.8</td><td>22.1</td><td>22.4</td><td>22.7</td><td>23.2</td><td>23.6</td><td>24.1</td><td>24.5</td></tr>
+               <tr><th>35</th><td>19.0</td><td>19.3</td><td>19.6</td><td>19.9</td><td>20.2</td><td>20.5</td><td>20.8</td><td>21.1</td><td>21.4</td><td>21.7</td><td>22.0</td><td>22.3</td><td>22.7</td><td>23.2</td><td>23.6</td><td>24.1</td></tr>
+               <tr><th>25</th><td>18.7</td><td>19.0</td><td>19.3</td><td>19.6</td><td>19.9</td><td>20.2</td><td>20.5</td><td>20.8</td><td>21.1</td><td>21.4</td><td>21.7</td><td>22.0</td><td>22.4</td><td>22.9</td><td>23.3</td><td>23.8</td></tr> 
+               <tr><th>15</th><td>18.4</td><td>18.7</td><td>19.0</td><td>19.3</td><td>19.6</td><td>19.8</td><td>20.1</td><td>20.4</td><td>20.7</td><td>21.0</td><td>21.3</td><td>21.6</td><td>22.0</td><td>22.5</td><td>22.9</td><td>23.3</td></tr>
+               <tr><th>5</th><td>17.7</td><td>18.0</td><td>18.3</td><td>18.6</td><td>18.9</td><td>19.2</td><td>19.5</td><td>19.8</td><td>20.1</td><td>20.4</td><td>20.7</td><td>21.8</td><td>22.2</td><td>22.7</td><td>23.1</td><td>23.5</td></tr> 
+            </tbody>
+         </table>
+
+         <table id="tabla-women">
+         <tbody>
+            <th colspan="4">Superior</th>
+            <tr><th>%</th><th>19.5</th><th>20.0</th><th>20.5</th><th>21.0</th><th>21.5</th><th>22.0</th><th>22.5</th><th>23.0</th><th>23.5</th><th>24.0</th><th>24.5</th><th>25.0</th><th>25.5</th></tr>
+            <tr><th>95</th><td>21.4</td><td>21.6</td><td>21.7</td><td>21.8</td><td>21.9</td><td>22.0</td><td>22.2</td><td>22.3</td><td>22.5</td><td>22.6</td><td>22.8</td><td>22.9</td><td>23.1</td></tr>
+            <tr><th>85</th><td>20.8</td><td>20.9</td><td>21.0</td><td>21.1</td><td>21.3</td><td>21.4</td><td>21.5</td><td>21.7</td><td>21.8</td><td>22.0</td><td>22.1</td><td>22.4</td><td>22.4</td></tr>
+            <tr><th>75</th><td>20.4</td><td>20.5</td><td>20.6</td><td>20.8</td><td>20.9</td><td>21.0</td><td>21.2</td><td>21.3</td><td>21.5</td><td>21.6</td><td>21.8</td><td>21.9</td><td>22.1</td></tr>
+            <tr><th>65</th><td>20.1</td><td>20.2</td><td>20.3</td><td>20.5</td><td>20.6</td><td>20.7</td><td>20.9</td><td>21.0</td><td>21.2</td><td>21.3</td><td>21.4</td><td>21.6</td><td>21.7</td></tr>
+            <tr><th>50</th><td>19.6</td><td>19.8</td><td>19.9</td><td>20.1</td><td>20.2</td><td>20.3</td><td>20.5</td><td>20.6</td><td>20.8</td><td>20.9</td><td>21.0</td><td>21.2</td><td>21.3</td></tr>
+            <tr><th>35</th><td>19.2</td><td>19.4</td><td>19.5</td><td>19.7</td><td>19.8</td><td>19.9</td><td>20.1</td><td>20.2</td><td>20.5</td><td>20.5</td><td>20.6</td><td>20.8</td><td>20.9</td></tr>
+            <tr><th>25</th><td>18.9</td><td>19.1</td><td>19.2</td><td>19.4</td><td>19.5</td><td>19.6</td><td>19.8</td><td>19.9</td><td>20.1</td><td>20.2</td><td>20.3</td><td>20.5</td><td>20.6</td></tr>
+            <tr><th>15</th><td>18.5</td><td>18.7</td><td>18.8</td><td>19.0</td><td>19.1</td><td>19.3</td><td>19.4</td><td>19.6</td><td>19.7</td><td>19.8</td><td>20.0</td><td>20.1</td><td>20.2</td></tr>
+            <tr><th>5</th><td>17.8</td><td>18.0</td><td>18.2</td><td>18.3</td><td>18.5</td><td>18.6</td><td>18.8</td><td>18.9</td><td>19.1</td><td>19.2</td><td>19.3</td><td>19.4</td><td>19.5</td></tr>
+            <tr><th colspan="4">Inferior</th></tr>
+            <tr><th>95</th><td>20.8</td><td>21.6</td><td>21.8</td><td>22.2</td><td>22.4</td><td>22.6</td><td>22.8</td><td>23.0</td><td>23.2</td><td>23.5</td><td>23.7</td><td>23.9</td><td>24.1</td></tr>
+            <tr><th>85</th><td>20.0</td><td>21.0</td><td>21.0</td><td>21.4</td><td>21.6</td><td>21.9</td><td>22.1</td><td>22.3</td><td>22.5</td><td>22.7</td><td>23.0</td><td>23.3</td><td>23.5</td></tr>
+            <tr><th>75</th><td>19.6</td><td>20.6</td><td>20.8</td><td>21.0</td><td>21.2</td><td>21.4</td><td>21.6</td><td>21.9</td><td>22.1</td><td>22.3</td><td>22.5</td><td>22.9</td><td>23.1</td></tr>
+            <tr><th>65</th><td>19.2</td><td>20.2</td><td>20.4</td><td>20.6</td><td>20.9</td><td>21.1</td><td>21.3</td><td>21.5</td><td>21.8</td><td>22.0</td><td>22.2</td><td>22.5</td><td>22.7</td></tr>
+            <tr><th>50</th><td>18.7</td><td>19.7</td><td>20.0</td><td>20.2</td><td>20.4</td><td>20.6</td><td>20.9</td><td>21.1</td><td>21.3</td><td>21.5</td><td>21.7</td><td>22.0</td><td>22.2</td></tr>
+            <tr><th>35</th><td>18.2</td><td>19.3</td><td>19.5</td><td>19.7</td><td>20.0</td><td>20.2</td><td>20.4</td><td>20.6</td><td>20.9</td><td>21.1</td><td>21.3</td><td>21.6</td><td>21.9</td></tr>
+            <tr><th>25</th><td>17.9</td><td>18.9</td><td>19.1</td><td>19.4</td><td>19.6</td><td>19.8</td><td>20.1</td><td>20.3</td><td>20.5</td><td>20.7</td><td>21.0</td><td>21.3</td><td>21.5</td></tr>
+            <tr><th>15</th><td>17.4</td><td>18.5</td><td>18.7</td><td>18.9</td><td>19.2</td><td>19.4</td><td>19.6</td><td>19.9</td><td>20.1</td><td>20.3</td><td>20.5</td><td>20.7</td><td>21.0</td></tr>
+            <tr><th>5</th><td>16.7</td><td>17.7</td><td>18.0</td><td>18.2</td><td>18.5</td><td>18.7</td><td>18.9</td><td>19.2</td><td>19.4</td><td>19.6</td><td>19.8</td><td>20.0</td><td>20.2</td></tr>
+         </tbody>
+         </table>
+         <div id="btn-muestra-ed"> <img src="{% static 'media/img/tools/moyers/indicativo.png' %}" alt="#" id="img-BMED"></div>
+      </div>
+   </div>
+
+  </div>
+  <!-- Muestra de informacion finish << -->
+
+ <!-- View floating Finish -->
+
+ <!-- Incisivos >> -->
+
+  <div id="content-incisivos-form">
+   <div>
+      <h1>Medidas de incisivos en milímetros</h1>
+   </div>
+   <div id="incisivos-form">
+      <div><img src="{% static 'media/img/tools/moyers/incisivo_42.png' %}" alt="42"> <input type="number" placeholder="42" id="form-incisivo-42"></div>
+      <div><img src="{% static 'media/img/tools/moyers/incisivo_41.png' %}" alt="41"> <input type="number" placeholder="41" id="form-incisivo-41"></div>
+      <div><img src="{% static 'media/img/tools/moyers/incisivo_31.png' %}" alt="31"> <input type="number" placeholder="31" id="form-incisivo-31"></div>
+      <div><img src="{% static 'media/img/tools/moyers/incisivo_32.png' %}" alt="32"> <input type="number" placeholder="32" id="form-incisivo-32"></div>
+   </div>
+  </div>
+ <!-- Incisivos << -->
+
+ <!-- Cuadrantes + >> -->
+ <div id="content-cuadrantes-form">
+   <div id="cuadrantes-form">
+      <div id="cuadrantes-form-img">
+         <div><img src="{% static 'media/img/tools/moyers/CuadranteSuperior.png' %}"  alt="Superior"></div>
+         <div><img src="{% static 'media/img/tools/moyers/CuadranteInferior.png' %}"  alt="Inferior"></div>
+      </div>
+      <div id="cuadrantes-form-input">
+         <div><input type="number" id="cuadrante-1" placeholder="1"></div>
+         <div><input type="number" id="cuadrante-2" placeholder="2"></div>
+         <div><input type="number" id="cuadrante-4" placeholder="4"></div>
+         <div><input type="number" id="cuadrante-3" placeholder="3"></div>
+      </div>
+      <div id="cuadrantes-form-apinamiento">
+        <div value="1">
+         <div><img src="{% static 'media/img/tools/moyers/indicativoBlue.png' %}" alt="#"></div>
+         <div class="table-g" >
+            <table>
+               <thead>
+                  <tr>
+                     <th>12</th>
+                     <th>11</th>
+                     <th><b>+</b> I.S.D</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><input type="number" id="emi-12" min="1" max="2" step="2"></td>
+                     <td><input type="number" id="emi-11" min="1" max="2" step="2"></td>
+                     <td id="emi-12-11"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+        </div>
+
+        <div value="2">
+         <div style="transform: rotate(180deg);"><img src="{% static 'media/img/tools/moyers/indicativoBlue.png' %}" alt="#"></div>
+         <div class="table-g" >
+            <table>
+               <thead>
+                  <tr>
+                     <th>21</th>
+                     <th>22</th> 
+                     <th><b>+</b> I.S.I</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><input type="number" id="emi-21" min="1" max="3" step="2"></td>
+                     <td><input type="number" id="emi-22" min="1" max="3" step="2"></td>
+                     <td id="emi-21-22"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+        </div>
+
+        <div value="3">
+         <div style="transform: rotate(180deg);"><img src="{% static 'media/img/tools/moyers/indicativoBlue.png' %}"  alt="#"></div>
+         <div class="table-g" >
+            <table>
+               <thead>
+                  <tr>
+                     <th>31</th>
+                     <th>32</th>
+                     <th><b>+</b> I.I.I</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td id="emi-31">-</td>
+                     <td id="emi-32">-</td>
+                     <td id="emi-31-32">-</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+        </div>
+
+        <div value="4">
+         <div><img src="{% static 'media/img/tools/moyers/indicativoBlue.png' %}" alt="#"></div>
+         <div class="table-g" >
+            <table>
+               <thead>
+                  <tr>
+                     <th>42</th>
+                     <th>41</th>
+                     <th><b>+</b> I.I.D</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td id="emi-42">-</td>
+                     <td id="emi-41">-</td>
+                     <td id="emi-42-41">-</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+        </div>
+      </div>
+   </div>
+  </div>
+ <!-- Cuadrantes - << -->
+
+ </body>
+ </html>
+	
+	
+	

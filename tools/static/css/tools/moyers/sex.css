@@ -1,0 +1,115 @@
+/*Sex Start*/
+#content-select-sexo-static {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.1s ease, transform 0.1s ease;
+    animation: sexStart 1s ease;
+    margin: auto;
+
+    &>div {
+        height: 82vh;
+        width: 60vh;
+        background-color: rgba(0, 0, 0, 0.055);
+        box-shadow: 0 0 0.2rem 0.1rem rgba(128, 128, 128, 0.579);
+        transition: background-color 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
+        border-radius: 3rem;
+
+        &:hover {
+            background-color: #fff;
+            box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.2), 0 0 0.4rem 0.2rem rgba(0, 0, 0, 0.224), 0 0 1rem 0.2rem rgba(0, 0, 0, 0.226) inset;
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        &:first-child {
+            border-radius: 3rem 0 5rem 3rem;
+        }
+
+        &:last-child {
+            border-radius: 0 3rem 3rem 5rem;
+        }
+    }
+}
+
+@keyframes sexStart {
+    0% { width: 50%; }
+    100% { width: 100%; }
+}
+
+/*Sex Float*/
+#content-select-sexo-float {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.4rem;
+    transition: transform 0.2s ease;
+    transform: translate(5%, 5%);
+
+    &>div {
+        aspect-ratio: 1 / 1;
+        width: 4.375rem; /* 70px */
+        background-color: #fff;
+        box-shadow: 0 0 0.1rem 0.2rem rgba(0, 0, 0, 0.123);
+        padding: 0.1rem;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            background-color: #fff;
+            box-shadow: 0 0 0.1rem 0.2rem rgba(0, 0, 0, 0.133), 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.083) inset;
+            cursor: pointer;
+        }
+
+        &:first-child {
+            border-radius: 1rem 1rem 0 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        &:last-child {
+            border-radius: 1rem 0 1rem 1rem;
+        }
+    }
+}
+
+.sex-float-active {
+    backdrop-filter: invert(20%);
+    animation: sexFloatSelect 2s alternate infinite ease;
+}
+
+@keyframes sexFloatSelect {
+    0% { box-shadow: 0 0 0.1rem 0.4rem rgba(0, 0, 0, 0.034); }
+    100% { box-shadow: 0 0 0.1rem 0.4rem rgba(0, 0, 0, 0.048), 0 0 0 0.3rem rgb(0, 167, 117); }
+}
+
+/*Responsive styles*/
+@media (max-width: 767px) {
+    #content-select-sexo-static {
+        &>div {
+            height: 80vh;
+            width: 45vw;
+        }
+    }
+
+    #content-select-sexo-float {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.3rem;
+        gap: 1rem;
+        transform: translate(5%, 10%);
+
+        &>div {
+            width: 4rem;
+            aspect-ratio: 1 / 1;
+            margin: 0 !important;
+            border-radius: 1rem !important;
+        }
+    }
+}
