@@ -6,9 +6,9 @@ __config.nav['joiner']=
         const item=
         gNodo({type:'div',
             children:
-            [ 
+            [ /* 
                 this.importar.render(),
-                this.exportar.render(),
+                this.exportar.render(), */
                 this.actualizar.render(),
             ] 
         });

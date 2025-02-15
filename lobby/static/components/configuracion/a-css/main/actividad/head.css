@@ -43,8 +43,15 @@
                         &>div { padding: 0.3rem; }
                         &>div[values='title']
                         {
+                            display: flex;
+                            justify-content: center;
                             text-align: center;
                             background-color: rgba(var(--color-tema),0.2);
+                            position: relative;
+                            &>div:first-child
+                            {
+                                position: absolute; left: 0; top: 0; background-color: var(--info) !important; border-radius: 5px 0;
+                            }
                             &>div{margin: auto; width: min-content; background-color: rgba(var(--color-tema),0.2); padding: 0.3rem;}
                         }
                         &>div[values='content']

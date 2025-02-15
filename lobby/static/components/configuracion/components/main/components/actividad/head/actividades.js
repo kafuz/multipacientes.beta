@@ -2,10 +2,20 @@ __config.main.actividad.head['actividad']=
 {
     propertys:{ values:'actividades' },
     render(response)
-    {   /* __init__ */ components.default.__init__(this, 'dimensiones'); 
+    {   
+        /* __init__ */ components.default.__init__(this, 'criterios'); 
         const {container}= this.propertys.components;
+        this.propertys.components['response']=response;
         godClass.add(container, 'on-config');
-        container.innerHTML=`<div values="title"> <div>Actividades<div> </div>`;
+        container.innerHTML="";
+        addChildren(container, [ gNodo({type:'div', attr:{'values':'title'},
+                                        children:
+                                        [
+                                            this.contextValue.create(),
+                                            gNodo({type:'div', txt:'Actividades'})
+                                        ]}),
+                        ])
+       
         const auxiliar=gNodo({type:'div', attr:{values:'content'}});
         if(Array.isArray(response))
             response.forEach(actividad => {
@@ -18,6 +28,22 @@ __config.main.actividad.head['actividad']=
     add(actividad)
     {
         this.propertys.components.auxiliar.append(this.components.render(actividad))
+    },
+    contextValue:
+    {
+        propertys:{},
+        create()
+        {
+            const nodo= gNodo({type:'div'});
+            this.propertys['nodo']=nodo;
+            this.setValue();
+            return nodo;
+        },
+        setValue()
+        {
+            const { response }= __config.main.actividad.head.actividad.propertys.components;
+            this.propertys.nodo.innerHTML=response.reduce((acc, response) => acc +  parseInt(response.valor), 0);
+        }
     }
 }
 

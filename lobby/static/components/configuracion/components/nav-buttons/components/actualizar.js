@@ -5,7 +5,7 @@ __config.nav.joiner['actualizar']=
     {
         const item=
             gNodo({'type':'div', 
-                children:[ gNodo({type:'div', txt:'UPDATE', event:{event:'click', 
+                children:[ gNodo({type:'div', txt:'ACTUALIZAR', event:{event:'click', 
                     funcion:(node, event, resp)=>{
                             
                         root.requests.PUT.alternative({entity:'neo/asignaturaUser', data: {id:0}},

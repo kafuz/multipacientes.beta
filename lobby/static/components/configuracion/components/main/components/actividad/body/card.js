@@ -25,8 +25,11 @@ __config.main.actividad.body['card']=
                                     node.value=0
                                 else if(even.target.value>500)
                                     node.value = 500;
+
                                 actualizar({'valor': even.target.value}, ()=>{
                                     Object.assign(actividad, {'valor': even.target.value});
+
+                                __config.main.actividad.head.actividad.contextValue.setValue();
                             });  
                         }}
                     })

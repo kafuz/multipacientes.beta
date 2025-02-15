@@ -102,14 +102,14 @@ __config.main.criterio.components['body']=
             { 
                 container.appendChild(this.create(criterio)); 
             });
-            this.propertys['components']={ container }
+            this.propertys['components']={ container, response }
         }
         return container;
     },
     add(criterio)
     { 
         this.propertys.components.container.append(this.create(criterio)); 
-        //this.propertys.components.response.push(criterio);
+        this.propertys.components.response.push(criterio);
     },
     create(criterio)
     {
