@@ -1,359 +1,184 @@
- /*
- kafu=
-     {
-      // DOM
--> -> ->  renderBody(nodo,html)
-          getId(id) return node
-          getClass(class) return [...node]
-          getQuery(query) return node
-          getQueryAll(query) return [...node]
--> -> ->  appendChild(padre,...hijos)
-          //Si campo esta vacio
-            ^^ IsEmpty(nodo,( Int o Double )) return true : false
-             
--> -> ->  NewNodo(tipo,texto,{style:value},{attr:value},event())
-          NewCss(nodo,{style:value})
-          NewAttr(nodo,{attr:value})
-          coordenadas(nodo) return {left top right bottom}
-          
-          //Ocultar nodo
-            ^^ hideNode(nodo,Class Animacion entrada{class:"","transicion":""})
-          //Mostrar nodo
-            ^^ showNode(nodo,Class Animacion salida{class:"","transicion":""})
-            
-          //Interaccion
-            promptNumber(dialogo) return Number
-            promptText(dialogo) return texto
-            
-          //Programacion
-            EscribirFichero(texto) return descarga del archivo
-            leerFichero(InputFile,accion(return textconten)); 
-            InputFiles(nodo,accion())
-            JSONString(obj) return string Json
-            trigger(Nodo,type{"click"...})
-            random(min,max) return numero aleatorio
-            !Juego cruza() return true:false 
-            loadID(obj) return obj.id="canvas" a obj.id=[ObjectHtml] 
-     }
-*/ 
+// Funciones principales:
+// - getId(id): Obtiene un elemento por ID.
+// - getClass(className): Obtiene elementos por clase.
+// - getQuery(query): Obtiene el primer elemento que coincide con el selector.
+// - getQueryAll(query): Obtiene todos los elementos que coinciden con el selector.
+// - IsEmpty(nodo, intOdouble): Verifica si un campo está vacío o no es válido.
+// - NewNodo(tipo, texto, styles, attr, event): Crea un nuevo nodo con atributos y eventos.
+// - NewCss(nodo, styles): Aplica estilos CSS a un nodo.
+// - NewAttr(nodo, attr): Aplica atributos a un nodo.
+// - appendChild(padre, ...hijos): Agrega varios hijos a un nodo padre.
+// - childNodes(obj): Filtra nodos hijos según tipo (id, class, query).
+// - renderBody(nodo, html): Renderiza HTML en un nodo.
+// - toogleNode(nodo, display): Alterna la visibilidad de un nodo.
+// - hideNode(nodo, VelDelete): Oculta un nodo con animación.
+// - showNode(nodo, display, velOpen): Muestra un nodo con animación.
+// - promptNumber(texto): Solicita un número mediante un prompt.
+// - promptText(texto): Solicita texto mediante un prompt.
+// - InputFiles(nodo, accion): Escucha cambios en un input de archivos.
+// - JSONString(obj): Convierte un objeto a JSON.
+// - trigger(el, type): Dispara un evento en un elemento.
+// - random(min, max): Genera un número aleatorio en un rango.
+// - loadID(obj): Carga elementos del DOM en un objeto por ID.
+// - NewClass(): Crea una nueva clase CSS dinámicamente.
 
-// DOM
-const getId=(id)=>
-{ 
-  if(id!=null && document.getElementById(id)) 
-  {
-    return document.getElementById(id);
-  }
-  else { console.log(`getId id:${id} No existe`);  return false; }
-}
- 
-const getClass=(className)=>
-{ 
-  if(className!=null && document.getElementsByClassName(className)) 
-  {
-    return document.getElementsByClassName(className);
-  }
-  else { console.log(`getClass class:${className} No existe`);  return false; }
-}
- 
-const getQuery=(query)=>
-{ 
-  if(query!=null && document.querySelector(query)) 
-  {
-    return document.querySelector(query);
-  }
-  else { console.log(`getQuery query:${query} No existe`);  return false; }
-}
- 
-const getQueryAll=(query)=>
-{ 
-  if(query!=null && document.querySelectorAll(query)) 
-  {
-    return document.querySelectorAll(query);
-  }
-  else { console.log(`getQueryAll query:${query} No existe`);  return false; }
-}
+// Helpers
+const getId = (id) => {
+  const element = document.getElementById(id);
+  if (!element) console.warn(`getId: ID "${id}" no existe.`);
+  return element || null;
+};
 
-const IsEmpty=(nodo,intOdouble)=>
-{ 
-  try
-  {
-   let type=nodo.getAttribute("type");
-   if(type!="number" && type!="password" && intOdouble===null)
-   {
-       nodo.value!="" ? true:false;
-   }
-   else
-   {
-       intOdouble==="int" ? isNaN(parseInt(nodo.value)) ? true:false : isNaN(parseFloat(nodo.value)) ? true:false;   
-   }
-  }
-  catch(e) { console.log("Consol: Error IsEmpty"); }
-}
+const getClass = (className) => {
+  const elements = document.getElementsByClassName(className);
+  if (!elements.length) console.warn(`getClass: Clase "${className}" no existe.`);
+  return elements.length ? elements : null;
+};
 
-const NewNodo=(tipo,texto,styles,attr,event)=>
-{
-  let nodo=document.createElement(tipo);
-  texto!=null ? (nodo.textContent=texto) : null;
-  styles!=null ? NewCss(nodo,styles):null;
-  attr!=null ? NewAttr(nodo,attr):null;
-  event!=null ? event(nodo):null;
+const getQuery = (query) => {
+  const element = document.querySelector(query);
+  if (!element) console.warn(`getQuery: Selector "${query}" no existe.`);
+  return element || null;
+};
+
+const getQueryAll = (query) => {
+  const elements = document.querySelectorAll(query);
+  if (!elements.length) console.warn(`getQueryAll: Selector "${query}" no existe.`);
+  return elements.length ? elements : null;
+};
+
+const IsEmpty = (nodo, intOdouble) => {
+  try {
+    const type = nodo.getAttribute("type");
+    if (type !== "number" && type !== "password" && !intOdouble) {
+      return nodo.value.trim() === "";
+    }
+    return intOdouble === "int" ? isNaN(parseInt(nodo.value)) : isNaN(parseFloat(nodo.value));
+  } catch (e) {
+    console.error("Error en IsEmpty:", e);
+    return true;
+  }
+};
+
+// Creación y manipulación de nodos
+const NewNodo = (tipo, texto, styles, attr, event) => {
+  const nodo = document.createElement(tipo);
+  if (texto) nodo.textContent = texto;
+  if (styles) NewCss(nodo, styles);
+  if (attr) NewAttr(nodo, attr);
+  if (event) event(nodo);
   return nodo;
-}
- 
- 
-const NewCss=(nodo,styles)=>
-{ 
-  if(nodo!=null && styles!=null)
-  { 
-   let keys=Object.keys(styles);
-   let values=Object.values(styles);
-   for(var i=0;i<keys.length;i++)
-   {  
-    nodo.style[keys[i]]=values[i];
-   }
-  }
-}
- 
-const NewAttr=(nodo,attr)=>
- { 
-  if(nodo!=null && attr!=null)
-  { 
-    let keys=Object.keys(attr);
-    let values=Object.values(attr);
-    for(var i=0;i<keys.length;i++)
-    {  
-     nodo.setAttribute([keys[i]],values[i]);
-    }
-  }
- }
- 
- const appendChild=(padre,...hijos)=>
- { 
-  if(padre!=null && hijos!=null)
-  {
-   const frag=document.createDocumentFragment();
-   for(var i=0;i<hijos.length;i++)
-   { 
-    frag.appendChild(hijos[i]);
-   }
-   padre.appendChild(frag);
-  }
- }
+};
 
-const childNodes=(obj)=>
-{
-  if(obj.list!=null && obj.nodo.type!=null)
-  {
-    let vector=new Array();
-    for(item of obj.list)
-    {
-        /*name query*/ const name=item.nodeName.toLowerCase();
-         if(name!="#text")
-         {
-           const value=obj.nodo.value.toLowerCase();
-           if(obj.nodo.type.toLowerCase()==="query")
-           {
-              name===value ? vector.push(item):null; 
-           }
-           else  if(obj.nodo.type.toLowerCase()==="id")
-           {
-              item.getAttribute("id")===value ? vector.push(item):null; 
-           }
-           else if(obj.nodo.type.toLowerCase()==="class")
-           {
-              item.classList.contains(value) ? vector.push(item):null; 
-           }
-         }
-    }
-    if(vector.length>=1)
-    { return vector; }
-    else { return null; }
+const NewCss = (nodo, styles) => {
+  if (nodo && styles) Object.assign(nodo.style, styles);
+};
+
+const NewAttr = (nodo, attr) => {
+  if (nodo && attr) Object.keys(attr).forEach(key => nodo.setAttribute(key, attr[key]));
+};
+
+const appendChild = (padre, ...hijos) => {
+  if (padre && hijos.length) {
+    const frag = document.createDocumentFragment();
+    hijos.forEach(hijo => frag.appendChild(hijo));
+    padre.appendChild(frag);
   }
-}
-const renderBody=(nodo,html)=>
-{
- let frag=document.createDocumentFragment();
- frag.appendChild(html); nodo.appendChild(frag);
-}
- 
-const toogleNode=(nodo,display)=>
-{
- nodo.style.display==="none" ? showNode(nodo,display):hideNode(nodo);
-}
-const hideNode=(nodo,VelDelete)=>
-{ 
- if(nodo!=null)
- {
-  nodo.classList.contains("fadeIn") ? nodo.classList.remove("fadeIn"):null;
-  nodo.classList.add("animated"); 
-  nodo.classList.add("fadeOut");
-    setTimeout(()=>{
-     nodo.style.display="none";
-  },VelDelete!=null? VelDelete:400);
- }
-}
-const showNode=(nodo,display,velOpen)=>
-{ 
- if(nodo!=null && display!=null)
- {
-  nodo.classList.contains("fadeOut") ? nodo.classList.remove("fadeOut"):null;
-  //velOpen!=null? 
-  nodo.classList.add("animated");
-  nodo.classList.add("fadeIn");
-  nodo.style.display=display;
- }
-}
+};
+
+const childNodes = ({ list, nodo }) => {
+  if (!list || !nodo.type) return null;
+  return Array.from(list).filter(item => {
+    const name = item.nodeName.toLowerCase();
+    if (name === "#text") return false;
+    const value = nodo.value.toLowerCase();
+    switch (nodo.type.toLowerCase()) {
+      case "query": return name === value;
+      case "id": return item.id === value;
+      case "class": return item.classList.contains(value);
+      default: return false;
+    }
+  });
+};
+
+const renderBody = (nodo, html) => {
+  const frag = document.createDocumentFragment();
+  frag.appendChild(html);
+  nodo.appendChild(frag);
+};
+
+// Animaciones y visibilidad
+const toogleNode = (nodo, display) => {
+  nodo.style.display === "none" ? showNode(nodo, display) : hideNode(nodo);
+};
+
+const hideNode = (nodo, VelDelete = 400) => {
+  if (nodo) {
+    nodo.classList.remove("fadeIn");
+    nodo.classList.add("animated", "fadeOut");
+    setTimeout(() => nodo.style.display = "none", VelDelete);
+  }
+};
+
+const showNode = (nodo, display) => {
+  if (nodo && display) {
+    nodo.classList.remove("fadeOut");
+    nodo.classList.add("animated", "fadeIn");
+    nodo.style.display = display;
+  }
+};
+
 // Interacciones
-const promptNumber=(texto)=>
-{
- let bool=true;
- while(bool)
- {
-    let value=prompt(texto);
-    if(!isNaN(parseFloat(value)))
-    {
-        return value;
-        bool=false;
-    }
-    else { alert("Llene el campo"); }
- }
-}
-
-const promptText=(texto)=>
-{
- let bool=true;
- while(bool)
- {
-    let value=prompt(texto);
-    if(value!="")
-    {
-        return value;
-        bool=false;
-    }
-    else { alert("Llene el campo"); }
- }
-}
-
-const coordenadas=(nodo)=>
-{ 
-  if(nodo!=null)
-  {
-  let posicion=nodo.getBoundingClientRect();
-  return {
-           top:posicion.top,
-           right:posicion.right,
-           bottom:posicion.bottom, 
-           left:posicion.left
-         }
+const promptNumber = (texto) => {
+  let value;
+  while (isNaN(parseFloat(value))) {
+    value = prompt(texto);
+    if (value === null) return null; // Si el usuario cancela
+    if (isNaN(parseFloat(value))) alert("Ingrese un número válido.");
   }
-}
+  return parseFloat(value);
+};
 
-//Progamacion 
-const EscribirFichero=(texto)=>
-{      
-    if(texto!="")
-    {
-      var textFileAsBlob = new Blob([texto], {type:'text/plain'});
-      var fileNameToSaveAs = "defauld.txt";
-      var downloadLink = document.createElement("a");
-      downloadLink.download = fileNameToSaveAs;
-      downloadLink.innerHTML = "My Hidden Link";
-      window.URL = window.URL || window.webkitURL;
-      downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-      downloadLink.onclick = destroyClickedElement;
-      downloadLink.style.display = "none";
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
+const promptText = (texto) => {
+  let value;
+  while (!value) {
+    value = prompt(texto);
+    if (value === null) return null; // Si el usuario cancela
+    if (!value.trim()) alert("El campo no puede estar vacío.");
+  }
+  return value;
+};
 
-      function destroyClickedElement(event)
-      {
-       document.body.removeChild(event.target);
-      }
-     }
-}
- 
-const leerFichero=(e,accion)=> 
-{
-   if(accion!=null)
-   {
-    var archivo = e.target.files[0];
-    if(!archivo)
-    {
-     console.log("Leer Fichero Archivo Null");
-     return;
-    }
-    var lector = new FileReader();
-    lector.onload = function(e) 
-    {
-    var contenido = e.target.result;
-    accion(contenido);
-    };
-    lector.readAsText(archivo);
-   }
- }
+const InputFiles = (nodo, accion) => {
+  nodo.addEventListener("change", (e) => leerFichero(e, accion), false);
+};
 
-const InputFiles=(nodo,accion)=>
-{
-      nodo.addEventListener('change', function(event)
-      {
-       leerFichero(event,accion)
-      }, false);
-}
+// Utilidades
+const JSONString = (obj) => {
+  if (!obj) return console.warn("JSONString: Objeto nulo.");
+  return JSON.stringify(obj, null, 2);
+};
 
-const JSONString=(obj)=>
-{ 
- return obj!=null ? JSON.stringify(obj,undefined,2) : alert("Obj Null JSONSTRING");
-}
+const trigger = (el, type) => {
+  const event = new Event(type, { bubbles: true, cancelable: true });
+  el.dispatchEvent(event);
+};
 
-const trigger=(el, type)=>
-{
-   if ('createEvent' in document) {
-        // modern browsers, IE9+
-        var e = document.createEvent('HTMLEvents');
-        e.initEvent(type, false, true);
-        el.dispatchEvent(e);
-    } else {
-        // IE 8
-        var e = document.createEventObject();
-        e.eventType = type;
-        el.fireEvent('on'+e.eventType, e);
-    }
-}
-const random=(min,max)=>
-{
-    return Math.round(Math.random()*(max-min)+min);
-}
+const random = (min, max) => Math.round(Math.random() * (max - min) + min);
 
-const cruza=(a,b)=>
-{
- return (a.x<b.x+b.width &&
-         a.x+a.width>b.x &&
-         a.y<b.y+b.height &&
-         a.y+a.height>b.y
-         ) ? true: false;
-}
+const loadID = (obj) => {
+  Object.keys(obj).forEach(key => {
+    const element = document.getElementById(obj[key]);
+    if (element) obj[key] = element;
+    else console.warn(`loadID: ID "${obj[key]}" no encontrado.`);
+  });
+};
 
-const loadID=(obj)=>
-{
-        const key=Object.keys(obj);
-        const value=Object.values(obj);
-        try
-        {
-         for(var i=0;i<key.length;i++)
-         {
-            document.getElementById(value[i])!=null ? obj[key[i]]=document.getElementById(value[i]) : console.log(value[i]+" loadId fail");
-         }   
-        }
-        catch(e){console.log(e)}
-}
-
-function NewClass()
-{
-    const style=document.createElement("style");
-    style.type="text/css";
-    style.innerHTML=`.${name} {${stylos}}`;
-    document.getElementsByTagName('head')[0].appendChild(style);
-}
+const NewClass = (name, styles) => {
+  const style = document.createElement("style");
+  style.type = "text/css";
+  style.innerHTML = `.${name} { ${styles} }`;
+  document.head.appendChild(style);
+};
 
 console.log("Library Kafu Ok");

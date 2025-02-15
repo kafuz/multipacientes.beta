@@ -390,6 +390,9 @@ const __Ajax = {
   /**
    * Realiza una solicitud GET.
    * @param {Object} obj - Objeto con la configuración de la solicitud.
+   * @param {string} obj.url - URL de la solicitud.
+   * @param {Function} [obj.success] - Callback en caso de éxito.
+   * @param {Function} [obj.error] - Callback en caso de error.
    */
   GET: async (obj) => {
     try {
@@ -397,17 +400,24 @@ const __Ajax = {
       if (response.ok) {
         if (obj.success) obj.success(await response.json());
       } else {
-        if (obj.error) obj.error({ response });
-        console.error('Error Get data:', response.status, response.statusText);
+        const errorResponse = await response.json(); // Captura la respuesta de error
+        console.error('Error al obtener datos:', errorResponse);
+        if (obj.error) obj.error(errorResponse);
       }
     } catch (error) {
-      console.error('An error occurred Get:', error);
+      console.error('Ocurrió un error en la solicitud GET:', error);
+      if (obj.error) obj.error({ message: 'Error de conexión o servidor.' });
     }
   },
 
   /**
    * Realiza una solicitud POST.
    * @param {Object} obj - Objeto con la configuración de la solicitud.
+   * @param {string} obj.url - URL de la solicitud.
+   * @param {Object} obj.data - Datos a enviar en el cuerpo de la solicitud.
+   * @param {string} obj.token - Token CSRF.
+   * @param {Function} [obj.success] - Callback en caso de éxito.
+   * @param {Function} [obj.error] - Callback en caso de error.
    */
   POST: async (obj) => {
     try {
@@ -423,20 +433,26 @@ const __Ajax = {
       if (response.ok) {
         if (obj.success) obj.success(await response.json());
       } else {
-        if (obj.error) obj.error({ response });
-          console.error('Error POST data:', response.status, response.statusText);
+        const errorResponse = await response.json(); // Captura la respuesta de error
+        console.error('Error al enviar datos (POST):', errorResponse);
+        if (obj.error) obj.error(errorResponse);
       }
     } catch (error) {
-      console.error('An error occurred POST:', error);
+      console.error('Ocurrió un error en la solicitud POST:', error);
+      if (obj.error) obj.error({ message: 'Error de conexión o servidor.' });
     }
   },
 
   /**
    * Realiza una solicitud PUT.
    * @param {Object} obj - Objeto con la configuración de la solicitud.
+   * @param {string} obj.url - URL de la solicitud.
+   * @param {Object} obj.data - Datos a enviar en el cuerpo de la solicitud.
+   * @param {string} obj.token - Token CSRF.
+   * @param {Function} [obj.success] - Callback en caso de éxito.
+   * @param {Function} [obj.error] - Callback en caso de error.
    */
-  PUT: async (obj) => 
-  {
+  PUT: async (obj) => {
     try {
       const response = await fetch(obj.url, {
         method: 'PUT',
@@ -447,25 +463,27 @@ const __Ajax = {
         body: JSON.stringify(obj.data)
       });
 
-      if (response.ok) 
-      {
+      if (response.ok) {
         if (obj.success) obj.success(await response.json());
-      } else 
-      {
-        if (obj.error) 
-        {
-          console.error('Error updating data:', response.status, response.statusText);
-          return obj.error({ response })
-        }
+      } else {
+        const errorResponse = await response.json(); // Captura la respuesta de error
+        console.error('Error al actualizar datos (PUT):', errorResponse);
+        if (obj.error) obj.error(errorResponse);
       }
     } catch (error) {
-      console.error('An error occurred PUT:', error);
+      console.error('Ocurrió un error en la solicitud PUT:', error);
+      if (obj.error) obj.error({ message: 'Error de conexión o servidor.' });
     }
   },
 
   /**
    * Realiza una solicitud DELETE.
    * @param {Object} obj - Objeto con la configuración de la solicitud.
+   * @param {string} obj.url - URL de la solicitud.
+   * @param {Object} obj.data - Datos a enviar en el cuerpo de la solicitud.
+   * @param {string} obj.token - Token CSRF.
+   * @param {Function} [obj.success] - Callback en caso de éxito.
+   * @param {Function} [obj.error] - Callback en caso de error.
    */
   DELETE: async (obj) => {
     try {
@@ -481,15 +499,16 @@ const __Ajax = {
       if (response.ok) {
         if (obj.success) obj.success(await response.json());
       } else {
-        if (obj.error) obj.error({ response });
-        console.error('Error Delete data:', response.status, response.statusText);
+        const errorResponse = await response.json(); // Captura la respuesta de error
+        console.error('Error al eliminar datos (DELETE):', errorResponse);
+        if (obj.error) obj.error(errorResponse);
       }
     } catch (error) {
-      console.error('An error occurred Delete:', error);
+      console.error('Ocurrió un error en la solicitud DELETE:', error);
+      if (obj.error) obj.error({ message: 'Error de conexión o servidor.' });
     }
   }
 };
-
 
 const jsonStr = {
   /**

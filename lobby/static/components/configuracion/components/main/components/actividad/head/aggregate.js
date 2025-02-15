@@ -19,7 +19,7 @@ __config.main.actividad.head['aggregate']=
                                 await root.requests.POST.alternative({entity:'neo/actividad', data},
                                 (response)=>
                                 {
-                                    root.messages.render({type:'success', text:`SUCCESS`}); 
+                                    root.messages.render({type:'success', text:`Actividad creada con exito.`}); 
                                     nodo.close();
                                     __config.main.actividad.head.actividad.add(response);
                                 });

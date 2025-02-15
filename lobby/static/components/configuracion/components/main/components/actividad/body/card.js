@@ -8,7 +8,7 @@ __config.main.actividad.body['card']=
         {
             const instancia =JSON.parse(JSON.stringify(actividad));
             root.requests.PUT.alternative({entity:'neo/actividad', data: Object.assign({ id: actividad.id }, atributo)},
-            (informacion)=>{ success(); });
+            (informacion)=>{ success(); }, (response)=>{ root.messages.render({type:'error', text:response}); });
         }
 
         function Nivel_O_Valor()
@@ -64,8 +64,9 @@ __config.main.actividad.body['card']=
                             await root.requests.DELETE.alternative({entity:'neo/actividad', data:{id: actividad.id}},
                             (response)=>
                             {
-                                root.messages.render({type:'success', text:`SUCCESS`}); 
+                                root.messages.render({type:'success', text:`Activadad eliminada con exito.`}); 
                                 actividad.nodo.context.remove();
+                                __config.main.actividad.head.actividad.contextValue.setValue();
                             });
                     }}
                 });

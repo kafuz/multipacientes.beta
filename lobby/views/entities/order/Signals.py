@@ -108,4 +108,4 @@ def validar_valor(objeto, valor, objetos):
             suma_valor+= int(objeto.valor)
         # Verificar si la suma es mayor a maximo
         if suma_valor > MAXIMO_PUNTAJE:
-            raise ValueError('Sumatoria de los dimensiones no debe superar '+str(MAXIMO_PUNTAJE)+':'+str(suma_valor))
+            raise ValueError('La sumatoria de no debe superar '+str(MAXIMO_PUNTAJE)+', suma actual :'+str(suma_valor))

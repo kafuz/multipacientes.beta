@@ -71,7 +71,7 @@ __config.main.criterio['components']=
                                                 await root.requests.POST.alternative({entity:'neo/criterio', data},
                                                 (response)=>
                                                 {
-                                                        root.messages.render({type:'success', text:`SUCCESS`});                                          
+                                                        root.messages.render({type:'success', text:`Criterio creado con exito.`});                                          
                                                         body.add(response);
                                                         nodo.close();
                                                 });
@@ -117,8 +117,7 @@ __config.main.criterio.components['body']=
         {
             const instancia =JSON.parse(JSON.stringify(criterio));
             root.requests.PUT.alternative({entity:'neo/criterio', data: Object.assign({id:instancia.id}, atributo)},
-            (informacion)=>
-                { success(); });
+            (informacion)=>{ success(); }, (response)=>{ root.messages.render({type:'error', text:response}); });
         }
 
         const eliminar=gNodo({type:'div', 
@@ -132,7 +131,7 @@ __config.main.criterio.components['body']=
                                             await root.requests.DELETE.alternative({entity:'neo/criterio', data:{id:criterio.id}},
                                             (response)=>
                                             {
-                                                root.messages.render({type:'success', text:`SUCCESS`}); 
+                                                root.messages.render({type:'success', text:`Criterio eliminado con exito.`}); 
                                                 container.remove();
                                             });
                                     }}

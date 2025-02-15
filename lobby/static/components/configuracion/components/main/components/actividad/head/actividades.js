@@ -19,7 +19,8 @@ __config.main.actividad.head['actividad']=
         const auxiliar=gNodo({type:'div', attr:{values:'content'}});
         if(Array.isArray(response))
             response.forEach(actividad => {
-                auxiliar.append(this.components.render(actividad));
+                const act=this.components.render(actividad)
+                auxiliar.append(act.nodo.context);
             });
         container.append(auxiliar);
         this.propertys.components['auxiliar']=auxiliar;
@@ -27,7 +28,10 @@ __config.main.actividad.head['actividad']=
     },
     add(actividad)
     {
-        this.propertys.components.auxiliar.append(this.components.render(actividad))
+      
+        const instancia=this.components.render(actividad);
+        this.propertys.components.auxiliar.append(instancia.nodo.context)
+        this.propertys.components.response.push(instancia);
     },
     contextValue:
     {
@@ -55,8 +59,7 @@ __config.main.actividad.head.actividad['components']=
        
         /* Dinamicos*/
          /* Decripción*/ 
-         let nombre=
-                    gNodo({type:'div', txt: actividad.nombre.toLowerCase()});
+         let nombre= gNodo({type:'div', txt: actividad.nombre.toLowerCase()});
         
         const container=  
                 gNodo({type:'div',  attr:{'values':'item'},  
@@ -76,6 +79,6 @@ __config.main.actividad.head.actividad['components']=
         }   
         //changeActividad()
         Object.assign(actividad, {nodo:{'context': container,'nombre':nombre}});
-        return container;
+        return actividad;
     }
 }
