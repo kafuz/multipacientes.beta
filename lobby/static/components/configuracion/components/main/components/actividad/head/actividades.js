@@ -14,12 +14,12 @@ __config.main.actividad.head['actividad']=
                                             this.contextValue.create(),
                                             gNodo({type:'div', txt:'Actividades'})
                                         ]}),
-                        ])
+                        ]);
        
         const auxiliar=gNodo({type:'div', attr:{values:'content'}});
         if(Array.isArray(response))
             response.forEach(actividad => {
-                const act=this.components.render(actividad)
+                const act=this.components.render(actividad);
                 auxiliar.append(act.nodo.context);
             });
         container.append(auxiliar);
@@ -35,10 +35,11 @@ __config.main.actividad.head['actividad']=
     },
     contextValue:
     {
-        propertys:{},
+        propertys:{ status:fetch,},
         create()
         {
             const nodo= gNodo({type:'div'});
+            this.propertys.status=true;
             this.propertys['nodo']=nodo;
             this.setValue();
             return nodo;
@@ -46,7 +47,19 @@ __config.main.actividad.head['actividad']=
         setValue()
         {
             const { response }= __config.main.actividad.head.actividad.propertys.components;
-            this.propertys.nodo.innerHTML=response.reduce((acc, response) => acc +  parseInt(response.valor), 0);
+            if(this.propertys.status)
+            {
+                if(response.length && !response[0].np_is)
+                    this.propertys.nodo.innerHTML=response.reduce((acc, response) => acc +  parseInt(response.valor), 0);
+                else
+                    this.remove()
+            }
+        },
+        remove()
+        {
+            this.propertys.status=false;
+            this.propertys.nodo!=null ? this.propertys.nodo.remove() : null;
+            this.propertys= {status:false}
         }
     }
 }
