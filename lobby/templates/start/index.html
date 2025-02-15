@@ -111,18 +111,15 @@
             <div>
                 <div>
                     <span>Institución: </span>
-                    <a href="{% url 'reload__programa' %}">{{ institucion.nombre|slice:":15"|lower|capfirst }}{% if institucion.nombre|length > 15 %}...{% endif %}</a>
-                    <span>-</span>
+                    <a href="{% url 'reload__programa' %}">{{ institucion.nombre}}</a>
                 </div>
                 <div>
                     <span>Programa: </span>
-                    <a href="{% url 'reload__asignatura' %}">{{ programa.nombre|slice:":15"|lower|capfirst }}{% if programa.nombre|length > 15 %}...{% endif %}</a>
-                    <span>-</span>
+                    <a href="{% url 'reload__asignatura' %}">{{ programa.nombre}}</a>
                 </div>
                 <div>
                     <span>Asignatura: </span>
-                    <a href="#">{{ asignatura.nombre|slice:":15"|lower|capfirst }}{% if asignatura.nombre|length > 15 %}...{% endif %}</a>
-                    <span>.</span>
+                    <a href="#">{{ asignatura.nombre}}</a>
                 </div>
                 
             </div>
