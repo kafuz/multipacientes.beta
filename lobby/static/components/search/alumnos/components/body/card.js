@@ -14,8 +14,7 @@ __search.alumnos.body['card']=
             gNodo({type:'div', attr:{ value:`avatar`},
               children:[ gNodo({type:'img', attr:{src:`${alumno.avatar}`} })]}), 
             gNodo({type:'div', 
-              children:[ gNodo({type:'span', txt:`${reduceText(alumno.first_name, 10, true)} ${reduceText(alumno.last_name, 10, true)}`}) ]}), 
-           
+              children:[ gNodo({type:'span', txt:`${alumno.first_name} ${alumno.last_name}`}) ]}), 
           ]
         }),
         /* <delete> */

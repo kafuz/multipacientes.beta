@@ -1,15 +1,8 @@
 @import url("card.css");
-@import url("barra.css");
 
-#search__alumno 
+#search__alumno>div[value='body'] 
 {
-    &>div[value='body'] 
-    {
-        & div {border-radius: 5px;}
-        flex-grow: 1;
-        display: flex;
-        position: relative;
-    }
+    flex-grow: 1;
+    display: flex;
+    overflow-y: auto;
 }
-
-

@@ -3,3 +3,13 @@
 @import url('../monitor/a-css/book.css');
 @import url('../search/a-css/alumnos/book.css');
 @import url('../rubrica/a-css/book.css');
+
+/*clases globales*/
+
+
+.flex-center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,71 +1,58 @@
 #search__alumno>div[value='body']>div[value='thebody']
 {
-    --padding:0.3rem;
-    --gap:0.3rem;
+    --padding:0.25rem;
+    --gap:0.25rem;
 
     display: flex; 
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    gap: calc(var(--gap)*2);
+    gap: .5rem;
     padding:var(--padding);
     width: 100%;
-    &[direction='alternate']
-    { flex-direction: column-reverse !important; }
-    /* <-> ITEM*/
+    height: 10rem;
+    overflow-x: hidden;
+    /* CARD */
     &>div 
     {
+        display: block;
         width: 100%;
         position: relative;
         background-color: var(--surface-card);
         border: 1px solid var(--surface-border);
-        flex: none;
+        padding:var(--padding);
         &>div[value='information'] 
         {
             display: flex;
-            justify-content: space-between; align-items: center;
-            white-space: nowrap;
-            gap: calc(var(--gap)*2);
-            padding: var(--padding);
-            &>div{ box-shadow: 0 0 0 0.1rem rgba(var(--color-tema)), 0 0 0.3rem 0.1rem rgba(var(--color-tema),0.1); }
+            gap: var(--gap);
             &>div:first-child
             {
-                height: min-content;
-                overflow: hidden;
-                transition:all 0.2s;
-                &>img 
-                {
-                    display: block;
-                    width: 2.5rem;
-                    min-width:  2.5rem;  
-                    aspect-ratio: 1/1;  
-                    object-fit: cover; 
-                }
-                &:hover
-                { transform: scale(1.2); box-shadow: 0 0 0  inset;}
+                flex: none;
+                display: flex;
+                width: 3rem;
+                height: 3rem;
             }
             &>div:last-child
-            {
-                font-weight: 600;
-                padding: var(--padding);
-                background-color: var(--primary-color);
+            {   
                 flex-grow: 1;
+                overflow-x: auto;
+                text-transform: lowercase;
+                display: flex; align-items: center;
+                padding-left: var(--padding);
+                text-shadow:0 0 3px rgba(var(--color-tema),1);
             }
         }
 
         &>div[value='buttons'] 
         {
+            display: flex;
+            height: 100%;
             position: absolute;
             right: 0;
             top: 0;
-            display: flex;
-            height: 100%;
             &>div 
             {
                 display: none; align-items: center; justify-content: center;
                 font-weight: bold;
                 width: 3rem;
-                animation: buttonsIlumination 2000ms normal linear infinite, showIn 200ms linear normal;
                 &[value='aggregate'] 
                 { background-color: var(--success); }
 
@@ -75,31 +62,17 @@
         }
         /* <-> ITEM ON */
         &.active 
-        {
-            position: relative;
-            box-shadow: 0 0 0 0.15rem rgba(var(--color-tema)), 0 0 0.3rem 0.1rem rgba(var(--color-tema),0.5); 
+        { 
             transition:background 1s;
-            background-color: var(--primary-color);
+            background-color: rgba(var(--primary-color-rgb),0.2);
+            box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 1);
             &>div[value='information'] 
             {
                 &>div:first-child
                 {
-                    border-radius: 50%;
-                    &>img { animation: showIn 200ms normal linear; }
+                    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb),1);
+                    animation: showIn 200ms normal linear;
                 }
-                &>div:last-child { background-color: rgba(var(--color-tema),0.2); }
-            }
-            &::before
-            { 
-                content: ''; width: 1.3rem; aspect-ratio: 1/1; 
-                background-color: var(--danger);
-                border-radius: 50%;
-                position: absolute; right: 0; top: 50%; 
-                transform: translate(50%,-50%) rotate(270deg);
-                background-image: url(/static/media/img/icons/flecha.svg);
-                background-size: contain;
-                background-repeat: no-repeat;
-                animation: show 200ms linear normal;
             }
         }
     }
@@ -108,14 +81,12 @@
         background-color: var(--danger);
         text-align: center;
     }
-    &:has(.active){}
 }
 
 /*Change*/
 /* Aggregate active */
 #search__alumno[value='aggregate']>div[value='body']>div[value='thebody'] 
 {
-    & { transition: background 500ms;}
     background-color: var(--green-200);
     &>div /*ITEM*/
     {
@@ -145,14 +116,7 @@
     }
 }
 
-@keyframes buttonsIlumination 
-{
-    0%{ box-shadow: 0 0 0 0.0rem rgba(var(--color-tema)) inset; }  
-    50%{ box-shadow: 0 0 0.6rem 0.1rem rgba(var(--color-tema),0.5) inset;}
-    100%{ box-shadow: 0 0 0 0.0rem rgba(var(--color-tema)) inset; }    
-}
-
-@media (max-width: 767px) 
+@media (min-width: 767px) 
 {
     #search__alumno>div[value='body']>div[value='thebody']
     {
@@ -161,43 +125,7 @@
     }
     #search__alumno 
     {
-        height: min-content !important;
-        &>div[value='body'] 
-        {
-            height: 15vh;
-            &>div 
-            {
-                overflow: hidden;
-                &[value='thebody'] 
-                {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr; 
-                    overflow-y: auto ;
-                    align-items: start; /* Evita que los hijos se estiren en altura */
-                    &>div[value='alumno'] 
-                    {
-                        flex: none;
-                        overflow-x: auto !important;
-                        &>div[value='information'] 
-                        {
-                           > div:first-child{flex: none;}
-                        }
-                         /* <-> ITEM ON */
-                        &.active 
-                        {
-                            >div 
-                            {& div:hover{ transform: scale(1);}}
-                            &::before
-                            { 
-                                z-index: 10;
-                                right: auto;
-                                transform: translate(0%,-50%) rotate(90deg); 
-                            }
-                        }
-                    }
-                   
-                }
-            }
-        }
-    }
+        &>div[value='body']>div[value='thebody'] 
+        { height: 100%}
+    } 
 }

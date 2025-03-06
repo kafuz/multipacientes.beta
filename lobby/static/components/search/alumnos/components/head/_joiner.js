@@ -4,7 +4,7 @@ __search.alumnos['head']=
     render()
     {
         const ITEM=
-        gNodo({type:'div', attr:{value:this.propertys.id.main},
+        gNodo({type:'div', attr:{value:this.propertys.id.main, class:'flex-center'},
             children:
             [   // <Title>
                     gNodo({type:'div', children:[gNodo({type:'img', attr:{src:'/static/media/img/icons/personas.svg'}})]}),

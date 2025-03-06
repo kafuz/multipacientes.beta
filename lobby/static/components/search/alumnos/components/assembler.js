@@ -7,7 +7,7 @@ __search.alumnos['assembler']=
         // <jsx>
         this.propertys['components']={ head, body};
         const ITEM= 
-            gNodo({type:'article', attr:{id:this.propertys.id.main, value:'default'},
+            gNodo({type:'article', attr:{id:this.propertys.id.main, value:'default', class:'card'},
                 children:
                 [   
                     // <head> 

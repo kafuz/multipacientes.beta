@@ -3,13 +3,10 @@
 
 #search__alumno 
 {
-    display: flex; flex-direction: column;
-    background-color: var(--surface-card);
-    border: 1px solid var(--surface-border);
-    border-radius: 0.1rem !important;
+    overflow: hidden;
     height: 100%;
-    width: min-content !important;
     gap: 0.3rem;
+    width: 20rem;
     /* Change Status */
     &[value='aggregate'] 
     { box-shadow: 0 0 0 0.2rem var(--green-800);}
@@ -20,5 +17,9 @@
 
 @media (max-width: 767px) 
 {
-    
+    #search__alumno 
+    {
+        height: min-content;
+        width: 100% ;
+    }
 }
