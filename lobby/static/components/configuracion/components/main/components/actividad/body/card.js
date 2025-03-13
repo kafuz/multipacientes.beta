@@ -40,13 +40,13 @@ __config.main.actividad.body['card']=
                 /* <Nivel>*/
                 return gNodo({type:'div',children:[
                     gNodo({type:'div', txt:'Nivel Pertinencia'}), 
-                    gNodo({type:'input', attr:{type:'number', value: actividad.nivel_pertinencia,  min:"1", max:"5",},
+                    gNodo({type:'input', attr:{type:'number', value: actividad.nivel_pertinencia,  min:"1", max:"10",},
                     event:{ event:'input',
                             funcion:(node, even)=>{
                                 if (even.target.value<0 || even.target.value=='')
                                     node.value=1
-                                else if(even.target.value>6)
-                                    node.value = 5;
+                                else if(even.target.value>11)
+                                    node.value = 10;
                                 actualizar({'nivel_pertinencia': even.target.value}, ()=>{
                                     Object.assign(actividad, {'nivel_pertinencia': even.target.value});
                             });  

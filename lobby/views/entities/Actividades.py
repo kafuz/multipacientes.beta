@@ -87,7 +87,7 @@ def PUT(request):
 
         if 'nivel_pertinencia' in BODY:
             pertinencia = int(BODY.get('nivel_pertinencia'))
-            if 0 < pertinencia <= 5:
+            if 0 < pertinencia <= 10:
                 Instancia.nivel_pertinencia = pertinencia
             else:
                 raise ValueError('El nivel de pertinencia está fuera de rango (0 a 5)')
