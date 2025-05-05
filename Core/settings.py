@@ -1,20 +1,13 @@
-# Core/settings.py
-
 from pathlib import Path
-import dj_database_url
 from dotenv import load_dotenv
 import os
 
 load_dotenv()  # Carga las variables de entorno del archivo .env
 
-# Producion
 # Define the base directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Define the static root for production
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Configuración de STORAGES
+# Configuración de STORAGES (lo mantengo por si lo necesitas para medios)
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
@@ -23,14 +16,14 @@ STORAGES = {
         }
     },
     'staticfiles': {
-        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
     },
 }
 
 # Seguridad
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-)a%-ywn3loy7^$)8(vu$efyw%npk+bhr1ecih14!39f*l(=+-i')
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
 # Aplicaciones instaladas
@@ -41,20 +34,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
     'accounts.apps.AccountsConfig',
     'institucionales.apps.InstitucionalesConfig',
     'lobby.apps.LobbyConfig',
     'public.apps.PublicConfig',
     'web.apps.WebConfig',
     'compressor',
-    'storages',
     'tools',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,9 +73,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Core.wsgi.application'
 
-# Base de datos
+# Base de datos SQLite (cambio principal)
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Validación de contraseñas
@@ -112,7 +105,9 @@ USE_TZ = True
 
 # Archivos estáticos y de medios
 STATIC_URL = 'static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+#STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 # Compresor de archivos
@@ -123,12 +118,8 @@ STATICFILES_FINDERS = [
 ]
 
 COMPRESS_ENABLED = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.cssmin.CSSMinFilter',
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
+COMPRESS_CSS_FILTERS = ['compressor.filters.cssmin.CSSMinFilter']
+COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
 
 # Campo primario predeterminado
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
