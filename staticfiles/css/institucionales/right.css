@@ -1,0 +1,30 @@
+#__right {
+    display: flex; 
+    flex-direction: column;
+    gap: 0.5rem; /* Mantiene el tamaño original de 8px */
+    padding: 0.5rem; /* Mantiene el tamaño original de 8px */
+    background-color: var(--surface-card);
+}
+
+#container_rigth 
+{
+    display: flex; 
+    margin: auto;
+
+    & > div[values="buttons"] > div 
+    {
+        width: 2.5rem; /* Mantiene el tamaño original de 48px */
+        aspect-ratio: 1 / 1;
+        background-color: var(--primary-color);
+        border-radius: 50%; /* Mantiene el mismo aspecto circular */
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        border:2px solid var(--surface-border);
+        transition: transform 200ms;
+        cursor: pointer;
+        
+        &:hover 
+        { transform: scale(0.8); }
+    }
+}

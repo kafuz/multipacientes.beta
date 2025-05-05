@@ -1,0 +1,144 @@
+#__configuracion
+{
+    &>div[values='__main']
+    {
+        &>div
+        {
+            &:first-child
+            {
+                &>div[values='dimension']
+                {
+                    font-weight: 600;
+                    display: flex; flex-direction: column; gap: 0.3rem; 
+                    &>div:first-child
+                    {
+                        text-align: center;
+                    }
+                    &>div[values="head"]
+                    {
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        gap: 0.3rem;
+                        background-color: var(--surface-card);
+                        padding: 0.3rem 0;
+                        > div[values='counter']
+                        {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            background-color: var(--info);
+                            padding: 0 0.3rem;
+                            border-radius: 0.2rem 0;
+                        }
+                    }
+                    &>div[values="body"]
+                    {
+                        display: flex; gap: 0.3rem; 
+                        /*ITEM DIMENSION*/
+                        & > div:has(.config-dimension-disabled) 
+                        {
+                            position: relative;
+                            background-color: var(--danger);
+                            opacity: 0.8;
+                            filter: brightness(60%);
+                        }
+                        &>div
+                        {
+                            display: flex; flex-direction: column; gap: 0.3rem;
+                            padding: 0.4rem;
+                            background-color: rgba(var(--color-tema), 0.01);
+                            transition: filter 200ms;
+                            box-shadow: 0 0 4px 2px rgba(var(--color-tema), 0.1) inset, 0 0 0 2px rgba(var(--color-tema), 0.15) inset;
+                            &:hover{   box-shadow:0 0 0 2px rgba(var(--color-tema), 1) inset; }
+
+                            div 
+                            {
+                                display: flex; align-items: center; flex-direction: column; gap: 0.3rem;
+                                &>label, &>input
+                                {
+                                    width: 100%; text-align: center; padding: 0.2rem 0.3rem;
+                                    background-color: rgba(var(--color-tema), 0.4);
+                                    border-radius: 0.5rem;
+                                    text-shadow: 0 0 0.1rem rgba(var(--color-tema), 0.2); 
+                                    border: 0; 
+                                    font-weight: 600;
+                                    &[values='title']{background-color:rgba(var(--color-tema), 0.8);}
+                                    &[values='status']{background-color: rgba(var(--color-tema), 0.8);}
+                                } 
+                                &>input
+                                {
+                                    max-width: 6rem;
+                                    &::-webkit-outer-spin-button,
+                                    &::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin: 0;
+                                    }
+                                }
+                            }
+                        }
+                        &>.config_dimension_on
+                        {
+                            box-shadow: 0 0 0 2px rgba(var(--color-tema), 1) inset ,0 0 0 2px rgba(var(--color-tema), 0.1);
+                            & div>label,& div>input
+                            {
+                                background-color: rgba(var(--color-tema), 0.2) !important;
+                                &[values='title']{background-color:rgba(var(--color-tema), 0.4) !important;}
+                                &[values='status']{background-color: rgba(var(--color-tema), 0.4) !important;}
+                            }
+                           
+                        }
+                    } 
+                } 
+            }
+            &:last-child
+            {
+                flex-grow: 1;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 767px) 
+{
+    #__configuracion
+    {
+        &>div[values='__main']
+        {
+            &>div
+            {
+                &:first-child
+                {
+                    &>div[values='dimension']
+                    {
+                        flex-direction: column; gap: 0.1rem; 
+                        &>div[values="body"]
+                        {
+                            gap: 0.3rem; 
+                            flex-direction: column; 
+                            &>div
+                            {
+                                flex-direction: column; 
+                                gap: 0.1rem;
+                                padding: 0.1rem;
+                                div 
+                                {
+                                    flex-direction: column; 
+                                    gap: 0.2rem;
+                                    &>label, &>input
+                                    {
+                                        padding: 0.1rem 0.1rem;
+                                    } 
+                                }
+                                &:hover
+                                {box-shadow: 0 0 0 inset;}
+                            }
+                            
+                        } 
+                    } 
+                }
+            }
+        }
+    }
+}

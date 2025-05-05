@@ -1,0 +1,43 @@
+/* CSS */
+@import 'agregados/msj.css';
+@import 'sex.css';
+@import 'incisivos.css';
+@import 'cuadrantes/book.css';
+@import 'cuadrantes/view.css';
+
+/* Estilos Generales */
+*,::after, ::before
+{
+   box-sizing: border-box;
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   margin: 0;
+   
+}
+:root
+{
+    --color-base-uno:rgb(0, 68, 255);
+    --color-base-dos:rgb(0, 162, 255);
+    --color-fondo:rgb(255, 255, 255);
+    --color-sombra:rgba(0, 0, 0, 0.14);
+    
+}
+
+body { background-color: var(--color-fondo); over-flow:hidden;}
+
+img
+{
+ height: 100%;
+ width: 100%;
+ object-fit: contain;
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+input[type=number] { -moz-appearance:textfield; }
+

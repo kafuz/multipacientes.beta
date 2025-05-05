@@ -1,0 +1,8 @@
+@import url("card.css");
+
+#search__alumno>div[value='body'] 
+{
+    flex-grow: 1;
+    display: flex;
+    overflow-y: auto;
+}

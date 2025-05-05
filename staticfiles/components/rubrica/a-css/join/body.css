@@ -1,0 +1,237 @@
+#__rubrica> div[values="join"]
+{
+    flex-grow: 1;
+    --width-column:8rem;
+    --gap:0.3rem;
+    --padd:0.2rem;
+    overflow: hidden;
+    > div[values="body"]
+    {
+        & div 
+        {
+            border-radius: 0.2rem;
+        }
+        overflow-x: auto;
+        flex-grow: 1;
+        > div
+        {
+            display: flex; flex-direction: column;
+            flex-grow: 1;
+            gap: var(--gap);
+            > div[values="thehead"] 
+            {
+                display: flex;
+                flex-grow: 1;
+                gap: var(--gap);
+                &>div:nth-child(1) /* <TITLE>*/
+                {
+                    > div 
+                    {
+                        height: 100%;
+                        width:var(--width-column);
+                        background-color: rgba(var(--color-tema),0.1);
+                        padding: var(--padd);
+                        display: flex; align-items: center;
+                        justify-content: center;
+                        overflow-x: auto;
+                    }
+                }
+                > div:nth-child(2) /* <BODY> */
+                {
+                    flex-grow: 1;
+                    width: 100%;
+                    display: flex;
+                    gap: var(--gap);
+
+                    > div:nth-child(1)   
+                    { 
+                        width: var(--width-column); 
+                        min-width: var(--width-column); 
+                        background-color: rgba(var(--color-tema), 0.1);
+                        padding: var(--padd);
+                        overflow-x: auto;
+                        display: flex; align-items: center  ;
+                    }
+
+                    > div:nth-child(2)   
+                    {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+                        grid-auto-flow: column; 
+                        gap: var(--gap); 
+                        width: 100%;
+                        > div
+                        {
+                            height: 100%; 
+                            min-width: 100px;
+                            display: flex; flex-direction: column;
+                            gap: 0.3rem;
+                            font-size: small;
+                            overflow-x: auto;
+                            padding: var(--padd);
+                            > div 
+                            {
+                                display: flex; justify-content: space-between;
+                                > img 
+                                {
+                                    width: 20px;
+                                    aspect-ratio: 1/1;
+                                    cursor: pointer;
+                                    transition:transform  0.2s;
+                                    background-color: rgba(var(--color-tema), 0.3);
+                                    border-radius: 0.2rem;
+                                    &:hover
+                                    {
+                                        transform:scale(1.2);
+                                    }
+                                }
+                            }
+                        }
+                       
+                    }
+                }
+            }
+            >div[values="thebody"]
+            {
+                display: flex; flex-direction: column;
+                flex-grow: 1;
+                width: 100%;
+                height: 100%;
+                gap: var(--gap);
+                >div[values="table"]
+                {
+                    &[color='ser']
+                    { background-color: var(--dimension-ser);}
+                    &[color='hacer']
+                    { background-color: var(--dimension-hacer); }
+                    &[color='conocer']
+                    { background-color: var(--dimension-conocer); }
+                    display: flex; flex-direction: column;
+                    flex-grow: 1;
+                    gap: var(--gap);
+
+                    >div[values="thebody"]
+                    {
+                        text-shadow: 0 0 0.2rem rgba(var(--color-tema), 0.5);
+                        display: flex;
+                        flex-grow: 1;
+                        gap: var(--gap);
+                        
+                        padding: var(--padd) 0;
+                        > div[values="--title"]     /* <TITLE> DIMENSION*/
+                        {
+                            width:var(--width-column);
+                            min-width:var(--width-column);
+                            background-color: rgba(var(--color-tema),0.1);
+                            padding: var(--padd);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        > div[values="--criterios"] /* <BODY> criterios*/
+                        {
+                            display: flex; flex-direction: column;
+                            backdrop-filter: saturate(150%);
+                            flex-grow: 1;
+                            gap: var(--gap);
+                            > div[values="--criterio"] 
+                            {
+                                background-color: rgba(var(--color-tema),0.2);
+                                display: flex;
+                                align-items: center;
+                                width: 100%;
+                                gap: var(--gap);
+
+                                > div[values="--title"]     /*<TITLE> Criterio*/
+                                {
+                                   width:var(--width-column); 
+                                   min-width:var(--width-column);  
+                                   padding: var(--padd);
+                                }
+                                
+                                > div[values="--niveles"]   /*<BODY> Criterio*/
+                                {
+                                    display: grid;
+                                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+                                    height: min-content;
+                                    grid-auto-flow: column;
+                                     
+                                    gap: var(--gap); 
+                                    padding: var(--padd) 0;
+                                    width: 100%;
+
+                                    textarea
+                                    {
+                                        min-width: 100px;
+                                        height: 100%;
+                                        box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho y alto */
+                                        overflow: hidden; /* Oculta las barras de desplazamiento */
+                                        resize: none; /* Evita que el usuario cambie el tamaño manualmente */
+                                        padding: 0.2rem;
+                                        border: 1px solid var(--surface-border);
+                                        border-radius: 0.3rem;
+                                        background-color: rgba(var(--color-tema), 0.1);
+                                        text-shadow: 0 0 0.2rem rgba(var(--color-tema), 0.5);
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media (max-width: 767px) 
+{
+    #__rubrica> div[values="join"]
+    {
+        --width-column:5rem;
+        --gap:0.2rem;
+        --padd:0.3rem;
+
+        > div[values="body"]
+        {
+            & div { font-size: 12px ; }
+            >div 
+            {
+                > div[values="thehead"] 
+                {
+                    gap: 0.2rem;
+                    &>div:nth-child(1) /* <TITLE>*/
+                    {
+                        > div 
+                        {
+                            width: 2rem;
+                            opacity: 0;
+                        }
+                    }
+                }
+                >div[values="thebody"]
+                {
+                    >div[values="table"]
+                    {
+                        
+                        width: fit-content;
+                        >div[values="thebody"]
+                        {
+                        
+                            > div[values="--title"]     /* <TITLE> DIMENSION*/
+                            {
+                                width: 2rem;
+                                min-width: 2rem;
+                                writing-mode: vertical-rl ;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

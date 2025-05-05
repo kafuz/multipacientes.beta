@@ -1,0 +1,102 @@
+#__right
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0.5rem;
+    &>div[values='__nav']
+    {
+        display: flex;
+        gap: 0.5rem;
+        flex-direction: column;
+        &>div
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: var(--info);    
+            border-radius: 5px;
+            aspect-ratio: 1/1;
+            transition: all 200ms;
+            cursor: pointer;
+            &>img 
+            {
+                width:2.8rem;
+                height: 2.8rem;
+                object-fit: cover;
+                padding: 0.2rem;
+            }
+            &:hover
+            {   
+                box-shadow:0 0 0 2px var(--gray-50);
+                transform: scale(1.05);
+                &::before
+                {
+                    content: attr(values);
+                    position: absolute;
+                    left: -55%;
+                    top: 50%;
+                    transform: translate(-100%, -50%);
+                    background-color: var(--info);
+                    padding: 0.5rem;
+                    border-radius: 5px 0 0 5px;
+                    box-shadow:  0 0 1px 2px var(--teal-200) inset;
+                    animation: show 200ms linear normal;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 0; /* Ancho de la flecha */
+                    transform: translate(-60%,-50%);
+                    border-width: 20px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent var(--info); /* Color de la flecha */
+                    box-shadow:  0 0 1px 2px var(--teal-200) inset;
+                    filter: brightness(150%);
+                    animation: show 200ms linear normal;
+                }
+            }
+        }
+        
+        
+    }
+}
+
+@media (max-width: 767px) 
+{
+    #__right
+    {
+        padding: 0.3rem 1rem;
+        gap: 1rem;
+        &>div[values='__nav']
+        {
+            flex-grow: 1 ;
+            gap: 0.3rem;
+            justify-content: flex-end;
+            flex-direction: row;
+            &>div
+            {
+                &:hover
+                {   
+                    box-shadow:0 0 0 2px rgba(var(--color-tema),1);
+                    transform: scale(1.1);
+                    &::before
+                    {
+                        
+                        left: 50%;
+                        top: 0%;
+                        transform: translate(-50%, -110%);
+                        border-radius: 5px;
+                        background-color: var(--teal-600);
+                    }
+                    &::after{display: none;}
+                }
+            }
+            
+            
+        }
+    }
+}

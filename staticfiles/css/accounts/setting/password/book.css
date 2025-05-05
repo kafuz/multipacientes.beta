@@ -1,0 +1,73 @@
+@import url("../comun.css");
+
+.form_password>div
+{
+    position: relative;
+    font-weight: 600;
+}
+    .helptext, .errorlist
+    {
+        position: absolute; 
+        display: block;
+        width: 60%;
+        right:0%;
+        top: 0;
+        color: rgb(var(--color-texto));
+        list-style: none;
+        padding: 0.4em;
+        text-align: center;
+    }
+    .helptext
+    {
+        transform: translateX(120%);
+    }
+        .helptext>ul
+        {
+            display: flex; flex-direction: column;
+            gap: 0.5rem;
+            list-style: none;
+            animation: show normal linear 500ms;
+        }
+            .helptext>ul>li
+            {
+                background-color: rgba(var(--info), 1);
+                padding: 0.3em;
+                border-radius: 0 10px  5px  5px ;
+                color: rgb(var(--color-texto-inverso));
+            }
+    #id_new_password2_helptext{ display: none;}
+    .errorlist
+    {
+        right: 100% ;
+        animation: sliceIn normal linear 200ms;
+    }
+        .errorlist>li
+        {
+            background-color: rgb(var(--danger));
+            margin-bottom: 0.2em;
+            padding: 0.3em;
+            border-radius:  5px 0  5px  5px ;
+            color: rgb(var(--color-texto-inverso));
+        }
+
+@media (max-width: 767px) 
+{
+    .form_password
+    {
+        display: flex; flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        width: 90%;
+        &>div 
+        {
+            margin: 0;
+            &>label {}
+            &>input 
+            { width: 6rem; }
+        }
+    }
+    .errorlist, #id_new_password2_helptext, .helptext
+    {
+        display: none;
+    }
+}

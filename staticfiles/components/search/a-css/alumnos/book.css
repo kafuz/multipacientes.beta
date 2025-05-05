@@ -1,0 +1,25 @@
+@import url("body/book.css");
+@import url("head.css");
+
+#search__alumno 
+{
+    overflow: hidden;
+    height: 100%;
+    gap: 0.3rem;
+    width: 20rem;
+    /* Change Status */
+    &[value='aggregate'] 
+    { box-shadow: 0 0 0 0.2rem var(--green-800);}
+
+    &[value='delete'] 
+    { box-shadow: 0 0 0 0.2rem var(--red-800); }
+}
+
+@media (max-width: 767px) 
+{
+    #search__alumno 
+    {
+        height: min-content;
+        width: 100% ;
+    }
+}

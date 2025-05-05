@@ -1,0 +1,25 @@
+@import url('a/book.css');
+@import url('b/book.css');
+
+#__calificacion
+{
+    flex-grow: 1; 
+    display: flex; 
+    gap: 0.3em;
+    height: 100%;
+    justify-content: space-between;
+    & div 
+    { 
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 767px) 
+{
+    #__calificacion
+    {
+        gap: 0.3em;
+        flex-direction: column;
+        overflow: hidden;
+    }
+}

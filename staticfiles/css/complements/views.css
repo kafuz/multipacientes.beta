@@ -1,0 +1,117 @@
+
+view
+{
+    display: none;
+    justify-content: center;
+    align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 10;
+    background-color: rgba(var(--color-tema), 0.5);
+    animation: show 200ms linear normal;
+}
+    
+    view>form
+    {
+        display: flex; flex-direction: column; gap: 1rem;
+        position: relative;
+        background-color: var(--surface-card);
+        padding: 1rem 2rem;
+        border-radius: 5px;
+    }
+        view>form>.view__hide
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            border:2px solid var(--text-color) ;
+            padding: 0.4em 0.8em;
+
+            position: absolute;
+            right: .2rem;
+            top: .2rem;
+            cursor: pointer;
+            &:hover
+            {
+                background-color: var(--surface-hover);
+            }
+        }
+        view>form>div
+        {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        view>form>div:last-child{justify-content: center; margin: 0;}
+
+            view>form>div>label
+            {
+                font-weight: 600;
+            }
+            view>form>div>input
+            {
+                border: 0;
+                border-radius: 6px;
+                padding: 0.2em;
+                font-size: var(--size-text-medium);
+                margin-left: 1em;
+                &[type="submit"]
+                {
+                    background-color: var(--surface-card);
+                    border: 2px solid var(--surface-border);
+                    padding: 0.5rem 1rem;
+                    border-radius: 6px;
+                    width: min-content;
+                    cursor: pointer;
+                    &:hover
+                    {
+                        background-color: var(--surface-ground);
+                    }
+                }
+            }
+            .errorlist
+            {
+                position: fixed;
+            }
+
+@media (max-width: 767px) 
+{
+   
+        view>form
+        {
+           width: 90%;
+           padding: 2rem;
+        }
+            view>form>.view__hide
+            {   
+                padding: 0.3rem 1rem;
+            }
+            view>form>div
+            {
+                display: flex; gap: 0.3rem;
+                justify-content: space-between;
+            }
+            view>form>div:last-child{justify-content: center;}
+                view>form>div>input
+                {
+                    width: 8rem;
+                    font-size: var(--size-text-medium);
+                    border: 0;
+                    &[type="submit"]
+                    {
+                        padding: 0.5rem 1rem;
+                    }
+                }
+                .errorlist
+                {
+                    position: fixed;
+                }
+}

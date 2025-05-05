@@ -1,0 +1,209 @@
+@import url('qualification.css');
+
+:root {
+    --padding: 0.3rem;
+}
+
+#__calificacion {
+    & > div {
+        &[values='__a'] {   
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+            padding: var(--padding);
+            background-color: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            
+            & > div {
+                display: flex;
+                flex-grow: 1;
+                gap: var(--padding);
+                & > div {
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    padding: var(--padding);
+                    overflow: hidden;
+                    
+                    &:first-child {
+                        flex-grow: 0;
+                        gap: var(--padding);
+                    }
+
+                    /* Selection Styles */
+                    & > div#__selection {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: var(--padding);
+                        padding: var(--padding);
+                        font-weight: 600;
+
+                        & > select {
+                            padding: 0.2rem 2rem;
+                            background: rgb(var(--color-tema)) url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23fff" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>') no-repeat right 1rem center / 1rem;
+                            border: 0.2rem solid rgba(var(--color-tema), 0.4);
+                            border-radius: 0.5rem;
+                            font-size: var(--size-text-medium);
+                            cursor: pointer;
+                            appearance: none;
+                            transition: border-color 200ms, filter 200ms;
+                            font-weight: 600;
+
+                            &:focus {
+                                border-color: var(--info);
+                                outline: none;
+                            }
+
+                            &:hover {
+                                filter: brightness(140%);
+                            }
+
+                            & > option {
+                                background-color: var(--surface-ground);
+                                font-size: var(--size-text-medium);
+                                font-weight: 600;
+                                
+                                &[values="1"] {
+                                    background-color: rgba(255, 0, 0, 0.44);
+                                }
+                            }
+                        }
+                    }
+
+                    /* Guys Styles */
+                    & > div#__guys {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--padding);
+                        flex-grow: 1;
+                        font-size: var(--size-text-medium);
+                        white-space: nowrap;
+                        font-weight: 600;
+                        text-shadow: 0 0 0.2rem rgba(var(--color-tema), 0.4);
+                        overflow-y: auto;
+
+                        & > div[values='item'] {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            position: relative;
+                            animation: showIn 100ms linear;
+
+                            & > div[values='title'] {
+                                display: flex;
+                                justify-content: center;
+                                width: 100%;
+                                padding: var(--padding);
+                            }
+
+                            & > div[values='criterios'] {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                width: 100%;
+                                padding: 0 var(--padding);
+                                filter: saturate(80%);
+
+                                & > div:first-child > div {
+                                    border-radius: 0 0 0.5rem 0.5rem !important;
+                                }
+
+                                & > div {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    width: 100%;
+
+                                    & > div {
+                                        width: 100%;
+                                    }
+
+                                    & > div:first-child {
+                                        padding: 0.15rem 0 0.15rem 0.3rem;
+                                        border-radius: 0.5rem;
+                                    }
+
+                                    & > div > .actividadOn {
+                                        position: relative;
+                                        background-color: var(--danger);
+                                        filter: saturate(200%);
+                                        border-radius: 0.5rem !important;
+                                        box-shadow: 0 0 0 0.3rem rgba(var(--color-tema), 0.3) inset;
+
+                                        &::before {
+                                            content: '<';
+                                            position: absolute;
+                                            right: 0;
+                                            top: 50%;
+                                            transform: translate(100%, -50%);
+                                            font-weight: bold;
+                                        }
+                                    }
+
+                                    & > div[values='actividades'] {
+                                        filter: saturate(50%);
+                                        transform: scaleX(0.95);
+
+                                        & > div {
+                                            display: flex;
+                                            align-items: center;
+                                            padding: var(--padding);
+                                            cursor: pointer;
+                                            transition: filter 100ms, box-shadow 100ms;
+                                            border-bottom: 0.3rem solid rgba(var(--color-tema), 0.1);
+
+                                            &:hover {
+                                                filter: saturate(200%);
+                                                box-shadow: 0 0 0 0.2rem rgb(var(--color-tema)) inset;
+                                            }
+
+                                            &:last-child {
+                                                border: none;
+                                                border-radius: 0 0 0.5rem 0.5rem;
+                                                box-shadow: 0 0.2rem 0.2rem 0.2rem rgba(var(--color-tema), 0.2);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --padding: 0.2rem;
+    }
+
+    #__calificacion > div[values='__a'] > div > div:first-child {
+        width: min-content !important;
+        flex-grow: 0 !important;
+    }
+
+    #__calificacion > div[values='__a'] > div > div:last-child {
+        width: min-content;
+    }
+
+    #__calificacion > div[values='__a'] > div > div > div#__guys {
+        overflow: hidden;
+        overflow-y: auto;
+        display: block;
+        flex: none;
+        max-height: 35vh;
+
+        & div {
+            border-radius: 0 !important;
+            border: 0 !important;
+        }
+
+        & > div {
+            padding: 0.3rem 0;
+        }
+    }
+}

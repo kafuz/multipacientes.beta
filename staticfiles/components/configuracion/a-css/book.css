@@ -1,0 +1,42 @@
+@import url("nav-buttons/book.css");
+@import url("monitoreos/book.css");
+@import url("main/book.css");
+@import url('view.css');
+
+.viewmain 
+{
+    &>bodyview
+    { 
+        display: flex;
+        height: 95%; width: 85%; 
+        padding: 0rem;
+        &>#__configuracion
+        { 
+            display: flex;
+            flex-grow: 1; 
+            padding: 0.5rem;
+            &>div{background-color: var(--surface-card);}
+        }
+        & div
+        {
+            border-radius: 0.2rem; 
+        }
+    }
+}
+
+
+
+
+@media (max-width: 767px) 
+{   
+    .viewmain 
+    {
+        &>bodyview
+        { 
+            height: 95%; 
+            width: 60%; 
+            &>#__configuracion
+            { padding: 0.2rem; }
+        }
+    }
+}

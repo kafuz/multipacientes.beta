@@ -1,0 +1,159 @@
+body 
+{
+  display: flex; 
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+  
+  main 
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    padding: .5rem 0;
+    background: rgb(var(--color-tema)) center/cover no-repeat url('../../media/img/backgrounds/universidad.jpg');
+    overflow: hidden;
+    #container__signup 
+    {
+      display: flex; flex-direction: column; gap: 2rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background-color: var(--surface-ground);
+      border: 2px solid var(--surface-border);
+      animation: form 2000ms alternate infinite;
+      > div 
+      { text-align: center; }
+  
+      > form 
+      {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
+        width: 450px; 
+        animation: show 200ms normal linear;
+        > div 
+        {
+          position: relative;
+          width: 100%;
+          
+          > label 
+          {
+            position: absolute; left: 0%;
+            transform: translate(0, -100%);
+            padding: .25rem 0rem;
+            border-radius: 6px;
+            white-space: nowrap; 
+            color: var(--primary-color);
+            font-weight: 600;
+          }
+  
+          > input 
+          {
+            width: 100%;
+            padding: 0.3rem;
+            border: 0.125rem solid rgba(var(--color-azul-m-50), 0.2);
+            border-radius: 0.25rem;
+            font-size:var(--size-text-medium);
+          }
+        }
+  
+        > button 
+        {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+
+  @keyframes form 
+  {
+    0% 
+    { box-shadow: 0 0 0 .1rem var(--primary-color); }  
+    100% 
+    { box-shadow: 0 0 0 .6rem var(--primary-color); } 
+  }
+  
+    #id_username_helptext,
+    #id_password1_helptext,
+    #id_password2_helptext {
+    display: none;
+    }
+
+    .errorlist 
+    {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      width: 350px;
+      z-index: 10;
+      position: absolute;
+      left: calc(100% + 2px);
+      &>li 
+      {
+        list-style: none;
+        background-color: var(--red-800);
+        padding: .5rem;
+        border-radius:0 12px 12px 12px;
+        text-align: center;
+        font-size: var(--size-text-medium);
+        animation: error 5000ms linear forwards;
+      }
+    }
+    
+@keyframes error 
+{
+  0%
+  { transform: translateY(100%); opacity: 0; } 
+  25% 
+  { transform: translateY(0%); opacity: 1; }
+  75%
+  { transform: translateY(0%); opacity: 1; }
+  90% 
+  { transform: translateY(0%); opacity: 0; }
+  100% 
+  { opacity: 0; display: none; }
+}  
+
+@media (max-width: 767px) 
+{
+  main 
+  {
+    align-items: start;
+    padding-top: 1rem;
+    #container__signup 
+    {
+      padding: .5rem;
+      width:calc(100% - 2rem) ;
+      > form 
+      {
+        gap: 2rem;
+        padding: .5rem;
+        width: 100%; 
+      }
+    }
+  }
+
+  @keyframes form 
+  {
+    0% 
+    { box-shadow: 0 0 0 .1rem var(--primary-color); }  
+    100% 
+    { box-shadow: 0 0 0 .4rem var(--primary-color); } 
+  }
+
+  .errorlist 
+  {
+    left: 50%;
+    transform: translateX(-50%);
+    &>li 
+    {
+      border-radius:12px;
+      border: var(--surface-borde);
+    }
+  }
+}

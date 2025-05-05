@@ -1,0 +1,122 @@
+@import url('dimension/book.css');
+@import url('criterio/book.css');
+@import url('actividad/head.css');
+@import url('actividad/body.css');
+
+#__configuracion
+{ 
+    overflow: hidden;
+    &>div[values='__main']
+    {
+        overflow: hidden;
+        display: flex; flex-grow: 1;
+        gap: 0.3rem;
+        padding: 0.3rem;
+        &>div
+        {  
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            &:first-child
+            {
+                flex-grow: 0 ;
+                width: min-content;
+            }
+            &:last-child
+            {
+                flex-grow: 1;
+            }
+            &>div
+            { padding: 0.3rem; background-color: rgba(var(--color-tema),0.1); }
+        }
+        /*Comportamiento de clases*/
+        &:not(:has(.config_dimension_on)) {
+            &>div:first-child>div:not(:first-child)>div {
+                display: none !important;
+            }
+            &>div:last-child>div>div{
+                display: none !important; 
+            }
+        }
+        
+        &:not(:has(.config_criterio_on)) {
+            &>div:last-child>div>div{
+                display: none !important; 
+            }
+        }
+
+        &:not(:has(.config_actividad_on)) {
+            &>div:last-child>div[values='body']>div{
+                display: none !important; 
+            }
+        }
+
+        /*COLOR*/
+        &[colorstate='ser']
+        { 
+            box-shadow: 0 0 0 2px rgba(var(--dimension-ser-rgb), 0.5);
+            & .config_dimension_on, & .on-config
+            {
+                background-color: rgb(var(--dimension-ser-rgb)) !important;
+            }
+        }
+        &[colorstate='conocer']
+        { 
+            box-shadow: 0 0 0 2px rgba(var(--dimension-conocer-rgb), 0.5);
+            & .config_dimension_on, & .on-config
+            {
+                background-color: rgb(var(--dimension-conocer-rgb)) !important;
+            }
+        }
+        &[colorstate='hacer']
+        { 
+            box-shadow: 0 0 0 2px rgba(var(--dimension-hacer-rgb), 0.5);
+            & .config_dimension_on, & .on-config
+            {
+                background-color: rgb(var(--dimension-hacer-rgb)) !important;
+            }
+        }
+
+    }
+}
+
+
+
+@media (max-width: 767px) 
+{
+    #view__2>bodyview
+    {
+        height: 82% !important;
+        width: 98% !important;
+        border-radius: 0.3rem;
+    }
+    #__configuracion
+    { 
+        width: 100% !important;
+        &>div[values='__main']
+        {
+            gap: 0.2rem;
+            padding: 0.2rem;
+            overflow: hidden;
+            &>div
+            {  
+                flex-direction: column;
+                gap: 0.2rem;
+                &:first-child
+                {
+                    width: 45% !important;
+                }
+                &:last-child
+                {
+                    width: 55% !important;
+                    overflow: hidden;
+                }
+                &>div
+                { 
+                    padding: 0.2rem; 
+                }
+            }
+        }
+    }
+
+}

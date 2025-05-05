@@ -1,0 +1,34 @@
+@import url('join/body.css');
+@import url('join/head.css');
+
+#view_rubrica
+{
+    > bodyview
+    {
+        width: 96%;
+        height: 96%;
+    }
+}
+
+#__rubrica
+{
+    display: flex;
+    width: 100%;
+    > div[values="join"]
+    {
+        display: flex; flex-direction: column;
+        gap: 0.3rem;
+    }
+}
+
+@media (max-width: 767px) 
+{
+    #view_rubrica
+    {
+        > bodyview
+        {
+            width: 96%;
+            height: 92%;
+        }
+    }
+}

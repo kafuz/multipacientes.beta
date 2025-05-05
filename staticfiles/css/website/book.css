@@ -1,0 +1,149 @@
+
+main 
+{
+    display: flex;
+    gap: .25rem;
+    padding: .25rem;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+.bannerHome
+{
+    height: 250px;
+    width: 100%;
+    box-shadow:0 0 8px 2px var(--surface-border) inset; 
+    position: relative;
+    background-image: url('../../media/img/banner/studens.jpg');
+    animation: bannerFade 1000ms linear normal;
+    &>div 
+    {
+        z-index: 2;
+        text-shadow:1px 2px var(--gray-900);
+        &[val="img"] 
+        {
+            z-index: 1;
+            position: absolute;
+            height: 50%;
+            left: 1%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.info-aprender-evaluear
+{
+    display: flex;
+    justify-content: center;
+    height: 350px;
+    background-image: url('../../media/img/banner/aprender_evaluar.jpg');
+    padding: 1rem;
+    overflow: hidden;
+    &>div 
+    {
+        padding: 1rem;
+        background-color: rgba(var(--color-tema),0.1);
+        backdrop-filter: blur(12px);
+        height: min-content;
+        border-radius: 12px;
+        & b
+        {
+            color:var(--primary-color);
+            background-color: var(--gray-50);
+        }
+    }
+}
+
+footer
+{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-ground);
+    gap: .5rem;
+    padding: 1rem;
+
+    &>div 
+    {
+        padding:.25rem;
+        &:first-child
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: .25rem;
+            border-bottom: 1px dotted var(--gray-50);
+            padding-bottom: .5rem;
+            &>div 
+            {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                &>div 
+                {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                }
+            }
+        }
+        &:last-child
+        {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            text-align: center;
+        }
+    }
+    img 
+    { width: 20px; aspect-ratio: 1/1; }
+}
+
+.info-recuadro 
+{
+    display: none;
+}
+
+@media (min-width: 767px) 
+{
+    .bannerHome
+    {
+        height: 350px;
+        &>div 
+        {
+            font-size: 2rem;
+            &[val="img"] 
+            {
+                height: 80%;
+                top: 100%;
+                transform: translate(0%, -105%);
+            }
+        }
+    }
+
+    .info-aprender-evaluear
+    {
+        height: 450px;
+        &>div 
+        {
+            font-size: larger;
+            & b
+            {
+                padding: .1rem;
+                border-radius: 5px 0 ;
+            }
+        }
+    }
+}
+
+
+@keyframes bannerFade 
+{
+    0%
+    { transform: translate(100%, 0%); opacity: 0; }
+    50%
+    { transform: translate(0%, 0%); opacity: 1; }
+    70%
+    { transform: scale(1.2); }
+    100%
+    { transform: scale(1); }
+}

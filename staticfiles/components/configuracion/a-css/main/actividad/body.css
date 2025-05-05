@@ -1,0 +1,258 @@
+#__configuracion
+{
+    &>div[values='__main']
+    {
+        &>div
+        {
+            & input,div{font-weight: 600};
+            &:last-child
+            {
+                &>div[values='body']
+                {
+                    flex-grow: 1;
+                    display: flex;
+                    gap: 0.3rem;
+                    overflow: hidden;
+                    &>div[values='card']
+                    {
+                        display: flex; flex-direction: column;
+                        gap: 0.3rem;
+                        padding: 0.3rem;
+                        &>div{ display: flex;  padding: 0.3rem;  background-color: rgba(var(--color-tema),0.2); }
+
+                        &>div[values='row']
+                        {
+                            justify-content: space-between;
+                            text-align: center;
+                            gap: 0.3rem;
+                            &>div 
+                            { 
+                                padding: 0.3rem;
+                                background-color: rgba(var(--color-tema),0.2); 
+                                &>div:last-child{ padding: 0.2rem; background-color: rgba(var(--color-tema),0.2);  }
+                            }
+                        }
+
+                        &>div[values='card']
+                        {   
+                            flex-grow: 1;
+                            flex-direction: column;
+                            justify-content: space-around;
+                            &>div 
+                            {
+                                display: flex;
+                                align-items: center;
+                                flex-direction: column;
+                                gap: 0.3rem;
+                                padding: 0.3rem;
+                                background-color: rgba(var(--color-tema),0.2);
+                                &:first-child{ padding: 0.6rem 0rem ;  text-align: center;}
+                                & input 
+                                {
+                                    border: 0;
+                                    border-radius: 0.2rem;
+                                    max-width: 6rem;
+                                    padding: 0.3rem;
+                                }
+                            }
+                            &>div[values='delete']
+                            {
+                                text-align: center;
+                                background-color: var(--danger);
+                                box-shadow: 0 0 0 2px white inset;
+                                padding: 0.6rem 0rem ;
+                                &>div {width: 100%; display: flex; justify-content: center; align-items: center;}
+                                &>div>img 
+                                {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                    }
+                    &>div[values='monitoreos']
+                    {
+                        flex-direction: column;
+                        gap: 0.3rem;
+                        flex-grow: 1;
+                        background-color: var(--surface-card);
+                        box-shadow: 0 0 0.5rem 0.2rem var(--surface-border) inset;
+                        overflow: hidden;
+                        &>div, &
+                        {
+                            padding: 0.3rem;
+                            display: flex;
+                        }
+                        &>div[values='title']
+                        {
+                           justify-content: center; position: relative;
+                        }
+                        /*MSJ ALERTA*/
+                        &:not(:has(.body-perido-activo)) 
+                        {
+                            &>div[values='title']
+                            {
+                                &::before
+                                { 
+                                    content: '⚠️ Seleccione fecha de aplicación.'; background-color: var(--danger); position: absolute; right: 0; top: 0;
+                                    padding: 0.3rem 0.6rem; border-radius: 5px 5px 0 5px; animation: showIn 200ms linear normal;
+                                }
+                            }
+                        }
+                        &>div[values='content']
+                        {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+                            width: 100%;
+                            gap: 0.6rem;
+                            grid-auto-rows: min-content;
+                            overflow-y:auto;
+                            /* ITEM */
+                            &>div 
+                            {
+                                display: flex; flex-direction: column;
+                                padding: 0.4rem;
+                                gap: 0.3rem;
+                                background-color: rgba(var(--color-tema),0.4);
+                                &>div
+                                {
+                                    overflow: hidden;
+                                    background-color: rgba(var(--color-tema),0.4);
+                                    text-align: center;
+                                    &>div 
+                                    {
+                                        padding:0.1rem 0.3rem;
+                                        border-radius: 0;
+                                    }
+                                    &:first-child{ box-shadow: 0 0 0 2px rgba(var(--color-tema), 0.5) inset; text-align: center; text-shadow: 0 2px 2px rgba(var(--color-tema));}
+                                }
+                                &:hover
+                                {
+                                    box-shadow: 0 0 0 3px rgba(var(--color-tema), 0.5) inset;
+                                }
+                            }
+                            &>.body-perido-activo
+                            {
+                                animation: showIn 200ms linear normal;
+                                background-color: var(--info);
+                                box-shadow: 0 0 0 2px rgba(var(--color-tema), 1) inset, 0 0 4px 2px rgba(var(--color-tema),0.3);
+                                position: relative;
+                                &>div 
+                                { background-color: rgba(var(--color-dark), 0.2); }
+                                &::before
+                                { 
+                                    content: 'A'; position: absolute; left: 2%; top: 0%; background-color: var(--info);
+                                    box-shadow: 0 0 0 2px rgba(var(--color-tema)); width: 1.3rem; aspect-ratio: 1/1; border-radius: 50%;
+                                    display: flex; justify-content: center; align-items: center; 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) 
+{
+    #__configuracion
+    {
+        &>div[values='__main']
+        {
+            &>div
+            {
+                &:last-child
+                {
+                    &>div[values='body']
+                    {
+                        display: flex; flex-direction: column; 
+                        gap: 0.3rem;
+                        padding: 0.3rem;
+                        &>div[values='card']
+                        {
+                            gap: 0.1rem;
+                            padding: 0.2rem;
+                            &>div{ padding: 0.1rem; }
+
+                            &>div[values='row']
+                            {
+                                justify-content: space-between;
+                                text-align: center;
+                                gap: 0.2rem;
+                                &>div 
+                                { 
+                                    padding:0.1rem 0.2rem;
+                                    &>div:last-child{ padding: 0.1rem; }
+                                }
+                            }
+
+                            &>div[values='card']
+                            {   
+                                gap: 0.2rem;
+                                &>div 
+                                {   
+                                    gap: 0.1rem;
+                                    padding: 0.1rem;
+                                    &:first-child{ padding: 0.3rem 0rem ; }
+                                    & input 
+                                    {
+                                        max-width: 6rem;
+                                        padding: 0.2rem;
+                                        text-align: center;
+                                    }
+                                }
+                                &>div[values='delete']
+                                { padding: 0.3rem 0rem ;}
+                            }
+                        }
+                        &>div[values='monitoreos']
+                        {
+                            gap: 0.1rem;
+                            box-shadow: 0 0 0.3rem 0.1rem rgba(var(--color-tema),0.4) inset;
+                            overflow: hidden;
+                            &>div, &
+                            {
+                                padding: 0.2rem;
+                                display: flex;
+                            }
+                            &>div[values='title']
+                            {
+                            justify-content: center; position: relative;
+                            }
+                            /*MSJ ALERTA*/
+                            &:not(:has(.body-perido-activo)) 
+                            {
+                                &>div[values='title']
+                                {
+                                    &::before
+                                    { 
+                                        padding: 0.2rem 0.4rem; 
+                                        text-align: center;
+                                    }
+                                }
+                                &>div[values='content']
+                                {padding-top: 2rem;}
+                            }
+                            &>div[values='content']
+                            {
+                                gap: 0.3rem;
+                                /* ITEM */
+                                &>div 
+                                {
+                                    padding: 0.3rem;
+                                    gap: 0.2rem;
+                                    &>div
+                                    {
+                                        &>div 
+                                        { padding:0.1rem 0.2rem;}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
